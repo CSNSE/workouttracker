@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify253f188894a64-staging-161801-authRole",
+      "UnauthRoleArn": "arn:aws:iam::062490955624:role/amplify-amplify253f188894a64-staging-161801-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::062490955624:role/amplify-amplify253f188894a64-staging-161801-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplify253f188894a64-staging-161801-deployment",
+      "UnauthRoleName": "amplify-amplify253f188894a64-staging-161801-unauthRole",
+      "StackName": "amplify-amplify253f188894a64-staging-161801",
+      "StackId": "arn:aws:cloudformation:us-east-1:062490955624:stack/amplify-amplify253f188894a64-staging-161801/c627ae10-da42-11ee-a087-0e9de17a8061",
+      "AmplifyAppId": "d32bzyyvevh52o"
+    },
+    "categories": {
+      "auth": {
+        "workouttracker76c78dce": {}
+      }
+    }
+  }
+}
