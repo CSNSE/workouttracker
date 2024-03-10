@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "workouttracker",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-03-05T21:46:09.150Z"
+}

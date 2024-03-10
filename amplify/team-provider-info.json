@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "workouttracker76c78dce": {}
+      },
+      "api": {
+        "workouttracker": {}
+      },
+      "storage": {
+        "workoutbucket": {}
       }
     }
   }

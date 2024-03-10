@@ -1,0 +1,15 @@
+type Workout @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Lift: String
+  Weight: String
+  Reps: String
+  sessionID: ID! @index(name: "bySession")
+}
+
+type Session @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Type: String
+  Date: AWSDate
+  Workouts: [Workout] @hasMany(indexName: "bySession", fields: ["id"])
+}
+ 

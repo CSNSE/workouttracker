@@ -1,0 +1,14 @@
+{
+  "resourceName": "workoutbucket",
+  "policyUUID": "415df05c",
+  "bucketName": "workouttracker2f01316701324dd8b37b40271d7d4a25",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
