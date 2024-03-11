@@ -8,6 +8,8 @@ import SessionDisplay from './SessionDisplay';
 import DispSessionsCollection from './ui-components/DispSessionsCollection';
 import BigButton from './BigButton';
 import BackButton from './BackButton';
+import { BorderDispSessionsCollection } from './ui-components';
+
 function App() {
   return (
     <div className="App">
@@ -15,8 +17,8 @@ function App() {
         <Router>
           <Routes>
             <Route exact path='/' element={<WorkoutButtons />} />
-            <Route exact path='/new' element={<SessionCreateForm/>}/>
-            <Route exact path='/Display' element={<div><SessionDisplay/><DispSessionsCollection/><BackButton/></div>}/>
+            <Route exact path='/new' element={<div><SessionCreateForm/><BackButton/></div>}/>
+            <Route exact path='/Display' element={<div><SessionDisplay/><BorderDispSessionsCollection/><BackButton/></div>}/>
           </Routes>
         </Router>
       </header>

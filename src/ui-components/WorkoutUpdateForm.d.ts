@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { AutocompleteProps, GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -25,11 +25,13 @@ export declare type WorkoutUpdateFormInputValues = {
     Lift?: string;
     Weight?: string;
     Reps?: string;
+    sessionID?: string;
 };
 export declare type WorkoutUpdateFormValidationValues = {
     Lift?: ValidationFunction<string>;
     Weight?: ValidationFunction<string>;
     Reps?: ValidationFunction<string>;
+    sessionID?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type WorkoutUpdateFormOverridesProps = {
@@ -37,6 +39,7 @@ export declare type WorkoutUpdateFormOverridesProps = {
     Lift?: PrimitiveOverrideProps<TextFieldProps>;
     Weight?: PrimitiveOverrideProps<TextFieldProps>;
     Reps?: PrimitiveOverrideProps<TextFieldProps>;
+    sessionID?: PrimitiveOverrideProps<AutocompleteProps>;
 } & EscapeHatchProps;
 export declare type WorkoutUpdateFormProps = React.PropsWithChildren<{
     overrides?: WorkoutUpdateFormOverridesProps | undefined | null;

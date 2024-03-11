@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { deleteSession } from "../graphql/mutations";
-import { Button, Text, View } from "@aws-amplify/ui-react";
+import { Button, Icon, Text, View } from "@aws-amplify/ui-react";
 const client = generateClient();
 export default function DispSessions(props) {
   const { session, overrides, ...rest } = props;
@@ -118,12 +118,25 @@ export default function DispSessions(props) {
           {...getOverrideProps(overrides, "Date")}
         ></Text>
       </View>
-      <Button
-        width="38px"
-        height="34px"
+      <Icon
+        display="block"
+        gap="unset"
+        alignItems="unset"
+        justifyContent="unset"
+        overflow="hidden"
         position="absolute"
-        top="25px"
-        left="265px"
+        top="20px"
+        left="278px"
+        padding="0px 0px 0px 0px"
+        type="add"
+        {...getOverrideProps(overrides, "\uD83D\uDD12Icon")}
+      ></Icon>
+      <Button
+        width="22px"
+        height="22px"
+        position="absolute"
+        top="16px"
+        left="275px"
         size="default"
         isDisabled={false}
         variation="default"
@@ -133,11 +146,11 @@ export default function DispSessions(props) {
         {...getOverrideProps(overrides, "Button38554339")}
       ></Button>
       <Button
-        width="38px"
-        height="34px"
+        width="22px"
+        height="22px"
         position="absolute"
-        top="25px"
-        left="315px"
+        top="16px"
+        left="305px"
         size="default"
         isDisabled={false}
         variation="default"

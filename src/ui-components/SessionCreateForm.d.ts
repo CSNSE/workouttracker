@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { AutocompleteProps, GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -24,16 +24,19 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type SessionCreateFormInputValues = {
     Type?: string;
     Date?: string;
+    Workouts?: any[];
 };
 export declare type SessionCreateFormValidationValues = {
     Type?: ValidationFunction<string>;
     Date?: ValidationFunction<string>;
+    Workouts?: ValidationFunction<any>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type SessionCreateFormOverridesProps = {
     SessionCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     Type?: PrimitiveOverrideProps<TextFieldProps>;
     Date?: PrimitiveOverrideProps<TextFieldProps>;
+    Workouts?: PrimitiveOverrideProps<AutocompleteProps>;
 } & EscapeHatchProps;
 export declare type SessionCreateFormProps = React.PropsWithChildren<{
     overrides?: SessionCreateFormOverridesProps | undefined | null;

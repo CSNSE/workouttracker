@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,19 +17,20 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type DispSessionsOverridesProps = {
-    DispSessions?: PrimitiveOverrideProps<ViewProps>;
-    "Frame 1"?: PrimitiveOverrideProps<ViewProps>;
-    Button38464310?: PrimitiveOverrideProps<ButtonProps>;
+export declare type BorderDispSessionsOverridesProps = {
+    BorderDispSessions?: PrimitiveOverrideProps<ViewProps>;
+    DisplaySessionsNew?: PrimitiveOverrideProps<ViewProps>;
     Type?: PrimitiveOverrideProps<TextProps>;
-    Date?: PrimitiveOverrideProps<TextProps>;
-    "\uD83D\uDD12Icon"?: PrimitiveOverrideProps<IconProps>;
-    Button38554339?: PrimitiveOverrideProps<ButtonProps>;
-    Button38464320?: PrimitiveOverrideProps<ButtonProps>;
+    "2020/10/10"?: PrimitiveOverrideProps<TextProps>;
+    "Frame 2"?: PrimitiveOverrideProps<ViewProps>;
+    Button38759835?: PrimitiveOverrideProps<ButtonProps>;
+    Button38759836?: PrimitiveOverrideProps<ButtonProps>;
+    Button38759837?: PrimitiveOverrideProps<ButtonProps>;
+    Button38759838?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
-export declare type DispSessionsProps = React.PropsWithChildren<Partial<ViewProps> & {
+export declare type BorderDispSessionsProps = React.PropsWithChildren<Partial<ViewProps> & {
     session?: any;
 } & {
-    overrides?: DispSessionsOverridesProps | undefined | null;
+    overrides?: BorderDispSessionsOverridesProps | undefined | null;
 }>;
-export default function DispSessions(props: DispSessionsProps): React.ReactElement;
+export default function BorderDispSessions(props: BorderDispSessionsProps): React.ReactElement;

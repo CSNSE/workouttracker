@@ -1,0 +1,12 @@
+.big-button {
+    padding: 10px; /* Larger padding */
+    font-size: 20px; /* Larger font size */
+    border-radius: 9px; /* Optional: rounded corners */
+    cursor: pointer; /* Cursor pointer */
+  }
+  /* Additional styles for hover or active states */
+  .big-button:hover {
+    background-color: #0056c4; /* Example hover background color */
+    color: white; /* Example hover text color */
+  }
+  

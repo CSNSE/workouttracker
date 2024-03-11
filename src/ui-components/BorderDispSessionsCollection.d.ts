@@ -5,7 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { BorderDispSessionsProps } from "./BorderDispSessions";
+import { CollectionProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,19 +18,17 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type DispSessionsOverridesProps = {
-    DispSessions?: PrimitiveOverrideProps<ViewProps>;
-    "Frame 1"?: PrimitiveOverrideProps<ViewProps>;
-    Button38464310?: PrimitiveOverrideProps<ButtonProps>;
-    Type?: PrimitiveOverrideProps<TextProps>;
-    Date?: PrimitiveOverrideProps<TextProps>;
-    "\uD83D\uDD12Icon"?: PrimitiveOverrideProps<IconProps>;
-    Button38554339?: PrimitiveOverrideProps<ButtonProps>;
-    Button38464320?: PrimitiveOverrideProps<ButtonProps>;
+export declare type BorderDispSessionsCollectionOverridesProps = {
+    BorderDispSessionsCollection?: PrimitiveOverrideProps<CollectionProps>;
+    BorderDispSessions?: BorderDispSessionsProps;
 } & EscapeHatchProps;
-export declare type DispSessionsProps = React.PropsWithChildren<Partial<ViewProps> & {
-    session?: any;
+export declare type BorderDispSessionsCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
+    items?: any[];
+    overrideItems?: (collectionItem: {
+        item: any;
+        index: number;
+    }) => BorderDispSessionsProps;
 } & {
-    overrides?: DispSessionsOverridesProps | undefined | null;
+    overrides?: BorderDispSessionsCollectionOverridesProps | undefined | null;
 }>;
-export default function DispSessions(props: DispSessionsProps): React.ReactElement;
+export default function BorderDispSessionsCollection(props: BorderDispSessionsCollectionProps): React.ReactElement;
