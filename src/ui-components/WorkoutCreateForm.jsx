@@ -221,7 +221,7 @@ export default function WorkoutCreateForm(props) {
     React.useState(undefined);
   const sessionIDRef = React.createRef();
   const getDisplayValue = {
-    sessionID: (r) => `${r?.Type ? r?.Type + " - " : ""}${r?.id}`,
+    sessionID: (r) => `${r?.Type}${"-"}${r?.id}`,
   };
   const validations = {
     Lift: [],
@@ -441,7 +441,7 @@ export default function WorkoutCreateForm(props) {
           setCurrentSessionIDValue(undefined);
         }}
         currentFieldValue={currentSessionIDValue}
-        label={"Session id"}
+        label={"Session"}
         items={sessionID ? [sessionID] : []}
         hasError={errors?.sessionID?.hasError}
         runValidationTasks={async () =>
@@ -475,7 +475,7 @@ export default function WorkoutCreateForm(props) {
         defaultFieldValue={""}
       >
         <Autocomplete
-          label="Session id"
+          label="Session"
           isRequired={true}
           isReadOnly={false}
           placeholder="Search Session"

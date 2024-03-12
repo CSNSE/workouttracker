@@ -11,6 +11,7 @@ export const createWorkout = /* GraphQL */ `
       Lift
       Weight
       Reps
+      sessionID
       createdAt
       updatedAt
       __typename
@@ -27,6 +28,7 @@ export const updateWorkout = /* GraphQL */ `
       Lift
       Weight
       Reps
+      sessionID
       createdAt
       updatedAt
       __typename
@@ -43,6 +45,7 @@ export const deleteWorkout = /* GraphQL */ `
       Lift
       Weight
       Reps
+      sessionID
       createdAt
       updatedAt
       __typename
@@ -58,6 +61,10 @@ export const createSession = /* GraphQL */ `
       id
       Type
       Date
+      Workouts {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -73,6 +80,10 @@ export const updateSession = /* GraphQL */ `
       id
       Type
       Date
+      Workouts {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -88,6 +99,10 @@ export const deleteSession = /* GraphQL */ `
       id
       Type
       Date
+      Workouts {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename

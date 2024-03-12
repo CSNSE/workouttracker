@@ -4,11 +4,12 @@ import WorkoutButtons from './Workoutbuttons';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Allworkouts from './workoutpage';
 import SessionCreateForm from './ui-components/SessionCreateForm';
-import SessionDisplay from './SessionDisplay';
 import DispSessionsCollection from './ui-components/DispSessionsCollection';
 import BigButton from './BigButton';
 import BackButton from './BackButton';
-import { BorderDispSessionsCollection } from './ui-components';
+import { BorderDispSessionsCollection, WorkoutCreateForm } from './ui-components';
+import { Button } from '@aws-amplify/ui-react';
+import AddWorkout from './AddWorkout';
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Routes>
             <Route exact path='/' element={<WorkoutButtons />} />
             <Route exact path='/new' element={<div><SessionCreateForm/><BackButton/></div>}/>
-            <Route exact path='/Display' element={<div><SessionDisplay/><BorderDispSessionsCollection/><BackButton/></div>}/>
+            <Route exact path='/Display' element={<div><BorderDispSessionsCollection/><BackButton/></div>}/>
+            <Route exact path='/AddWorkout/:cid' element={<div><AddWorkout/></div>}/>
           </Routes>
         </Router>
       </header>

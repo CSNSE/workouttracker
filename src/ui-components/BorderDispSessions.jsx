@@ -15,7 +15,7 @@ export default function BorderDispSessions(props) {
   const { session, overrides, ...rest } = props;
   const buttonThreeEightSevenFiveNineEightThreeFiveOnClick = useNavigateAction({
     type: "url",
-    url: "/AddWorkout",
+    url: `${"/AddWorkout/"}${session?.id}`,
   });
   const buttonThreeEightSevenFiveNineEightThreeSevenOnClick = async () => {
     await client.graphql({

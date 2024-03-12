@@ -8,6 +8,7 @@ export const getWorkout = /* GraphQL */ `
       Lift
       Weight
       Reps
+      sessionID
       createdAt
       updatedAt
       __typename
@@ -26,6 +27,37 @@ export const listWorkouts = /* GraphQL */ `
         Lift
         Weight
         Reps
+        sessionID
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const workoutsBySessionID = /* GraphQL */ `
+  query WorkoutsBySessionID(
+    $sessionID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelWorkoutFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    workoutsBySessionID(
+      sessionID: $sessionID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        Lift
+        Weight
+        Reps
+        sessionID
         createdAt
         updatedAt
         __typename
@@ -41,6 +73,10 @@ export const getSession = /* GraphQL */ `
       id
       Type
       Date
+      Workouts {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
