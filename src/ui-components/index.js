@@ -15,6 +15,7 @@ export { default as LogoWithText } from "./LogoWithText";
 export { default as MyIcon } from "./MyIcon";
 export { default as SessionCreateForm } from "./SessionCreateForm";
 export { default as SessionUpdateForm } from "./SessionUpdateForm";
+export { default as ViewWorkoutsHeader } from "./ViewWorkoutsHeader";
 export { default as WorkoutCreateForm } from "./WorkoutCreateForm";
 export { default as WorkoutUpdateForm } from "./WorkoutUpdateForm";
 export { default as studioTheme } from "./studioTheme";

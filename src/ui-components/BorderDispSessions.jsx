@@ -17,6 +17,10 @@ export default function BorderDispSessions(props) {
     type: "url",
     url: `${"/AddWorkout/"}${session?.id}`,
   });
+  const buttonThreeEightSevenFiveNineEightThreeSixOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/DispWorkouts/"}${session?.id}`,
+  });
   const buttonThreeEightSevenFiveNineEightThreeSevenOnClick = async () => {
     await client.graphql({
       query: deleteSession.replaceAll("__typename", ""),
@@ -142,6 +146,9 @@ export default function BorderDispSessions(props) {
           isDisabled={false}
           variation="default"
           children="View"
+          onClick={() => {
+            buttonThreeEightSevenFiveNineEightThreeSixOnClick();
+          }}
           {...getOverrideProps(overrides, "Button38759836")}
         ></Button>
         <Button
