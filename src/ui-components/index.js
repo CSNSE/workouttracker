@@ -10,6 +10,8 @@ export { default as DispSessions } from "./DispSessions";
 export { default as DispSessionsCollection } from "./DispSessionsCollection";
 export { default as DisplaySessionsNew } from "./DisplaySessionsNew";
 export { default as DisplaySessionsNewCollection } from "./DisplaySessionsNewCollection";
+export { default as DisplayWorkouts } from "./DisplayWorkouts";
+export { default as DisplayWorkoutsCollection } from "./DisplayWorkoutsCollection";
 export { default as Logo } from "./Logo";
 export { default as LogoWithText } from "./LogoWithText";
 export { default as MyIcon } from "./MyIcon";

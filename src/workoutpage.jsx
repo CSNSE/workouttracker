@@ -19,7 +19,6 @@ function Allworkouts() {
 
     return (
         <div className='AllPage'>
-            <p>This is the {exercise} page</p>
             <WorkoutCreateForm/>
             <button onClick={navBack}>Back</button> {/* Directly use navBack here */}
         </div>

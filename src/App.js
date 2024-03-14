@@ -11,6 +11,7 @@ import { BorderDispSessionsCollection, WorkoutCreateForm } from './ui-components
 import ViewWorkouts from './ViewWorkouts';
 import { Button } from '@aws-amplify/ui-react';
 import AddWorkout from './AddWorkout';
+import AddWorkoutFromDisplay from './AddWorkoutFromDisplay';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route exact path='/Display' element={<div><BorderDispSessionsCollection/><BackButton/></div>}/>
             <Route exact path='/AddWorkout/:cid' element={<div><AddWorkout/></div>}/>
             <Route exact path='/DispWorkouts/:cid' element={<div><ViewWorkouts/></div>}/>
+            <Route exact path ='AddWorkoutFromDisplay/:cid' element={<div><AddWorkoutFromDisplay/></div>}/>
           </Routes>
         </Router>
       </header>

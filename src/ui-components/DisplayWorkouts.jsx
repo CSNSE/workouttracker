@@ -7,13 +7,13 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "./utils";
-import { Button, Text, View } from "@aws-amplify/ui-react";
-export default function ViewWorkoutsHeader(props) {
-  const { session, overrides, ...rest } = props;
+import { Divider, Text, View } from "@aws-amplify/ui-react";
+export default function DisplayWorkouts(props) {
+  const { workout, overrides, ...rest } = props;
   return (
     <View
       width="316px"
-      height="133px"
+      height="80px"
       display="block"
       gap="unset"
       alignItems="unset"
@@ -22,65 +22,76 @@ export default function ViewWorkoutsHeader(props) {
       position="relative"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "ViewWorkoutsHeader")}
+      {...getOverrideProps(overrides, "DisplayWorkouts")}
       {...rest}
     >
       <Text
         fontFamily="Inter"
-        fontSize="20px"
+        fontSize="16px"
         fontWeight="400"
         color="rgba(0,0,0,1)"
-        lineHeight="30px"
+        lineHeight="24px"
         textAlign="left"
         display="block"
         direction="column"
         justifyContent="unset"
-        width="165px"
-        height="24px"
+        width="135px"
+        height="22px"
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="30px"
-        left="7px"
+        top="32px"
+        left="6px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children={session?.Type}
-        {...getOverrideProps(overrides, "Session Type")}
+        children={workout?.Lift}
+        {...getOverrideProps(overrides, "Exercise")}
       ></Text>
       <Text
         fontFamily="Inter"
-        fontSize="20px"
+        fontSize="16px"
         fontWeight="400"
         color="rgba(0,0,0,1)"
-        lineHeight="30px"
+        lineHeight="24px"
         textAlign="left"
         display="block"
         direction="column"
         justifyContent="unset"
-        width="165px"
-        height="23px"
+        width="49px"
+        height="22px"
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="78px"
-        left="7px"
+        top="32px"
+        left="158px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children={session?.Date}
-        {...getOverrideProps(overrides, "Session Date")}
+        children={workout?.Reps}
+        {...getOverrideProps(overrides, "Reps")}
       ></Text>
-      <Button
-        width="63px"
-        height="18px"
+      <Text
+        fontFamily="Inter"
+        fontSize="16px"
+        fontWeight="400"
+        color="rgba(0,0,0,1)"
+        lineHeight="24px"
+        textAlign="left"
+        display="block"
+        direction="column"
+        justifyContent="unset"
+        width="78px"
+        height="22px"
+        gap="unset"
+        alignItems="unset"
         position="absolute"
-        top="9px"
-        left="6px"
-        size="default"
-        isDisabled={false}
-        variation="default"
-        children="Back"
-        {...getOverrideProps(overrides, "Button")}
-      ></Button>
+        top="32px"
+        left="238px"
+        padding="0px 0px 0px 0px"
+        whiteSpace="pre-wrap"
+        children={workout?.Weight}
+        {...getOverrideProps(overrides, "Weight")}
+      ></Text>
+
     </View>
   );
 }

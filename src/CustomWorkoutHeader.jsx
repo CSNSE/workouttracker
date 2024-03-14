@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, Text, View } from "@aws-amplify/ui-react";
+import { Button, Divider, Text, View } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./ui-components/utils.js";
 import { getSession } from "./graphql/queries";
 import { useState, useEffect } from "react";
@@ -54,8 +54,8 @@ export default function CustomViewWorkoutsHeader(props) {
 
   return (
     <View
-      width="140px"
-      height="43px"
+      width="316px"
+      height="133px"
       display="block"
       gap="unset"
       alignItems="unset"
@@ -69,20 +69,20 @@ export default function CustomViewWorkoutsHeader(props) {
     >
       <Text
         fontFamily="Inter"
-        fontSize="6px"
+        fontSize="20px"
         fontWeight="400"
         color="rgba(0,0,0,1)"
-        lineHeight="9px"
+        lineHeight="30px"
         textAlign="left"
         display="block"
         direction="column"
         justifyContent="unset"
-        width="130px"
-        height="11px"
+        width="185px"
+        height="24px"
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="17px"
+        top="30px"
         left="7px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
@@ -91,20 +91,20 @@ export default function CustomViewWorkoutsHeader(props) {
       ></Text>
       <Text
         fontFamily="Inter"
-        fontSize="6px"
+        fontSize="20px"
         fontWeight="400"
         color="rgba(0,0,0,1)"
-        lineHeight="9px"
+        lineHeight="30px"
         textAlign="left"
         display="block"
         direction="column"
         justifyContent="unset"
-        width="130px"
-        height="11px"
+        width="165px"
+        height="23px"
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="28px"
+        top="78px"
         left="7px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
@@ -112,18 +112,19 @@ export default function CustomViewWorkoutsHeader(props) {
         {...getOverrideProps(overrides, "Session Date")}
       ></Text>
       <Button
-        width="50px"
-        height="17.5px"
+        width="63px"
+        height="18px"
         position="absolute"
-        top="2px"
+        top="9px"
         left="6px"
         size="default"
         isDisabled={false}
         variation="default"
-        children="<---"
+        children="Back"
         onClick={handleBackButtonClick}
         {...getOverrideProps(overrides, "Button")}
       ></Button>
     </View>
+
   );
 }
