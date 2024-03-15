@@ -11,6 +11,7 @@ import CustomViewWorkoutsHeader from "./CustomWorkoutHeader";
 import DispWorkoutsBySessionCollection from "./DispWorkoutsBySessionCollection";
 import AddWorkout from "./AddWorkout";
 import BigButton from "./BigButton";
+import './ViewWorkouts.css';
 import DisplayWorkoutsCollection from "./ui-components/DisplayWorkoutsCollection";
 function ViewWorkouts(){
     const location = useLocation();
@@ -34,7 +35,7 @@ function ViewWorkouts(){
         <div >  
             <CustomViewWorkoutsHeader id={cid}/>
             <DispWorkoutsBySessionCollection />
-            <BigButton onClick={() => navigate('/AddWorkoutFromDisplay/'+cid)} label = 'Add Workout'/>
+            <button className='bigButton' onClick={() => navigate('/AddWorkoutFromDisplay/'+cid)}>Add Workout</button>
         </div>
 
     )

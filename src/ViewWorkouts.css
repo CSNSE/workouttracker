@@ -1,0 +1,30 @@
+/* BigButton.css */
+
+.bigButton {
+    width: auto; /* Adjust the width as needed */
+    height: 36px; /* Maintain consistent height with other buttons */
+    padding: 8px 20px; /* Slightly larger horizontal padding for a wider button */
+    font-size: 16px; /* Keep font size consistent or adjust as needed */
+    font-family: 'Inter', sans-serif;
+    font-weight: 500; /* Slightly bolder for emphasis */
+    color: white;
+    background-color: #4CAF50; /* A distinct color to differentiate this button, e.g., a green for "Add" actions */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for interaction */
+    display: inline-flex; /* Use flex to center the text inside */
+    align-items: center; /* Vertical alignment */
+    justify-content: center; /* Horizontal alignment */
+}
+
+.bigButton:hover {
+    background-color: #43A047; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight raise effect on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+}
+
+.bigButton:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.5); /* Custom focus style to match button color */
+}

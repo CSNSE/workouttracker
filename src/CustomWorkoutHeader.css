@@ -1,0 +1,50 @@
+/* CustomViewWorkoutsHeader.css */
+
+.viewWorkoutsHeader {
+    width: 100%;
+    max-width: 480px; /* Allows for better responsiveness on various devices */
+    min-height: 150px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px; /* Slightly larger radius for a softer look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Deeper shadow for more depth */
+    border: 1px solid #e0e0e0;
+    margin: auto; /* Centers the header in its parent container */
+    overflow: hidden; /* Ensures no content spills outside the border-radius */
+}
+
+.sessionInfoText {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 12px; /* Adds space between this text and anything below it */
+}
+
+.backButton {
+    width: auto; /* Allows the button to resize based on its content */
+    padding: 8px 15px; /* Provides more horizontal space for a balanced look */
+    font-size: 16px; /* Larger font size for better legibility */
+    letter-spacing: 0.05em; /* Slightly more spacing between characters */
+    background-color: #db4c3f;
+    color: white;
+    border: none;
+    border-radius: 5px; /* Subtle rounded corners */
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    align-self: flex-start; /* Ensures alignment consistency */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Initial subtle shadow */
+}
+.backButton:hover, .backButton:focus {
+    background-color: #c44336; /* Slightly darker on hover/focus for feedback */
+    transform: translateY(-3px); /* Slightly larger movement for a lively effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover/focus */
+}
+
+.backButton:focus {
+    outline: none; /* Removes the default focus outline */
+    box-shadow: 0 0 0 3px rgba(219, 76, 63, 0.5); /* Custom focus indication */
+}

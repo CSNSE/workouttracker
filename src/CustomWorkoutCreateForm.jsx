@@ -16,7 +16,6 @@ import { fetchByPath, getOverrideProps, validateField } from "./ui-components/ut
 import { generateClient } from "aws-amplify/api";
 import { listSessions } from "./graphql/queries";
 import { createWorkout } from "./graphql/mutations";
-
 const client = generateClient();
 
 export default function CustomWorkoutCreateForm(props) {

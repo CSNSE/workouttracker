@@ -1,0 +1,47 @@
+/* DispWorkoutsBySession.css */
+
+.workoutContainer {
+    display: flex;
+    flex-direction: row; /* Arrange items horizontally */
+    align-items: center; /* Center items vertically within the container */
+    justify-content: space-between; 
+    width: 100%;
+    max-width: 480px; /* Adjust based on your layout */
+    padding: 10px;
+    background-color: #f9f9f9; /* A light grey background for slight contrast */
+    border: 1px solid #e0e0e0; /* A subtle border to define the container */
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.workoutItem {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500; /* Slightly bolder for better readability */
+    color: #333; /* Darker text for contrast */
+    line-height: 24px;
+    text-align: left;
+    margin: 0 8px; /* Add some spacing around items for better separation */
+}
+
+.deleteButton {
+    background-color: #db4c3f; /* A more subdued red for the button */
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    font-weight: 500; /* Match the font-weight of workoutItem for consistency */
+}
+
+.deleteButton:hover {
+    background-color: #c44336; /* A slightly darker shade for hover */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover for depth */
+}
+
+.deleteButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(219, 76, 63, 0.5); /* Brighter outline on focus for accessibility */
+}
