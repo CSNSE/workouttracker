@@ -12,7 +12,9 @@ import ViewWorkouts from './ViewWorkouts';
 import { Button } from '@aws-amplify/ui-react';
 import AddWorkout from './AddWorkout';
 import AddWorkoutFromDisplay from './AddWorkoutFromDisplay';
-
+import CustomDispSessionCollection from './CustomDispSessionsCollection';
+import Footer from './Footer';
+import CustomSessionCreateForm from './CustomSessionCreateForm';
 function App() {
   return (
     <div className="App">
@@ -20,8 +22,8 @@ function App() {
         <Router>
           <Routes>
             <Route exact path='/' element={<WorkoutButtons />} />
-            <Route exact path='/new' element={<div><SessionCreateForm/><BackButton/></div>}/>
-            <Route exact path='/Display' element={<div><BorderDispSessionsCollection/><BackButton/></div>}/>
+            <Route exact path='/new' element={<div><CustomSessionCreateForm/><Footer/></div>}/>
+            <Route exact path='/Display' element={<div><CustomDispSessionCollection/><Footer/></div>}/>
             <Route exact path='/AddWorkout/:cid' element={<div><AddWorkout/></div>}/>
             <Route exact path='/DispWorkouts/:cid' element={<div><ViewWorkouts/></div>}/>
             <Route exact path ='AddWorkoutFromDisplay/:cid' element={<div><AddWorkoutFromDisplay/></div>}/>
@@ -33,3 +35,4 @@ function App() {
 }
 
 export default App;
+

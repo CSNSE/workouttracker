@@ -1,0 +1,166 @@
+/* CustomDispSessionCollection styles */
+.customDispSessionCollection {
+    display: flex;
+    flex-wrap: wrap;
+    height: 1000px; /* Increased height for the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px;
+}
+
+.customDispSessionCollection > * {
+    flex-basis: calc(25% - 20px); /* Adjust based on desired number of items per row */
+    margin: 10px; /* Adjust spacing between items */
+}
+
+/* SessionContainer styles */
+.sessionContainer {
+    background-color: #f8f9fa; /* Light gray background */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.sessionContainer:hover {
+    transform: translateY(-3px); /* Slight lift on hover */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+}
+
+/* SessionType and SessionDate styles */
+.sessionType,
+.sessionDate {
+    font-weight: bold;
+    color: #333; /* Dark gray text color */
+}
+
+/* Button styles */
+.addButton,
+.viewButton,
+.deleteButton,
+.updateButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.addButton {
+    background-color: #007bff; /* Blue */
+    color: white;
+}
+
+.addButton:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.viewButton {
+    background-color: #6c757d; /* Gray */
+    color: white;
+}
+
+.viewButton:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+}
+
+.deleteButton {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.deleteButton:hover {
+    background-color: #bd2130; /* Darker red on hover */
+}
+
+.updateButton {
+    background-color: #ffc107; /* Yellow */
+    color: black;
+}
+
+.updateButton:hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+}
+
+/* FilterButtons styles */
+.filterButtons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filterButtons select {
+    appearance: none;
+    background-color: #007bff; /* Blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.filterButtons select:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* WeekChanger styles */
+.weekChanger {
+    display: flex;
+    align-items: center;
+}
+
+.weekChanger button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/* TodayButton styles */
+.todayButton {
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.todayButton:hover {
+    background-color: #45a049;
+}
+
+/* FilterDropdown styles */
+.filterDropdown {
+    width: fit-content;
+    margin: 0 auto; /* Center horizontally */
+    margin-top: 50px; /* Adjust top margin as needed */
+}
+
+.filterDropdown .customSelect {
+    position: relative;
+}
+
+.filterDropdown select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffff;
+    color: #333333;
+    border: 2px solid #007bff; /* Blue border */
+    padding: 8px 20px; /* Adjust padding */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+    width: 200px; /* Adjust width as needed */
+    max-width: 100%; /* Ensure it doesn't overflow */
+}
+
+.filterDropdown select:hover,
+.filterDropdown select:focus {
+    border-color: #0056b3; /* Darker blue on hover/focus */
+}
+
+.filterDropdown select option {
+    background-color: #ffffff;
+    color: #333333;
+}

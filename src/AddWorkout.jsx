@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react"; // Import useState
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import './App.css';
 import CustomWorkoutCreateForm from "./CustomWorkoutCreateForm";
 import BackButton from "./BackButton";
 
 function AddWorkout() {
-    const navigate = useNavigate();
     const location = useLocation();
     const [cid, setCid] = useState(''); // Add state to hold the CID
 
@@ -18,7 +17,7 @@ function AddWorkout() {
           setCid(id); // Set the CID using the extracted ID
         }
     }, [location]);
-
+console.log(cid)
     return (
         <div>
             <header className='App-header'>
