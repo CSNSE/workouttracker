@@ -1,12 +1,27 @@
-.big-button {
-    padding: 20px 40px; /* Larger padding */
-    font-size: 20px; /* Larger font size */
-    border-radius: 5px; /* Optional: rounded corners */
-    cursor: pointer; /* Cursor pointer */
-  }
-  /* Additional styles for hover or active states */
-  .big-button:hover {
-    background-color: #0056c4; /* Example hover background color */
-    color: white; /* Example hover text color */
-  }
-  
+.Big-Button {
+  padding: 20px 40px;
+  font-size: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.Big-Button:hover, .Big-Button:focus {
+  background-color: #0056c4;
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.Big-Button:active {
+  background-color: #0044a3;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+}

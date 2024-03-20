@@ -1,33 +1,60 @@
-.sessionCreateForm {
-    width: 100%;
-    max-width: 500px; /* Increased maximum width */
-    margin: 0 auto;
-    background-color: #ffffff; /* White background */
-    color: #333333; /* Dark gray text color */
-    border-radius: 12px; /* Increased border radius */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 40px; /* Increased padding */
-    font-size: 16px; /* Increased font size */
-  }
-  
-  .formField {
-    width: 100%;
-    margin-bottom: 20px; /* Increased margin bottom */
-  }
-  
-  .submitButton {
-    width: 100%;
-    padding: 16px 24px; /* Increased button padding */
-    border: none;
-    border-radius: 8px; /* Increased border radius */
-    background-color: #007bff; /* Blue button background color */
-    color: #ffffff; /* White button text color */
-    font-size: 18px; /* Increased button font size */
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .submitButton:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-  }
-  
+/* CustomSessionCreateForm.css */
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  width: 250px;
+  margin: 40px auto; /* Adjusted for vertical alignment as well */
+}
+
+.formField {
+  border: 1px solid #ccc;
+  left:10px;
+  border-radius: 8px;
+}
+
+.formField input, .formField label {
+  font-size: 16px; /* Adjusted to ensure readability */
+  padding-right: 10px;
+}
+
+/* Focus within to enhance user experience */
+.formField input:focus {
+  border-color: #007bff;
+  outline: none;
+
+}
+
+.formField label {
+  color: #007bff;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px; /* Adding space between the label and input */
+  padding-right: 5px;
+}
+
+/* Styling the submit button to match the desired look */
+.submitButton {
+  padding: 12px 24px;
+  border-radius: 8px;
+  background-color: #007bff; /* Primary color for submit button */
+  color: #ffffff; /* Text color for buttons */
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  font-weight: bold; /* Making the text bold */
+  transition: background-color 0.3s ease; /* Smooth transition for interaction */
+}
+
+.submitButton:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.submitButton:active {
+  background-color: #004094; /* Even darker shade on active */
+}

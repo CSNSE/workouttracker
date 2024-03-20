@@ -2,14 +2,12 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useState  } from "react";
 import { useEffect } from "react";
-import './App.css'
 import { Button, Divider, TextAreaField, TextField } from "@aws-amplify/ui-react";
 import { getSession } from "./graphql/queries";
 import { getWorkout } from "./graphql/queries";
 import { useNavigate } from "react-router-dom";
 import CustomViewWorkoutsHeader from "./CustomWorkoutHeader";
 import DispWorkoutsBySessionCollection from "./DispWorkoutsBySessionCollection";
-import AddWorkout from "./AddWorkout";
 import BigButton from "./BigButton";
 import './ViewWorkouts.css';
 import DisplayWorkoutsCollection from "./ui-components/DisplayWorkoutsCollection";
@@ -35,7 +33,7 @@ function ViewWorkouts(){
         <div >  
             <CustomViewWorkoutsHeader id={cid}/>
             <DispWorkoutsBySessionCollection />
-            <button className='bigButton' onClick={() => navigate('/AddWorkoutFromDisplay/'+cid)}>Add Workout</button>
+            <button className='bigButton' onClick={() => navigate('/AddWorkout/'+cid)}>Add Workout</button>
         </div>
 
     )

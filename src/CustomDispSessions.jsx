@@ -9,7 +9,6 @@ export default function CustomDispSessions({ session }) {
   const navigate = useNavigate();
   const client = generateClient();
 
-  const handleAddClick = () => navigate(`/AddWorkout/${session?.id}`);
   const handleViewClick = () => navigate(`/DispWorkouts/${session?.id}`);
   const handleDeleteClick = async () => {
     await client.graphql({
@@ -24,7 +23,6 @@ export default function CustomDispSessions({ session }) {
       <View className="sessionContainer">
         <Text className="sessionType">{session?.Type}</Text>
         <Text className="sessionDate">{session?.Date}</Text>
-        <Button className="addButton" onClick={handleAddClick}>Add</Button>
         <Button className="viewButton" onClick={handleViewClick}>View</Button>
         <Button className="deleteButton" onClick={handleDeleteClick}>Delete</Button>
         <Button className="updateButton">Update</Button> {/* Add onClick behavior for update if necessary */}

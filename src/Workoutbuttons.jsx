@@ -7,8 +7,8 @@ function WorkoutButtons() {
 
   return (
     <div className='large-button'>
-        <BigButton label={'Start a New Workout'} onClick={() => (navigate('/new'))}/>
-        <BigButton label={'Display Workouts'} onClick={()  => (navigate('/display'))} />
+        <button className='Big-Button' onClick={() => (navigate('/new'))}>Start a new Workout</button>
+        <button className='Big-Button' onClick={()  => (navigate('/display'))}>Display Workouts</button>
     </div> 
   );
 }

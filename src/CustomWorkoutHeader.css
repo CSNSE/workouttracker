@@ -1,50 +1,102 @@
-/* CustomViewWorkoutsHeader.css */
-
-.viewWorkoutsHeader {
+.workoutContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    max-width: 480px; /* Allows for better responsiveness on various devices */
-    min-height: 150px;
+    max-width: 560px;
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s;
+  }
+  
+  .workoutContainer:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .workoutItem {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 1.5;
+    margin: 0 10px;
+  }
+  
+  .deleteButton {
+    background-color: #ff6b6b;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .deleteButton:hover {
+    background-color: #ff5252;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .deleteButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.5);
+  }
+  
+  .viewWorkoutsHeader {
+    width: 100%;
+    max-width: 520px;
+    min-height: 160px;
     display: flex;
     flex-direction: column-reverse;
-    justify-content: space-around;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 10px; /* Slightly larger radius for a softer look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Deeper shadow for more depth */
-    border: 1px solid #e0e0e0;
-    margin: auto; /* Centers the header in its parent container */
-    overflow: hidden; /* Ensures no content spills outside the border-radius */
-}
-
-.sessionInfoText {
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    border: none;
+    margin: 10px auto;
+    overflow: hidden;
+  }
+  
+  .sessionInfoText {
     font-family: 'Inter', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 12px; /* Adds space between this text and anything below it */
-}
-
-.backButton {
-    width: auto; /* Allows the button to resize based on its content */
-    padding: 8px 15px; /* Provides more horizontal space for a balanced look */
-    font-size: 16px; /* Larger font size for better legibility */
-    letter-spacing: 0.05em; /* Slightly more spacing between characters */
-    background-color: #db4c3f;
+    font-size: 22px;
+    font-weight: 600;
+    color: #424242;
+    margin: 0;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+  
+  .backButton {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: normal;
+    background-color: #ff6b6b;
     color: white;
     border: none;
-    border-radius: 5px; /* Subtle rounded corners */
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    align-self: flex-start; /* Ensures alignment consistency */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Initial subtle shadow */
-}
-.backButton:hover, .backButton:focus {
-    background-color: #c44336; /* Slightly darker on hover/focus for feedback */
-    transform: translateY(-3px); /* Slightly larger movement for a lively effect */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover/focus */
-}
-
-.backButton:focus {
-    outline: none; /* Removes the default focus outline */
-    box-shadow: 0 0 0 3px rgba(219, 76, 63, 0.5); /* Custom focus indication */
-}
+    transition: all 0.3s ease;
+    align-self: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+  }
+  
+  .backButton:hover, .backButton:focus {
+    background-color: #e53e3e;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .backButton:focus {
+    outline: 2px solid #ff6b6b;
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.5);
+  }
+  

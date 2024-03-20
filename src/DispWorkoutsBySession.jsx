@@ -27,7 +27,7 @@ const DispWorkoutsBySession = ({ workout }) => {
             <Text className="workoutItem">{workout?.Lift}</Text>
             <Text className="workoutItem">{`${workout?.Reps} reps`}</Text>
             <Text className="workoutItem">{`${workout?.Weight} lbs`}</Text>
-            <Button onClick={deleteButton} className="workoutItem deleteButton">Delete Workout</Button>
+            <Button onClick={deleteButton} className="deleteButton">Delete Workout</Button>
         </View>
     );
 };

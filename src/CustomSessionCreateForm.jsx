@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Button, Grid, TextField } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
 import { createSession } from "./graphql/mutations";
-import "./CustomWorkoutCreateForm.css"; // Import CSS file
+import "./CustomSessionCreateForm.css"; // Import CSS file
+import { useNavigate } from "react-router-dom";
 
 const client = generateClient();
 
@@ -17,7 +18,7 @@ export default function CustomSessionCreateForm(props) {
   const [Type, setType] = useState(initialValues.Type);
   const [Date, setDate] = useState(initialValues.Date);
   const [errors, setErrors] = useState({});
-
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -33,7 +34,7 @@ export default function CustomSessionCreateForm(props) {
           input: sessionData,
         },
       });
-
+      navigate('/Display')
       if (onSuccess) {
         onSuccess(sessionData);
       }
@@ -51,7 +52,7 @@ export default function CustomSessionCreateForm(props) {
       rowGap="20px"
       padding="30px"
       onSubmit={handleSubmit}
-      className="sessionCreateForm"
+      className="formContainer"
       {...rest}
     >
       <TextField

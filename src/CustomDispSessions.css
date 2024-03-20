@@ -45,17 +45,8 @@
     transition: background-color 0.2s;
 }
 
-.addButton {
-    background-color: #007bff; /* Blue */
-    color: white;
-}
-
-.addButton:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
 .viewButton {
-    background-color: #6c757d; /* Gray */
+    background-color: #007bff; /* Blue */
     color: white;
 }
 
