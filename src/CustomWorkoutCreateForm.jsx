@@ -3,6 +3,7 @@ import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
 import { createWorkout } from "./graphql/mutations";
 import './CustomWorkoutCreateForm.css';
+import $ from 'jquery';
 
 export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSuccess, onError, cid, ...rest }) {
   const [Lift, setLift] = React.useState("");
@@ -10,6 +11,24 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
   const [Reps, setReps] = React.useState("");
   const [errors, setErrors] = React.useState({});
   const client = generateClient();
+  var name = '';
+  const workouts = [];
+  $.ajax({
+      method: 'GET',
+      url: 'https://api.api-ninjas.com/v1/exercises?name='+name,
+      headers: { 'X-Api-Key': '2y3uQcLfSFpPpp3SxnPsUQ==B03JjsQado5rWczt'},  
+      contentType: 'application/json',
+      success: function(result) {
+        result.forEach(function(exercise){
+          workouts.push(exercise.name); 
+        });
+        console.log(workouts[1])
+      },
+      error: function ajaxError(jqXHR) {
+          console.error('Error: ', jqXHR.responseText);
+      }
+  });
+  
 
   const resetStateValues = () => {
     setLift("");
@@ -61,7 +80,7 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
       />
       
       <TextField
-        label="Reps"
+        label= {workouts[0]}
         isRequired
         value={Reps}
         onChange={(e) => setReps(e.target.value)}
@@ -69,6 +88,14 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
         hasError={!!errors.Reps}
         className="form-field reps"
       />
+    <select className="WorkoutSelector">
+      {workouts.map((workouts, index) => (
+        <option key={index} value={workouts}>
+          {workouts}
+        </option>
+      ))}
+    </select>
+
       
       <Flex
         direction="row"

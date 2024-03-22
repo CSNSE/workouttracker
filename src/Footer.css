@@ -9,3 +9,28 @@
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Shadow to give depth */
   }
   
+  .button {
+    padding: 15px 30px; /* More pronounced padding for a larger button */
+    font-size: 20px; /* Retaining the larger font size */
+    border-radius: 12px; /* More pronounced rounded corners */
+    cursor: pointer; /* Cursor pointer, indicating it's clickable */
+    background-color: #007bff; /* Primary button color */
+    color: white; /* Text color */
+    border: none; /* No border for a modern look */
+    font-weight: 600; /* Bold font weight for better readability */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover and focus states */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle box-shadow for depth */
+    outline: none; /* Removing the default focus outline */
+  }
+  
+  .button:hover, .button:focus {
+    background-color: #0056c4; /* Darker shade on hover/focus for contrast */
+    color: white; /* Ensuring text color remains white for readability */
+    transform: translateY(-2px); /* Slightly raise the button to imply interactivity */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced box-shadow for prominence */
+  }
+  
+  .button:focus {
+    box-shadow: 0 0 0 4px rgba(0, 117, 255, 0.5); /* Adding a focus outline for accessibility */
+  }
+  

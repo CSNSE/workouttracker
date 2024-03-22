@@ -1,10 +1,10 @@
 .workoutContainer {
-    display: flex;
+    display:flex;    
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 560px;
+    max-width: 700px;
     padding: 12px 20px;
     background-color: #ffffff;
     border: 1px solid #eaeaea;
@@ -41,9 +41,34 @@
     background-color: #ff5252;
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    
   }
   
   .deleteButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.5);
+  }
+  
+
+  .timer {
+    background-color: green;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .timer:hover {
+    background-color: darkgreen;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .timer:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.5);
   }

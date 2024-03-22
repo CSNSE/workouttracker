@@ -15,17 +15,24 @@ import CustomDispSessionCollection from './CustomDispSessionsCollection';
 import Footer from './Footer';
 import CustomSessionCreateForm from './CustomSessionCreateForm';
 import WorkoutsThisWeek from './WorkoutsThisWeek';
+import $ from 'jquery';
+
+
+
+
+
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <Router>
           <Routes>
-            <Route exact path='/' element={<div><WorkoutButtons /><WorkoutsThisWeek/></div>} />
+            <Route exact path='/' element={<div><WorkoutButtons /><WorkoutsThisWeek/><Footer/></div>} />
             <Route exact path='/new' element={<div><CustomSessionCreateForm/><Footer/></div>}/>
             <Route exact path='/Display' element={<div><CustomDispSessionCollection/><Footer/></div>}/>
-            <Route exact path='/DispWorkouts/:cid' element={<div><ViewWorkouts/></div>}/>
-            <Route exact path ='AddWorkout/:cid' element={<div><AddWorkoutFromDisplay/></div>}/>
+            <Route exact path='/DispWorkouts/:cid' element={<div><ViewWorkouts/><Footer/></div>}/>
+            <Route exact path ='AddWorkout/:cid' element={<div><AddWorkoutFromDisplay/><Footer/></div>}/>
           </Routes>
         </Router>
       </header>

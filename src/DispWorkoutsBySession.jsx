@@ -22,11 +22,16 @@ const DispWorkoutsBySession = ({ workout }) => {
         navigate(0);
     };
 
+    const startTimer  = () => {
+      
+    }
+
     return (
         <View className="workoutContainer">
             <Text className="workoutItem">{workout?.Lift}</Text>
             <Text className="workoutItem">{`${workout?.Reps} reps`}</Text>
             <Text className="workoutItem">{`${workout?.Weight} lbs`}</Text>
+            <Button onClick={startTimer} className='timer'>Add Rest</Button>
             <Button onClick={deleteButton} className="deleteButton">Delete Workout</Button>
         </View>
     );

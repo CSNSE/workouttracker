@@ -42,10 +42,12 @@ export default function CustomViewWorkoutsHeader() {
     if (!sessionData) return <div className="loading">Loading...</div>;
 
     return (
+        <div className='centered'>
         <div className="viewWorkoutsHeader">
             <div className="sessionInfoText">{sessionData?.Date}</div>
             <div className="sessionInfoText">{sessionData?.Type}</div>
             <button className="backButton" onClick={handleBackButtonClick}>Back</button>
+        </div>
         </div>
     );
 }
