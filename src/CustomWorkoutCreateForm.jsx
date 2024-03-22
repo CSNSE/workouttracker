@@ -1,40 +1,53 @@
-import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import React, { useState, useEffect, useCallback } from "react";
+import { Button, Flex, Grid, SearchField, TextField } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
 import { createWorkout } from "./graphql/mutations";
 import './CustomWorkoutCreateForm.css';
-import $ from 'jquery';
+import debounce from 'lodash.debounce';
 
 export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSuccess, onError, cid, ...rest }) {
-  const [Lift, setLift] = React.useState("");
-  const [Weight, setWeight] = React.useState("");
-  const [Reps, setReps] = React.useState("");
-  const [errors, setErrors] = React.useState({});
+  const [Lift, setLift] = useState("");
+  const [Weight, setWeight] = useState("");
+  const [Reps, setReps] = useState("");
+  const [errors, setErrors] = useState({});
+  const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const client = generateClient();
-  var name = '';
-  const workouts = [];
-  $.ajax({
-      method: 'GET',
-      url: 'https://api.api-ninjas.com/v1/exercises?name='+name,
-      headers: { 'X-Api-Key': '2y3uQcLfSFpPpp3SxnPsUQ==B03JjsQado5rWczt'},  
-      contentType: 'application/json',
-      success: function(result) {
-        result.forEach(function(exercise){
-          workouts.push(exercise.name); 
-        });
-        console.log(workouts[1])
-      },
-      error: function ajaxError(jqXHR) {
-          console.error('Error: ', jqXHR.responseText);
-      }
-  });
   
 
-  const resetStateValues = () => {
-    setLift("");
-    setWeight("");
-    setReps("");
-    setErrors({});
+
+  const fetchSuggestions = useCallback(async (searchText) => {
+    const apiKey = '2y3uQcLfSFpPpp3SxnPsUQ==B03JjsQado5rWczt'; // Move this to a secure location
+    try {
+      const response = await fetch(`https://api.api-ninjas.com/v1/exercises?name=${encodeURIComponent(searchText)}`, {
+        method: 'GET',
+        headers: {
+          'X-Api-Key': apiKey,
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      setAutocompleteSuggestions(result.map(exercise => exercise.name));
+    } catch (error) {
+      console.error('Failed to fetch workouts', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (searchTerm) {
+      debounce(fetchSuggestions, 300)(searchTerm);
+    } else {
+      setAutocompleteSuggestions([]);
+    }
+  }, [searchTerm, fetchSuggestions]);
+
+  const handleSelectSuggestion = (suggestion) => {
+    setSearchTerm(suggestion); // Set the search term to the selected suggestion
+    setAutocompleteSuggestions([]); // Clear suggestions after selection
+    setLift(suggestion);
   };
 
   const handleSubmit = async (event) => {
@@ -50,6 +63,13 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
     }
   };
 
+  const resetStateValues = () => {
+    setLift("");       
+    setWeight("");    
+    setReps("");
+    setErrors({});    
+    };
+
   return (
     <Grid
       as="form"
@@ -59,6 +79,25 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
       className="form-container"
       {...rest}
     >
+      <div className="autocomplete-field">
+        <TextField
+          label="Lift"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          autoComplete="off"
+          className="form-field search"
+        />
+        {autocompleteSuggestions.length > 0 && (
+          <ul className="autocomplete-suggestions">
+            {autocompleteSuggestions.map((suggestion, index) => (
+              <li key={index} onClick={() => handleSelectSuggestion(suggestion)} className="suggestion-item">
+                {suggestion}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+{/*   
       <TextField
         label="Lift"
         isRequired
@@ -67,7 +106,7 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
         errorMessage={errors.Lift?.errorMessage}
         hasError={!!errors.Lift}
         className="form-field lift"
-      />
+      /> */}
       
       <TextField
         label="Weight"
@@ -80,7 +119,7 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
       />
       
       <TextField
-        label= {workouts[0]}
+        label="Reps"
         isRequired
         value={Reps}
         onChange={(e) => setReps(e.target.value)}
@@ -88,15 +127,8 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
         hasError={!!errors.Reps}
         className="form-field reps"
       />
-    <select className="WorkoutSelector">
-      {workouts.map((workouts, index) => (
-        <option key={index} value={workouts}>
-          {workouts}
-        </option>
-      ))}
-    </select>
-
-      
+  
+  
       <Flex
         direction="row"
         justifyContent="space-between"
@@ -122,4 +154,5 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
       </Flex>
     </Grid>
   );
+  
 }

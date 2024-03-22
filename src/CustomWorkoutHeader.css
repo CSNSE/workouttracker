@@ -1,6 +1,7 @@
-.centered{
+.centered {
     justify-content: center;
 }
+
 .viewWorkoutsHeader {
     width: 100%;
     max-width: 250px;
@@ -14,12 +15,11 @@
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
     border: none;
-    margin: 10px ;
+    margin: 10px;
     overflow: hidden;
+}
 
-  }
-  
-  .sessionInfoText {
+.sessionInfoText {
     font-family: 'Inter', sans-serif;
     font-size: 22px;
     font-weight: 600;
@@ -27,15 +27,15 @@
     margin: 0;
     padding-bottom: 20px;
     text-align: center;
-  }
-  
-  .backButton {
+}
+
+.backButton {
     width: auto;
     padding: 10px 20px;
     font-size: 18px;
     font-weight: bold;
     letter-spacing: normal;
-    background-color: #ff6b6b;
+    background-color: #ff6b6b; /* Vibrant color for interactive elements */
     color: white;
     border: none;
     border-radius: 8px;
@@ -43,38 +43,59 @@
     transition: all 0.3s ease;
     align-self: center;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
-  }
-  
-  .backButton:hover, .backButton:focus {
-    background-color: #e53e3e;
+}
+
+.backButton:hover, .backButton:focus {
+    background-color: #e53e3e; /* Darker shade for interaction */
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  .backButton:focus {
-    outline: 2px solid #ff6b6b;
-    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.5);
-  }
-  
-  .WorkoutSelecter {
+}
+
+.WorkoutSelector, .WorkoutSelecter {
     font-family: 'Arial', sans-serif;
     font-size: 16px;
     padding: 8px 12px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #ffffff; /* Consistent background for form elements */
+    border: 1px solid #ddd; /* Light grey border for subtle definition */
     border-radius: 4px;
     outline: none;
     width: 100%;
-    max-width: 300px; /* Adjust based on your design */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-  }
-  
-  .WorkoutSelecter:focus {
-    border-color: #0056b3;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+.WorkoutSelector:focus, .WorkoutSelecter:focus {
+    border-color: #0056b3; /* Primary color for focus state */
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  }
-  
-  .WorkoutSelecter option {
-    padding: 8px;
-  }
-  
+}
+
+.autocomplete-field {
+    position: relative; /* Necessary for absolute positioning of suggestions */
+}
+
+.autocomplete-suggestions {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #ffffff; /* Matching the primary background */
+    border: 1px solid #ddd; /* Consistent with other form elements */
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+}
+
+.suggestion-item {
+    padding: 8px 12px;
+
+    cursor: pointer;
+    font-size: medium;
+    list-style-type:none; /* No bullets for list items */
+    background-color: white; /* Ensure readability */
+    color: black; /* Text color for suggestions */
+}
+
+.suggestion-item:hover, .suggestion-item:focus {
+    background-color: #f7f7f7; /* Light grey for hover/focus state */
+}
