@@ -1,0 +1,4 @@
+.amplify-button {
+    background-color: blue !important; /* Use !important to override existing styles */
+    color: white !important;
+}

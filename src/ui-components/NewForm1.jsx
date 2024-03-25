@@ -15,6 +15,7 @@ import {
   Grid,
   Icon,
   ScrollView,
+  SelectField,
   Text,
   TextField,
   useTheme,
@@ -179,7 +180,7 @@ function ArrayField({
     </React.Fragment>
   );
 }
-export default function WorkoutCreateForm(props) {
+export default function NewForm1(props) {
   const {
     clearOnSuccess = true,
     onSuccess,
@@ -191,13 +192,13 @@ export default function WorkoutCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
+    Lift: "",
     Weight: "",
-    Field0: "",
     Reps: "",
     sessionID: undefined,
   };
+  const [Lift, setLift] = React.useState(initialValues.Lift);
   const [Weight, setWeight] = React.useState(initialValues.Weight);
-  const [Field0, setField0] = React.useState(initialValues.Field0);
   const [Reps, setReps] = React.useState(initialValues.Reps);
   const [sessionID, setSessionID] = React.useState(initialValues.sessionID);
   const [sessionIDLoading, setSessionIDLoading] = React.useState(false);
@@ -207,8 +208,8 @@ export default function WorkoutCreateForm(props) {
   const autocompleteLength = 10;
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
+    setLift(initialValues.Lift);
     setWeight(initialValues.Weight);
-    setField0(initialValues.Field0);
     setReps(initialValues.Reps);
     setSessionID(initialValues.sessionID);
     setCurrentSessionIDValue(undefined);
@@ -221,11 +222,11 @@ export default function WorkoutCreateForm(props) {
     React.useState(undefined);
   const sessionIDRef = React.createRef();
   const getDisplayValue = {
-    sessionID: (r) => `${r?.Type}${"-"}${r?.id}`,
+    sessionID: (r) => `${r?.Type ? r?.Type + " - " : ""}${r?.id}`,
   };
   const validations = {
+    Lift: [],
     Weight: [],
-    Field0: [],
     Reps: [],
     sessionID: [{ type: "Required" }],
   };
@@ -285,8 +286,8 @@ export default function WorkoutCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
+          Lift,
           Weight,
-          Field0,
           Reps,
           sessionID,
         };
@@ -318,16 +319,11 @@ export default function WorkoutCreateForm(props) {
               modelFields[key] = null;
             }
           });
-          const modelFieldsToSave = {
-            Weight: modelFields.Weight,
-            Reps: modelFields.Reps,
-            sessionID: modelFields.sessionID,
-          };
           await client.graphql({
             query: createWorkout.replaceAll("__typename", ""),
             variables: {
               input: {
-                ...modelFieldsToSave,
+                ...modelFields,
               },
             },
           });
@@ -344,9 +340,36 @@ export default function WorkoutCreateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "WorkoutCreateForm")}
+      {...getOverrideProps(overrides, "NewForm1")}
       {...rest}
     >
+      <SelectField
+        label="Lift"
+        placeholder="Please select an option"
+        isDisabled={false}
+        value={Lift}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              Lift: value,
+              Weight,
+              Reps,
+              sessionID,
+            };
+            const result = onChange(modelFields);
+            value = result?.Lift ?? value;
+          }
+          if (errors.Lift?.hasError) {
+            runValidationTasks("Lift", value);
+          }
+          setLift(value);
+        }}
+        onBlur={() => runValidationTasks("Lift", Lift)}
+        errorMessage={errors.Lift?.errorMessage}
+        hasError={errors.Lift?.hasError}
+        {...getOverrideProps(overrides, "Lift")}
+      ></SelectField>
       <TextField
         label="Weight"
         isRequired={false}
@@ -356,8 +379,8 @@ export default function WorkoutCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              Lift,
               Weight: value,
-              Field0,
               Reps,
               sessionID,
             };
@@ -375,31 +398,6 @@ export default function WorkoutCreateForm(props) {
         {...getOverrideProps(overrides, "Weight")}
       ></TextField>
       <TextField
-        label="Label"
-        value={Field0}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              Weight,
-              Field0: value,
-              Reps,
-              sessionID,
-            };
-            const result = onChange(modelFields);
-            value = result?.Field0 ?? value;
-          }
-          if (errors.Field0?.hasError) {
-            runValidationTasks("Field0", value);
-          }
-          setField0(value);
-        }}
-        onBlur={() => runValidationTasks("Field0", Field0)}
-        errorMessage={errors.Field0?.errorMessage}
-        hasError={errors.Field0?.hasError}
-        {...getOverrideProps(overrides, "Field0")}
-      ></TextField>
-      <TextField
         label="Reps"
         isRequired={false}
         isReadOnly={false}
@@ -408,8 +406,8 @@ export default function WorkoutCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              Lift,
               Weight,
-              Field0,
               Reps: value,
               sessionID,
             };
@@ -432,8 +430,8 @@ export default function WorkoutCreateForm(props) {
           let value = items[0];
           if (onChange) {
             const modelFields = {
+              Lift,
               Weight,
-              Field0,
               Reps,
               sessionID: value,
             };
@@ -444,7 +442,7 @@ export default function WorkoutCreateForm(props) {
           setCurrentSessionIDValue(undefined);
         }}
         currentFieldValue={currentSessionIDValue}
-        label={"Session"}
+        label={"Session id"}
         items={sessionID ? [sessionID] : []}
         hasError={errors?.sessionID?.hasError}
         runValidationTasks={async () =>
@@ -478,7 +476,7 @@ export default function WorkoutCreateForm(props) {
         defaultFieldValue={""}
       >
         <Autocomplete
-          label="Session"
+          label="Session id"
           isRequired={true}
           isReadOnly={false}
           placeholder="Search Session"

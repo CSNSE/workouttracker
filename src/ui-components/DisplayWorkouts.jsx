@@ -7,7 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "./utils";
-import { Divider, Text, View } from "@aws-amplify/ui-react";
+import { Text, View } from "@aws-amplify/ui-react";
 export default function DisplayWorkouts(props) {
   const { workout, overrides, ...rest } = props;
   return (
@@ -91,7 +91,6 @@ export default function DisplayWorkouts(props) {
         children={workout?.Weight}
         {...getOverrideProps(overrides, "Weight")}
       ></Text>
-
     </View>
   );
 }

@@ -1,28 +1,29 @@
 import React from 'react';
+import { Amplify } from 'aws-amplify';
+import config from './aws-exports';
 import './App.css';
 import WorkoutButtons from './Workoutbuttons';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Allworkouts from './workoutpage';
-import SessionCreateForm from './ui-components/SessionCreateForm';
-import DispSessionsCollection from './ui-components/DispSessionsCollection';
-import BigButton from './BigButton';
-import BackButton from './BackButton';
-import { BorderDispSessionsCollection, WorkoutCreateForm } from './ui-components';
 import ViewWorkouts from './ViewWorkouts';
-import { Button } from '@aws-amplify/ui-react';
 import AddWorkoutFromDisplay from './AddWorkoutFromDisplay';
 import CustomDispSessionCollection from './CustomDispSessionsCollection';
 import Footer from './Footer';
 import CustomSessionCreateForm from './CustomSessionCreateForm';
 import WorkoutsThisWeek from './WorkoutsThisWeek';
-import $ from 'jquery';
+import {
+  withAuthenticator,
+  AmplifyTheme,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
+Amplify.configure(config);
 
 
 
-
-
-
-function App() {
+function App( signOut ) {
   return (
     <div className="App">
       <header className="App-header">
@@ -40,5 +41,5 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);
 

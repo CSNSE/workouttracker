@@ -1,84 +1,116 @@
+/***************************************************************************
+ * The contents of this file were generated with Amplify Studio.           *
+ * Please refrain from making any modifications to this file.              *
+ * Any changes to this file will be overwritten when running amplify pull. *
+ **************************************************************************/
+
+/* eslint-disable */
 import * as React from "react";
-import { useLocation } from "react-router-dom";
+import { listWorkouts } from "../graphql/queries";
 import DisplayWorkouts from "./DisplayWorkouts";
 import { getOverrideProps } from "./utils";
-import { Collection, Placeholder } from "@aws-amplify/ui-react";
+import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
-import { listWorkouts } from "../graphql/queries";
-
+const nextToken = {};
+const apiCache = {};
 const client = generateClient();
-
 export default function DisplayWorkoutsCollection(props) {
-  const { overrideItems, overrides, ...rest } = props;
+  const { items: itemsProp, overrideItems, overrides, ...rest } = props;
+  const [pageIndex, setPageIndex] = React.useState(1);
+  const [hasMorePages, setHasMorePages] = React.useState(true);
   const [items, setItems] = React.useState([]);
+  const [isApiPagination, setIsApiPagination] = React.useState(false);
+  const [instanceKey, setInstanceKey] = React.useState("newGuid");
   const [loading, setLoading] = React.useState(true);
-  const location = useLocation();
-  const pageSize = 6; // You can adjust this as needed
-  const [sessionID, setSessionID] = React.useState('');
-
-  // Extract sessionID from URL on component mount
+  const [maxViewed, setMaxViewed] = React.useState(1);
+  const pageSize = 6;
+  const isPaginated = false;
   React.useEffect(() => {
-    // Assuming the path is "/workouts/session/<sessionID>"
-    const pathSegments = location.pathname.split('/');
-    const sessionIdIndex = pathSegments.findIndex(segment => segment === "session") + 1;
-    if (sessionIdIndex > 0 && pathSegments.length > sessionIdIndex) {
-      setSessionID(pathSegments[sessionIdIndex]);
-    }
-  }, [location]);
-
-  // Load workouts by sessionID
+    nextToken[instanceKey] = "";
+    apiCache[instanceKey] = [];
+  }, [instanceKey]);
   React.useEffect(() => {
-    if (!sessionID) return; // Don't load if sessionID is not set
-
-    const loadWorkoutsBySessionID = async () => {
+    setIsApiPagination(!!!itemsProp);
+  }, [itemsProp]);
+  const handlePreviousPage = () => {
+    setPageIndex(pageIndex - 1);
+  };
+  const handleNextPage = () => {
+    setPageIndex(pageIndex + 1);
+  };
+  const jumpToPage = (pageNum) => {
+    setPageIndex(pageNum);
+  };
+  const loadPage = async (page) => {
+    const cacheUntil = page * pageSize + 1;
+    const newCache = apiCache[instanceKey].slice();
+    let newNext = nextToken[instanceKey];
+    while ((newCache.length < cacheUntil || !isPaginated) && newNext != null) {
       setLoading(true);
       const variables = {
-        filter: {
-          sessionID: {
-            eq: sessionID // Filtering by sessionID
-          }
-        },
         limit: pageSize,
       };
-
-      try {
-        const result = await client.graphql({
-          query: listWorkouts,
-          variables,
-        });
-
-        if (result.data && result.data.listWorkouts) {
-          setItems(result.data.listWorkouts.items);
-        }
-      } catch (error) {
-        console.error("Failed to load workouts:", error);
+      if (newNext) {
+        variables["nextToken"] = newNext;
       }
-
-      setLoading(false);
-    };
-
-    loadWorkoutsBySessionID();
-  }, [sessionID, pageSize]);
-
+      const result = (
+        await client.graphql({
+          query: listWorkouts.replaceAll("__typename", ""),
+          variables,
+        })
+      ).data.listWorkouts;
+      newCache.push(...result.items);
+      newNext = result.nextToken;
+    }
+    const cacheSlice = isPaginated
+      ? newCache.slice((page - 1) * pageSize, page * pageSize)
+      : newCache;
+    setItems(cacheSlice);
+    setHasMorePages(!!newNext);
+    setLoading(false);
+    apiCache[instanceKey] = newCache;
+    nextToken[instanceKey] = newNext;
+  };
+  React.useEffect(() => {
+    loadPage(pageIndex);
+  }, [pageIndex]);
+  React.useEffect(() => {
+    setMaxViewed(Math.max(maxViewed, pageIndex));
+  }, [pageIndex, maxViewed, setMaxViewed]);
   return (
-    <div {...getOverrideProps(overrides, "DisplayWorkoutsCollection")} {...rest}>
-      {loading ? (
-        <Placeholder size="large" />
-      ) : (
-        <Collection
-          type="list"
-          direction="column"
-          justifyContent="left"
-          items={items}
-        >
-          {(item, index) => (
+    <div>
+      <Collection
+        type="list"
+        direction="column"
+        justifyContent="left"
+        itemsPerPage={pageSize}
+        isPaginated={!isApiPagination && isPaginated}
+        items={itemsProp || (loading ? new Array(pageSize).fill({}) : items)}
+        {...getOverrideProps(overrides, "DisplayWorkoutsCollection")}
+        {...rest}
+      >
+        {(item, index) => {
+          if (loading) {
+            return <Placeholder key={index} size="large" />;
+          }
+          return (
             <DisplayWorkouts
               workout={item}
-              key={item.id || index}
+              key={item.id}
               {...(overrideItems && overrideItems({ item, index }))}
-            />
-          )}
-        </Collection>
+            ></DisplayWorkouts>
+          );
+        }}
+      </Collection>
+      {isApiPagination && isPaginated && (
+        <Pagination
+          currentPage={pageIndex}
+          totalPages={maxViewed}
+          hasMorePages={hasMorePages}
+          onNext={handleNextPage}
+          onPrevious={handlePreviousPage}
+          onChange={jumpToPage}
+        />
       )}
     </div>
   );
