@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Button, Flex, Grid, SearchField, TextField } from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
 import { createWorkout } from "./graphql/mutations";
 import './CustomWorkoutCreateForm.css';

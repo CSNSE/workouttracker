@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@aws-amplify/ui-react": "^6.1.5",
+    "@clerk/clerk-react": "^4.30.7",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.13",
@@ -13,6 +14,7 @@
     "aws-amplify": "^6.0.18",
     "chart.js": "^4.4.2",
     "date-fns": "^3.5.0",
+    "firebase": "^10.9.0",
     "jquery": "^3.7.1",
     "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",

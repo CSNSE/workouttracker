@@ -3,7 +3,6 @@ import CustomDispSessions from "./CustomDispSessions";
 import { generateClient } from "aws-amplify/api";
 import { listSessions } from "./graphql/queries";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"; // Import icons for navigation
-import { BsChevronDown } from "react-icons/bs"; // Import Chevron Down icon
 
 import "./CustomDispSessions.css"; // Assuming you have a CSS file for styling
 

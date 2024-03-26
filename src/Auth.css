@@ -1,4 +1,117 @@
-.amplify-button {
-    background-color: blue !important; /* Use !important to override existing styles */
-    color: white !important;
-}
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #282c34;
+  }
+  
+  .login-form {
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .login-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0052cc;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-form button:hover {
+    background-color: #003d99;
+  }
+
+
+  /* Add or adjust these styles in your App.css or corresponding stylesheet */
+  .sign-up-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #282c34;
+  }
+  
+  .sign-up-form {
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .sign-up-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .sign-up-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  /* Styles for the primary action button (Sign Up) */
+  .primary-action-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0052cc;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .primary-action-button:hover {
+    background-color: #003d99;
+  }
+  
+  /* Adjusted styles for the "Log In" button to make it look like a text link */
+  .login-redirect-button {
+    background: none;
+    border: none;
+    color: #007bff;
+    padding: 0;
+    font-size: 1rem;
+    margin-top: 20px; /* Add some space between the buttons */
+    display: block; /* Ensure it's displayed as a block for proper spacing */
+  }
+  
+  .login-redirect-button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  

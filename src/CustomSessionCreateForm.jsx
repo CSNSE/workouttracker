@@ -56,7 +56,7 @@ export default function CustomSessionCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="Type"
+        label="Type of Workout"
         value={Type}
         onChange={(e) => setType(e.target.value)}
         className="formField"

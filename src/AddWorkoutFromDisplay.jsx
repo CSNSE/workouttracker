@@ -27,7 +27,6 @@ function AddWorkoutFromDisplay() {
     return (
         <div>
             <header className='App-header'>
-                {/* Pass cid as a prop to CustomWorkoutCreateForm */}
                 <CustomWorkoutCreateForm cid={cid}/>
                 <BigButton onClick={() => navigate('/DispWorkouts/'+cid )} label = 'Back to Workouts List'/>
             </header>

@@ -1,6 +1,6 @@
 /* CustomDispSessionCollection styles */
 .customDispSessionCollection {
-    display: flex;
+    display: flex !important;
     flex-wrap: wrap;
     height: 1000px; /* Increased height for the container */
     overflow-y: auto; /* Enable vertical scrolling */
@@ -14,12 +14,14 @@
 
 /* SessionContainer styles */
 .sessionContainer {
-    background-color: #f8f9fa; /* Light gray background */
+    background-color: #f8f9fa !important; /* Light gray background */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     padding: 20px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
+
+
 
 .sessionContainer:hover {
     transform: translateY(-3px); /* Slight lift on hover */
@@ -30,7 +32,7 @@
 .sessionType,
 .sessionDate {
     font-weight: bold;
-    color: #333; /* Dark gray text color */
+    color: #333 !important; /* Dark gray text color */
 }
 
 /* Button styles */

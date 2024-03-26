@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '@aws-amplify/ui-react';
 import './WorkoutButtons.css'
 function BigButton({ label, onClick }) {
   return (

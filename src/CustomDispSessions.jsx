@@ -25,7 +25,7 @@ export default function CustomDispSessions({ session }) {
         <Text className="sessionDate">{session?.Date}</Text>
         <Button className="viewButton" onClick={handleViewClick}>View</Button>
         <Button className="deleteButton" onClick={handleDeleteClick}>Delete</Button>
-        <Button className="updateButton">Update</Button> {/* Add onClick behavior for update if necessary */}
+        <Button className="updateButton">Update</Button> 
       </View>
     </View>
   );
