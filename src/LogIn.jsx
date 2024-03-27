@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import './Auth.css'; // Ensure your CSS file is imported
+import './Auth.css'; // This should be the same CSS file used for SignUp
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -24,24 +24,37 @@ function Login() {
   };
 
   return (
-    <div className="login-container"> {/* Use .login-container for consistent styling */}
-      <form onSubmit={handleSubmit} className="login-form"> {/* Use .login-form for the form */}
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit" className="primary-action-button">Log In</button> {/* Styled as primary action */}
-        <button type="button" onClick={() => navigate('/signup')} className="login-redirect-button">Don't have an account? Sign Up</button>
+    <div className="sign-up-container">
+      <div className="header">
+        <h1>Workout Tracker</h1>
+        <h2>Login</h2>
+      </div>
+      <form onSubmit={handleSubmit} className="sign-up-form">
+        <div className="input-group">
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className="primary-action-button">Log In</button>
+        <button type="button" onClick={() => navigate('/signup')} className="login-redirect-button">
+          Don't have an account? Sign Up
+        </button>
+        <button type='button' onClick={() => navigate('/forgot-password')} className="login-redirect-button">
+          Forgot Password?
+        </button>
       </form>
     </div>
   );

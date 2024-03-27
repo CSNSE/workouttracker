@@ -1,69 +1,64 @@
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #282c34;
-  }
-  
-  .login-form {
-    padding: 40px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  .login-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .login-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  
-  .login-form button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #0052cc;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .login-form button:hover {
-    background-color: #003d99;
-  }
 
 
-  /* Add or adjust these styles in your App.css or corresponding stylesheet */
+
+
+
+
+
+
+  /* signup css */
+
+
+/* Updated Header styles to be more customizable */
+.header {
+    width: 100%;
+    max-width: 400px; /* Match the width of the form */
+    box-sizing: border-box; /* Includes padding in the width */
+    margin-bottom: 20px; /* Space between header and form */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #0052cc; /* Change to match your theme */
+    color: #ffffff;
+    text-align: center;
+    border-bottom: 2px solid #003d99; /* Darker shade for some contrast */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    margin-bottom: 40px; /* Space between header and form */
+  }
+  
+  .header h1 {
+    margin: 0;
+    padding-bottom: 10px; /* Space between company name and label */
+    font-size: 28px; /* Large text for company name */
+    font-weight: bold;
+  }
+  
+  .header h2 {
+    margin: 0;
+    font-size: 20px; /* Smaller text for page title */
+    font-weight: normal; /* Less emphasis compared to company name */
+  }
+  
+  
+
   .sign-up-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center; /* Centers vertically */
+    align-items: center; /* Centers horizontally */
     height: 100vh;
     background-color: #282c34;
+    padding: 20px; /* Add padding to prevent content from touching the edges */
   }
   
+  
   .sign-up-form {
+    width: 100%;
+    max-width: 400px;
     padding: 40px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+
   }
   
   .sign-up-form label {
@@ -82,7 +77,6 @@
     box-sizing: border-box;
   }
   
-  /* Styles for the primary action button (Sign Up) */
   .primary-action-button {
     width: 100%;
     padding: 10px;
@@ -99,7 +93,6 @@
     background-color: #003d99;
   }
   
-  /* Adjusted styles for the "Log In" button to make it look like a text link */
   .login-redirect-button {
     background: none;
     border: none;
@@ -115,3 +108,18 @@
     cursor: pointer;
   }
   
+  .Error {
+    color: #ff0000; /* Red color for error messages */
+    background-color: #ffecec; /* Light red background for contrast */
+    border: 1px solid #ff0000; /* Red border around the message */
+    padding: 10px; /* Padding to ensure the text doesn't touch the borders */
+    margin-top: 10px; /* Margin at the top to separate it from other elements */
+    border-radius: 5px; /* Slightly rounded corners for a softer look */
+    font-size: 14px; /* Smaller font size for error messages */
+    text-align: center; /* Center align the text */
+    width: 90%; /* Make the error message box take up most of the container width */
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    display: block; /* Ensure it takes up its own line */
+    margin-left: auto; /* Combined with margin-right auto centers the message box */
+    margin-right: auto;
+  }

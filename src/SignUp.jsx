@@ -6,9 +6,9 @@ import './Auth.css'; // Assuming your styles are defined here
 function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const auth = getAuth();
   const navigate = useNavigate(); // Initialize useNavigate hook
-
   const handleSubmit = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
@@ -21,16 +21,23 @@ function SignUp() {
       })
       .catch((error) => {
         console.error('Error signing up:', error.message);
-        // Handle errors here, such as displaying a notification
-      });
+        if (error.message='Firebase: Error (auth/email-already-in-use).'){
+            setError('This email address is already in use.')
+        }
+    });
   };
 
   const handleLoginRedirect = () => {
     navigate('/login'); // Navigate to the login page
   };
 
+
   return (
     <div className="sign-up-container">
+      <div className="header">
+        <h1>Workout Tracker</h1>
+        <h2>Sign Up</h2>
+      </div>
       <form onSubmit={handleSubmit} className="sign-up-form">
         <label>Email:</label>
         <input
@@ -39,6 +46,7 @@ function SignUp() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        {error && <h6 className='Error'>{error}</h6>}
         <label>Password:</label>
         <input
           type="password"
@@ -47,11 +55,13 @@ function SignUp() {
           required
         />
         <button type="submit" className="primary-action-button">Sign Up</button>
-        <button type="button" onClick={handleLoginRedirect} className="login-redirect-button">Already have an account? Log In</button>
-
+        <button type="button" onClick={handleLoginRedirect} className="login-redirect-button">
+          Already have an account? Log In
+        </button>
       </form>
     </div>
   );
+  
 }
 
 export default SignUp;
