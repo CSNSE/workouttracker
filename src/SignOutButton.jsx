@@ -1,16 +1,26 @@
-import { useAuthSignOutAction } from "./ui-components/utils";
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-function SignOut(){
+import React from 'react';
+import { getAuth, signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+
+function SignOut() {
     const navigate = useNavigate();
+    const auth = getAuth();
 
-    return  (
-    <div>
-    <button onClick={() => navigate('/Login')}>Sign Out</button>
-    </div>
+    const handleSignOut = () => {
+        signOut(auth).then(() => {
+            // Successfully signed out, redirect to login page
+            navigate('/login');
+        }).catch((error) => {
+            // An error happened during the sign-out process
+            console.error(error);
+        });
+    };
+
+    return (
+        <div>
+            <button onClick={handleSignOut}>Sign Out</button>
+        </div>
     );
-
 }
 
 export default SignOut;

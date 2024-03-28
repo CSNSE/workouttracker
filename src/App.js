@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Amplify } from 'aws-amplify';
 import config from './aws-exports';
 import './App.css';
@@ -12,12 +12,13 @@ import CustomSessionCreateForm from './CustomSessionCreateForm';
 import WorkoutsThisWeek from './WorkoutsThisWeek';
 import SignUp from './SignUp';
 import Login from './LogIn';
-
-// Import the functions you need from the SDKs you need
+import { useNavigate } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { SignIn } from '@clerk/clerk-react';
+import CheckAuth from './CheckAuth';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -33,32 +34,28 @@ const firebaseConfig = {
   measurementId: "G-7NS1GPP2YZ"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
-Amplify.configure(config);
-
-
-
-
 function App() {
+  
   return (
       <header className="App-header">
         <Router>
           <Routes>
-            <Route exact path='/' element={<div><WorkoutButtons /><WorkoutsThisWeek/><Footer/></div>} />
+            <Route exact path='/' element={<div><WorkoutButtons /><WorkoutsThisWeek/><Footer/><CheckAuth/></div>} />
             <Route exact path='/new' element={<div><CustomSessionCreateForm/><Footer/></div>}/>
             <Route exact path='/Display' element={<div><CustomDispSessionCollection/><Footer/></div>}/>
             <Route exact path='/DispWorkouts/:cid' element={<div><ViewWorkouts/><Footer/></div>}/>
             <Route exact path ='AddWorkout/:cid' element={<div><AddWorkoutFromDisplay/><Footer/></div>}/>
             <Route exact path ='/Login' element={<div><Login/></div>}/>
             <Route exact path ='/SignUp' element={<div><SignUp/></div>}/>
+
           </Routes>
         </Router>
       </header>
   );
 }
+
 
 export default App;
