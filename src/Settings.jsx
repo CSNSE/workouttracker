@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { getAuth, updateProfile, updatePassword } from "firebase/auth";
 import './Settings.css';
+import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
 function Settings() {
     const [newUsername, setnewUsername] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
-    const auth = getAuth();
+    const auth = getAuth(); 
+    const navigate = useNavigate();
 
 
 
@@ -71,7 +73,7 @@ function Settings() {
 
             {message && <p className={error ? "message error-message" : "message success-message"}>{message}</p>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
-
+            <button className='BackButton' onClick={() => navigate('/profile')}>Back</button>
         </div>
     );
 }

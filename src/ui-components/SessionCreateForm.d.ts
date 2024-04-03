@@ -24,16 +24,19 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type SessionCreateFormInputValues = {
     Type?: string;
     Date?: string;
+    FirebaseUID?: string;
 };
 export declare type SessionCreateFormValidationValues = {
     Type?: ValidationFunction<string>;
     Date?: ValidationFunction<string>;
+    FirebaseUID?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type SessionCreateFormOverridesProps = {
     SessionCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     Type?: PrimitiveOverrideProps<TextFieldProps>;
     Date?: PrimitiveOverrideProps<TextFieldProps>;
+    FirebaseUID?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type SessionCreateFormProps = React.PropsWithChildren<{
     overrides?: SessionCreateFormOverridesProps | undefined | null;

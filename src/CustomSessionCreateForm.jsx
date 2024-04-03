@@ -4,39 +4,38 @@ import { generateClient } from "aws-amplify/api";
 import { createSession } from "./graphql/mutations";
 import "./CustomSessionCreateForm.css"; // Import CSS file
 import { useNavigate } from "react-router-dom";
+import app from "./firebase-config";
+import { getAuth } from "firebase/auth";
 
 const client = generateClient();
+const auth = getAuth(app);
 
-export default function CustomSessionCreateForm(props) {
-  const { onSuccess, onError, ...rest } = props;
-
-  const initialValues = {
+export default function CustomSessionCreateForm({ onSuccess, onError }) {
+  const [sessionData, setSessionData] = useState({
     Type: "",
     Date: "",
+  });
+  const navigate = useNavigate();
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setSessionData({ ...sessionData, [name]: value });
   };
 
-  const [Type, setType] = useState(initialValues.Type);
-  const [Date, setDate] = useState(initialValues.Date);
-  const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const sessionData = {
-      Type,
-      Date,
-    };
+    const uid = auth.currentUser.uid; // Ensure uid is fetched at the time of submission
 
     try {
-      await client.graphql({
+      const result = await client.graphql({
         query: createSession,
         variables: {
-          input: sessionData,
+          input: { ...sessionData, FirebaseUID: uid },
         },
       });
-      navigate('/Display')
+      navigate('/Display');
       if (onSuccess) {
-        onSuccess(sessionData);
+        onSuccess(result.data.createSession);
       }
     } catch (error) {
       console.error("Error creating session:", error);
@@ -53,19 +52,20 @@ export default function CustomSessionCreateForm(props) {
       padding="30px"
       onSubmit={handleSubmit}
       className="formContainer"
-      {...rest}
     >
       <TextField
         label="Type of Workout"
-        value={Type}
-        onChange={(e) => setType(e.target.value)}
+        name="Type"
+        value={sessionData.Type}
+        onChange={handleChange}
         className="formField"
       />
       <TextField
         label="Date"
         type="date"
-        value={Date}
-        onChange={(e) => setDate(e.target.value)}
+        name="Date"
+        value={sessionData.Date}
+        onChange={handleChange}
         className="formField"
       />
       <Button

@@ -25,18 +25,24 @@ export default function SessionCreateForm(props) {
   const initialValues = {
     Type: "",
     Date: "",
+    FirebaseUID: "",
   };
   const [Type, setType] = React.useState(initialValues.Type);
   const [Date, setDate] = React.useState(initialValues.Date);
+  const [FirebaseUID, setFirebaseUID] = React.useState(
+    initialValues.FirebaseUID
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setType(initialValues.Type);
     setDate(initialValues.Date);
+    setFirebaseUID(initialValues.FirebaseUID);
     setErrors({});
   };
   const validations = {
     Type: [],
     Date: [],
+    FirebaseUID: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -66,6 +72,7 @@ export default function SessionCreateForm(props) {
         let modelFields = {
           Type,
           Date,
+          FirebaseUID,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -130,6 +137,7 @@ export default function SessionCreateForm(props) {
             const modelFields = {
               Type: value,
               Date,
+              FirebaseUID,
             };
             const result = onChange(modelFields);
             value = result?.Type ?? value;
@@ -156,6 +164,7 @@ export default function SessionCreateForm(props) {
             const modelFields = {
               Type,
               Date: value,
+              FirebaseUID,
             };
             const result = onChange(modelFields);
             value = result?.Date ?? value;
@@ -169,6 +178,32 @@ export default function SessionCreateForm(props) {
         errorMessage={errors.Date?.errorMessage}
         hasError={errors.Date?.hasError}
         {...getOverrideProps(overrides, "Date")}
+      ></TextField>
+      <TextField
+        label="Firebase uid"
+        isRequired={false}
+        isReadOnly={false}
+        value={FirebaseUID}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              Type,
+              Date,
+              FirebaseUID: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.FirebaseUID ?? value;
+          }
+          if (errors.FirebaseUID?.hasError) {
+            runValidationTasks("FirebaseUID", value);
+          }
+          setFirebaseUID(value);
+        }}
+        onBlur={() => runValidationTasks("FirebaseUID", FirebaseUID)}
+        errorMessage={errors.FirebaseUID?.errorMessage}
+        hasError={errors.FirebaseUID?.hasError}
+        {...getOverrideProps(overrides, "FirebaseUID")}
       ></TextField>
       <Flex
         justifyContent="space-between"

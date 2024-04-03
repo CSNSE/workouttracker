@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-
+import './verify.css';
 function Verify() {
     const [verified, setVerified] = useState(false);
     const navigate = useNavigate();

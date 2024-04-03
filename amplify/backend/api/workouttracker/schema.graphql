@@ -11,5 +11,6 @@ type Session @model @auth(rules: [{allow: public}]) {
   Type: String
   Date: AWSDate
   Workouts: [Workout] @hasMany(indexName: "bySession", fields: ["id"])
+  FirebaseUID: String
 }
  

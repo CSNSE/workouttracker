@@ -9,6 +9,9 @@ export default function CustomDispSessions({ session }) {
   const navigate = useNavigate();
   const client = generateClient();
 
+
+
+  
   const handleViewClick = () => navigate(`/DispWorkouts/${session?.id}`);
   const handleDeleteClick = async () => {
     await client.graphql({

@@ -25,11 +25,13 @@ export declare type SessionUpdateFormInputValues = {
     Type?: string;
     Date?: string;
     Workouts?: any[];
+    FirebaseUID?: string;
 };
 export declare type SessionUpdateFormValidationValues = {
     Type?: ValidationFunction<string>;
     Date?: ValidationFunction<string>;
     Workouts?: ValidationFunction<any>;
+    FirebaseUID?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type SessionUpdateFormOverridesProps = {
@@ -37,6 +39,7 @@ export declare type SessionUpdateFormOverridesProps = {
     Type?: PrimitiveOverrideProps<TextFieldProps>;
     Date?: PrimitiveOverrideProps<TextFieldProps>;
     Workouts?: PrimitiveOverrideProps<AutocompleteProps>;
+    FirebaseUID?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type SessionUpdateFormProps = React.PropsWithChildren<{
     overrides?: SessionUpdateFormOverridesProps | undefined | null;

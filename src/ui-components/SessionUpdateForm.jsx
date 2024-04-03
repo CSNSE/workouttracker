@@ -195,12 +195,16 @@ export default function SessionUpdateForm(props) {
     Type: "",
     Date: "",
     Workouts: [],
+    FirebaseUID: "",
   };
   const [Type, setType] = React.useState(initialValues.Type);
   const [Date, setDate] = React.useState(initialValues.Date);
   const [Workouts, setWorkouts] = React.useState(initialValues.Workouts);
   const [WorkoutsLoading, setWorkoutsLoading] = React.useState(false);
   const [workoutsRecords, setWorkoutsRecords] = React.useState([]);
+  const [FirebaseUID, setFirebaseUID] = React.useState(
+    initialValues.FirebaseUID
+  );
   const autocompleteLength = 10;
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -212,6 +216,7 @@ export default function SessionUpdateForm(props) {
     setWorkouts(cleanValues.Workouts ?? []);
     setCurrentWorkoutsValue(undefined);
     setCurrentWorkoutsDisplayValue("");
+    setFirebaseUID(cleanValues.FirebaseUID);
     setErrors({});
   };
   const [sessionRecord, setSessionRecord] = React.useState(sessionModelProp);
@@ -254,6 +259,7 @@ export default function SessionUpdateForm(props) {
     Type: [],
     Date: [],
     Workouts: [],
+    FirebaseUID: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -316,6 +322,7 @@ export default function SessionUpdateForm(props) {
           Type: Type ?? null,
           Date: Date ?? null,
           Workouts: Workouts ?? null,
+          FirebaseUID: FirebaseUID ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -406,6 +413,7 @@ export default function SessionUpdateForm(props) {
           const modelFieldsToSave = {
             Type: modelFields.Type ?? null,
             Date: modelFields.Date ?? null,
+            FirebaseUID: modelFields.FirebaseUID ?? null,
           };
           promises.push(
             client.graphql({
@@ -444,6 +452,7 @@ export default function SessionUpdateForm(props) {
               Type: value,
               Date,
               Workouts,
+              FirebaseUID,
             };
             const result = onChange(modelFields);
             value = result?.Type ?? value;
@@ -471,6 +480,7 @@ export default function SessionUpdateForm(props) {
               Type,
               Date: value,
               Workouts,
+              FirebaseUID,
             };
             const result = onChange(modelFields);
             value = result?.Date ?? value;
@@ -493,6 +503,7 @@ export default function SessionUpdateForm(props) {
               Type,
               Date,
               Workouts: values,
+              FirebaseUID,
             };
             const result = onChange(modelFields);
             values = result?.Workouts ?? values;
@@ -565,6 +576,33 @@ export default function SessionUpdateForm(props) {
           {...getOverrideProps(overrides, "Workouts")}
         ></Autocomplete>
       </ArrayField>
+      <TextField
+        label="Firebase uid"
+        isRequired={false}
+        isReadOnly={false}
+        value={FirebaseUID}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              Type,
+              Date,
+              Workouts,
+              FirebaseUID: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.FirebaseUID ?? value;
+          }
+          if (errors.FirebaseUID?.hasError) {
+            runValidationTasks("FirebaseUID", value);
+          }
+          setFirebaseUID(value);
+        }}
+        onBlur={() => runValidationTasks("FirebaseUID", FirebaseUID)}
+        errorMessage={errors.FirebaseUID?.errorMessage}
+        hasError={errors.FirebaseUID?.hasError}
+        {...getOverrideProps(overrides, "FirebaseUID")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

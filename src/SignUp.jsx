@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification} from 'firebase/auth';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import './Auth.css'; // Assuming your styles are defined here
+import app from './firebase-config'; // Import the Firebase app instance
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import './Auth.css';
 
 function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const auth = getAuth();
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
+
+  const auth = getAuth(app); // Pass the Firebase app instance to getAuth
+
   const handleSubmit = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
@@ -17,29 +20,20 @@ function SignUp() {
         const user = userCredential.user;
         console.log('User created:', user);
 
-        sendEmailVerification(userCredential.user)
-        .then(() => {
+        sendEmailVerification(user)
+          .then(() => {
             console.log('Verification email sent.');
-        })
-        .catch((error) => {
+            navigate('/verify');
+          })
+          .catch((error) => {
             console.error('Error sending verification email:', error);
-        });
-            
-        // Redirect or update UI, for example, navigate to the home page
-        navigate('/verify'); // Adjust as needed, for example, navigate to a dashboard
+          });
       })
       .catch((error) => {
-        console.error('Error signing up:', error.message);
-        if (error.message='Firebase: Error (auth/email-already-in-use).'){
-            setError('This email address is already in use.')
-        }
-    });
+        console.error('Error signing up:', error);
+        setError('Error signing up: ' + error.message);
+      });
   };
-
-  const handleLoginRedirect = () => {
-    navigate('/login'); // Navigate to the login page
-  };
-
 
   return (
     <div className="sign-up-container">
@@ -64,7 +58,7 @@ function SignUp() {
           required
         />
         <button type="submit" className="primary-action-button">Sign Up</button>
-        <button type="button" onClick={handleLoginRedirect} className="login-redirect-button">
+        <button type="button" onClick={() => navigate ('/login')} className="login-redirect-button">
           Already have an account? Log In
         </button>
       </form>
