@@ -1,0 +1,71 @@
+/* ProfilePage.css */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    object-fit: cover;
+    border: 3px solid #007bff;
+}
+
+.profile-details, .activity-section, .goals-section, .friends-section {
+    margin-bottom: 20px;
+}
+
+.profile-details p, .activity-section p, .goals-section p, .friends-section p {
+    line-height: 1.6;
+    color: #555;
+}
+
+.section-title {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    margin: 20px auto;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .profile-container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .button {
+        width: 60%;
+    }
+}

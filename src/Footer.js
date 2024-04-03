@@ -1,21 +1,22 @@
 import React from 'react';
-import './Footer.css'; // Link to the CSS file for styling
-import BackButton from './BackButton'; // Ensure this path is correct based on your project structure
 import { useNavigate } from 'react-router-dom';
-import BigButton from './BigButton';
-import SignOutButton from './SignOutButton';
-import CustomSessionCreateForm from './CustomSessionCreateForm';
-import Component1 from './ui-components/Component1';
+import './Footer.css'; // Make sure the path is correct
+import { getAuth, signOut } from 'firebase/auth';
 
-function Footer() {
-   const navigate = useNavigate();
+
+
+const Footer = () => {
+    const navigate = useNavigate();
+    const auth = getAuth();
+
     return (
-    <div className="footer">
-      <button className='button' onClick={() => navigate('/new')}>Add Session</button>
-      <BackButton/>
-      <SignOutButton/>
-    </div>
-  );
-}
+        <footer className="footer">
+            <button className='button' onClick={() => navigate('/')}>Home</button>
+            <button className='button' onClick={() => navigate('/new')}>Add Session</button>
+            <button className='button' onClick={() => navigate('/profile')}>Profile Page</button>
+            <button className="button" onClick={() => auth.signOut()}>Sign Out</button>
+        </footer>
+    );
+};
 
 export default Footer;

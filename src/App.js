@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import { Amplify } from 'aws-amplify';
-import config from './aws-exports';
 import './App.css';
 import WorkoutButtons from './Workoutbuttons';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -12,18 +10,15 @@ import CustomSessionCreateForm from './CustomSessionCreateForm';
 import WorkoutsThisWeek from './WorkoutsThisWeek';
 import SignUp from './SignUp';
 import Login from './LogIn';
-import { useNavigate } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { SignIn } from '@clerk/clerk-react';
 import CheckAuth from './CheckAuth';
+import ProfilePage from './ProfilePage';
+import Onboarding from './Onboarding';
+import ForgotPassword from './ForgotPassword';
+import Verify from './verify';
+import Settings from './Settings';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDSmRYm7asLGxvMgp9yqJqP4GmpwlNY5SM",
   authDomain: "workouttracker-f0e30.firebaseapp.com",
@@ -44,12 +39,17 @@ function App() {
         <Router>
           <Routes>
             <Route exact path='/' element={<div><WorkoutButtons /><WorkoutsThisWeek/><Footer/><CheckAuth/></div>} />
-            <Route exact path='/new' element={<div><CustomSessionCreateForm/><Footer/></div>}/>
-            <Route exact path='/Display' element={<div><CustomDispSessionCollection/><Footer/></div>}/>
-            <Route exact path='/DispWorkouts/:cid' element={<div><ViewWorkouts/><Footer/></div>}/>
-            <Route exact path ='AddWorkout/:cid' element={<div><AddWorkoutFromDisplay/><Footer/></div>}/>
+            <Route exact path='/new' element={<div><CustomSessionCreateForm/><Footer/><CheckAuth/></div>}/>
+            <Route exact path='/Display' element={<div><CustomDispSessionCollection/><Footer/><CheckAuth/></div>}/>
+            <Route exact path='/DispWorkouts/:cid' element={<div><ViewWorkouts/><Footer/><CheckAuth/></div>}/>
+            <Route exact path ='AddWorkout/:cid' element={<div><AddWorkoutFromDisplay/><Footer/><CheckAuth/></div>}/>
             <Route exact path ='/Login' element={<div><Login/></div>}/>
             <Route exact path ='/SignUp' element={<div><SignUp/></div>}/>
+            <Route exact path ='/Profile' element={<div><ProfilePage/></div>}/>
+            <Route exact path ='/Onboarding' element={<div><Onboarding/></div>}/>
+            <Route exact path ='/Forgot-Password' element={<div><ForgotPassword/></div>}/>
+            <Route exact path ='/verify' element={<div><Verify/></div>}/>
+            <Route exact path ='/Settings' element={<div><Settings/></div>}/>
 
           </Routes>
         </Router>

@@ -1,0 +1,73 @@
+:root {
+    --background-color: #282c34;
+    --text-color: white;
+    --form-background-color: white;
+    --button-bg-color: #007bff;
+    --button-hover-bg-color: #0056b3;
+    --button-disabled-bg-color: #ccc;
+    --input-border-color: #ddd;
+    --font-family: 'Arial', sans-serif;
+}
+
+.onboarding-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    font-family: var(--font-family);
+    color: var(--text-color);
+}
+
+.onboarding-form {
+    background-color: var(--form-background-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.onboarding-form h4 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.onboarding-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.onboarding-form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid var(--input-border-color);
+    box-sizing: border-box;
+}
+
+.onboarding-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-bg-color);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.onboarding-form button:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+.onboarding-form button:disabled {
+    background-color: var(--button-disabled-bg-color);
+    cursor: default;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification} from 'firebase/auth';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Auth.css'; // Assuming your styles are defined here
 
@@ -16,8 +16,17 @@ function SignUp() {
         // Signed up
         const user = userCredential.user;
         console.log('User created:', user);
+
+        sendEmailVerification(userCredential.user)
+        .then(() => {
+            console.log('Verification email sent.');
+        })
+        .catch((error) => {
+            console.error('Error sending verification email:', error);
+        });
+            
         // Redirect or update UI, for example, navigate to the home page
-        navigate('/'); // Adjust as needed, for example, navigate to a dashboard
+        navigate('/verify'); // Adjust as needed, for example, navigate to a dashboard
       })
       .catch((error) => {
         console.error('Error signing up:', error.message);

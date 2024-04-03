@@ -6,6 +6,7 @@ import './Auth.css'; // This should be the same CSS file used for SignUp
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(''); 
   const navigate = useNavigate(); // Use the useNavigate hook for navigation
   const auth = getAuth();
 
@@ -19,8 +20,18 @@ function Login() {
       })
       .catch((error) => {
         console.error('Error signing in:', error.message);
-        // Implement error handling or UI feedback
-      });
+        if (error.message === 'Firebase: Error (auth/invalid-credential).') {
+          setError('The email address or password is incorrect.');
+        } else if(error.message==='Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).')
+        {
+            setError('Too many failed log-in attempts. Please try again later.')
+        } else if(error.message === 'Firebase: Error (auth/user-disabled).'){
+            setError('This account has been disabled.')
+        }
+        else {
+          setError('Failed to sign in. Please try again.');
+        }
+    });
   };
 
   return (
@@ -39,6 +50,7 @@ function Login() {
             required
           />
         </div>
+        {error && <h6 className='Error'>{error}</h6>}
         <div className="input-group">
           <label>Password:</label>
           <input
@@ -49,11 +61,13 @@ function Login() {
           />
         </div>
         <button type="submit" className="primary-action-button">Log In</button>
-        <button type="button" onClick={() => navigate('/signup')} className="login-redirect-button">
-          Don't have an account? Sign Up
-        </button>
+
         <button type='button' onClick={() => navigate('/forgot-password')} className="login-redirect-button">
           Forgot Password?
+        </button>
+
+        <button type="button" onClick={() => navigate('/signup')} className="login-redirect-button">
+          Don't have an account? Sign Up
         </button>
       </form>
     </div>

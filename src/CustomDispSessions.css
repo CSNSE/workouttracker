@@ -1,41 +1,43 @@
-/* CustomDispSessionCollection styles */
 .customDispSessionCollection {
-    display: flex !important;
+    display: flex;
     flex-wrap: wrap;
-    height: 1000px; /* Increased height for the container */
-    overflow-y: auto; /* Enable vertical scrolling */
+    align-items: flex-start;
+    justify-content: center;
     padding: 20px;
+    gap: 20px;
 }
 
 .customDispSessionCollection > * {
-    flex-basis: calc(25% - 20px); /* Adjust based on desired number of items per row */
-    margin: 10px; /* Adjust spacing between items */
+    box-sizing: border-box;
+    width: 250px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
-/* SessionContainer styles */
 .sessionContainer {
-    background-color: #f8f9fa !important; /* Light gray background */
+    background-color: #f8f9fa;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 20px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    width: 100%;
+    height: 100%;
 }
-
-
 
 .sessionContainer:hover {
-    transform: translateY(-3px); /* Slight lift on hover */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* SessionType and SessionDate styles */
 .sessionType,
 .sessionDate {
     font-weight: bold;
-    color: #333 !important; /* Dark gray text color */
+    color: #333 !important;
 }
 
-/* Button styles */
 .addButton,
 .viewButton,
 .deleteButton,
@@ -48,33 +50,32 @@
 }
 
 .viewButton {
-    background-color: #007bff; /* Blue */
+    background-color: #007bff;
     color: white;
 }
 
 .viewButton:hover {
-    background-color: #5a6268; /* Darker gray on hover */
+    background-color: #5a6268;
 }
 
 .deleteButton {
-    background-color: #dc3545; /* Red */
+    background-color: #dc3545;
     color: white;
 }
 
 .deleteButton:hover {
-    background-color: #bd2130; /* Darker red on hover */
+    background-color: #bd2130;
 }
 
 .updateButton {
-    background-color: #ffc107; /* Yellow */
+    background-color: #ffc107;
     color: black;
 }
 
 .updateButton:hover {
-    background-color: #e0a800; /* Darker yellow on hover */
+    background-color: #e0a800;
 }
 
-/* FilterButtons styles */
 .filterButtons {
     display: flex;
     align-items: center;
@@ -83,7 +84,7 @@
 
 .filterButtons select {
     appearance: none;
-    background-color: #007bff; /* Blue */
+    background-color: #007bff;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -93,10 +94,9 @@
 }
 
 .filterButtons select:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3;
 }
 
-/* WeekChanger styles */
 .weekChanger {
     display: flex;
     align-items: center;
@@ -108,7 +108,6 @@
     cursor: pointer;
 }
 
-/* TodayButton styles */
 .todayButton {
     border: none;
     background-color: #4CAF50;
@@ -122,11 +121,10 @@
     background-color: #45a049;
 }
 
-/* FilterDropdown styles */
 .filterDropdown {
     width: fit-content;
-    margin: 0 auto; /* Center horizontally */
-    margin-top: 50px; /* Adjust top margin as needed */
+    margin: 0 auto;
+    margin-top: 50px;
 }
 
 .filterDropdown .customSelect {
@@ -139,18 +137,18 @@
     -moz-appearance: none;
     background-color: #ffffff;
     color: #333333;
-    border: 2px solid #007bff; /* Blue border */
-    padding: 8px 20px; /* Adjust padding */
+    border: 2px solid #007bff;
+    padding: 8px 20px;
     border-radius: 4px;
     cursor: pointer;
     transition: border-color 0.2s, color 0.2s, background-color 0.2s;
-    width: 200px; /* Adjust width as needed */
-    max-width: 100%; /* Ensure it doesn't overflow */
+    width: 200px;
+    max-width: 100%;
 }
 
 .filterDropdown select:hover,
 .filterDropdown select:focus {
-    border-color: #0056b3; /* Darker blue on hover/focus */
+    border-color: #0056b3;
 }
 
 .filterDropdown select option {

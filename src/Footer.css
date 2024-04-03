@@ -1,36 +1,63 @@
+:root {
+  --footer-bg-color: #20242e;
+  --button-bg-color: #007bff;
+  --button-hover-bg-color: #0056c4;
+  --button-focus-outline-color: rgba(0, 117, 255, 0.5);
+  --text-color: white;
+  --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .footer {
-    width: 100%;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    background-color: #20242e;
-    padding: 1rem;
-    text-align: center;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Shadow to give depth */
+  width: 100%;
+  position:fixed;
+  left: 0;
+  bottom: 0;
+  background-color: var(--footer-bg-color);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .footer {
+      flex-direction: column;
+      padding: 1rem 0;
   }
-  
-  .button {
-    padding: 15px 30px; /* More pronounced padding for a larger button */
-    font-size: 20px; /* Retaining the larger font size */
-    border-radius: 12px; /* More pronounced rounded corners */
-    cursor: pointer; /* Cursor pointer, indicating it's clickable */
-    background-color: #007bff; /* Primary button color */
-    color: white; /* Text color */
-    border: none; /* No border for a modern look */
-    font-weight: 600; /* Bold font weight for better readability */
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover and focus states */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle box-shadow for depth */
-    outline: none; /* Removing the default focus outline */
-  }
-  
-  .button:hover, .button:focus {
-    background-color: #0056c4; /* Darker shade on hover/focus for contrast */
-    color: white; /* Ensuring text color remains white for readability */
-    transform: translateY(-2px); /* Slightly raise the button to imply interactivity */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced box-shadow for prominence */
-  }
-  
-  .button:focus {
-    box-shadow: 0 0 0 4px rgba(0, 117, 255, 0.5); /* Adding a focus outline for accessibility */
-  }
-  
+}
+
+.button {
+  margin: 0 1rem;
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: var(--button-bg-color);
+  color: var(--text-color);
+  border: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-light);
+}
+
+.button:hover {
+  background-color: var(--button-hover-bg-color);
+  box-shadow: var(--shadow-heavy);
+  transform: translateY(-0.125rem);
+}
+
+.button:active {
+  background-color: darken(var(--button-hover-bg-color), 10%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--button-focus-outline-color);
+  outline-offset: 2px;
+}
+
