@@ -39,20 +39,15 @@ export default function CustomDispSessionCollection() {
             setLoading(false);
         }
     };
-
     return (
-        <div className="session-collection-container">
-            {loading ? (
-                <div>Loading sessions...</div>
-            ) : (
-                <div>
-                    <div className="session-list">
-                        {sessions.map(session => (
-                            <CustomDispSessions key={session.id} session={session} />
-                        ))}
-                    </div>
-                </div>
-            )}
-        </div>
-    );
+      <div className="customDispSessionCollection">
+          {loading ? (
+              <div>Loading sessions...</div>
+          ) : (
+              sessions.map(session => (
+                  <CustomDispSessions key={session.id} session={session} />
+              ))
+          )}
+      </div>
+  );  
 }

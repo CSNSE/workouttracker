@@ -30,7 +30,7 @@ function App() {
           <Routes>
             <Route exact path='/' element={<div><WorkoutButtons /><WorkoutsThisWeek/><Footer/><CheckAuth/></div>} />
             <Route exact path='/new' element={<div><CustomSessionCreateForm/><Footer/><CheckAuth/></div>}/>
-            <Route exact path='/Display' element={<div><CustomDispSessionCollection/><Footer/><CheckAuth/></div>}/>
+            <Route exact path='/display' element={<div><CustomDispSessionCollection/><Footer/><CheckAuth/></div>}/>
             <Route exact path='/DispWorkouts/:cid' element={<div><ViewWorkouts/><Footer/><CheckAuth/></div>}/>
             <Route exact path ='AddWorkout/:cid' element={<div><AddWorkoutFromDisplay/><Footer/><CheckAuth/></div>}/>
             <Route exact path ='/Login' element={<div><Login/></div>}/>

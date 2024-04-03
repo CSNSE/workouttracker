@@ -9,52 +9,52 @@ const client = generateClient();
 
 const WorkoutsSummaryBox = () => {
     const [workouts, setWorkouts] = useState([]);
+    const [totalVolume, setTotalVolume] = useState(0);
     const [loading, setLoading] = useState(true);
     const auth = getAuth();
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                console.log('User is logged in, fetching data...');
                 fetchSessionsAndWorkouts(user.uid);
             } else {
+                console.log('No user is logged in.');
                 setLoading(false);
             }
         });
     }, [auth]);
 
     const fetchSessionsAndWorkouts = async (userId) => {
-        setLoading(true);
-        try {
-            const sessionResponse = await client.graphql({
-                query: listSessions,
-                variables: {
-                    filter: {
-                        FirebaseUID: userId,
-                    },
-                },
-            });
+      setLoading(true);
+      try {
+          const { data } = await client.graphql({
+              query: listSessions,
+              variables: { filter: { FirebaseUID: { eq: userId } } },
+          });
+  
+          const sessions = data.listSessions.items;
+          sessions.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+    
+          const workoutPromises = sessions.map(session =>
+              client.graphql({
+                  query: workoutsBySessionID,
+                  variables: { sessionID: session.id },
+              })
+          );
+  
+          const workoutResponses = await Promise.all(workoutPromises);
+          const allWorkouts = workoutResponses.flatMap(response => response.data.workoutsBySessionID.items);
+          setWorkouts(allWorkouts);
 
-            const sessions = sessionResponse.data.listSessions.items;
-            const workoutPromises = sessions.map(session =>
-                client.graphql({
-                    query: workoutsBySessionID,
-                    variables: { sessionID: session.id },
-                })
-            );
-
-            const workoutResponses = await Promise.all(workoutPromises);
-            const allWorkouts = workoutResponses.flatMap(response => response.data.workoutsBySessionID.items);
-            
-            setWorkouts(allWorkouts);
-        } catch (error) {
-            console.error("Error fetching sessions and workouts:", error);
-        }
-        setLoading(false);
-    };
-
-    const calculateTotalVolume = () => {
-        return workouts.reduce((total, workout) => total + (workout.Weight * workout.Reps), 0);
-    };
+          const volumeData = allWorkouts.reduce((acc, workout) => acc + (workout.Weight * workout.Reps), 0);
+          setTotalVolume(volumeData);
+  
+      } catch (error) {
+          console.error('Error fetching sessions and workouts:', error);
+      }
+      setLoading(false);
+  };
 
     return (
         <View className="workoutsSummaryBox">
@@ -63,8 +63,8 @@ const WorkoutsSummaryBox = () => {
             ) : (
                 <>
                     <Text className="workoutsSummaryBox__title">This Week's Summary</Text>
-                    <Text className="workoutsSummaryBox__item">Total Sessions: <span className="workoutsSummaryBox__item--highlight">{workouts.length}</span></Text>
-                    <Text className="workoutsSummaryBox__item">Total Volume: <span className="workoutsSummaryBox__item--highlight">{calculateTotalVolume()} lbs</span></Text>
+                    <Text className="workoutsSummaryBox__item">Total Workouts: <span className="workoutsSummaryBox__item--highlight">{workouts.length}</span></Text>
+                    <Text className="workoutsSummaryBox__item">Total Volume: <span className="workoutsSummaryBox__item--highlight">{totalVolume} lbs</span></Text>
                 </>
             )}
         </View>
