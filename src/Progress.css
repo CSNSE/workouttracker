@@ -1,0 +1,31 @@
+/* Progress.css */
+.progress-container {
+    max-width: 1000px; /* Increased width */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #323844;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+.progress-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.bar-chart-container {
+    background-color: #3a4050;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    height: 500px; /* Set a fixed height for the chart container */
+}
+
+.bar-chart-container canvas {
+    background-color: #42495b;
+    border-radius: 5px;
+    width: 100% !important;
+    height: 100% !important;
+}

@@ -11,8 +11,8 @@ const Footer = () => {
 
     return (
         <footer className="footer">
-            <button className='button' onClick={() => navigate('/')}>Home</button>
-            <button className='button' onClick={() => navigate('/new')}>Add Session</button>
+            <button className='button' onClick={() => navigate('/')}>Sessions</button>
+            <button className='button' onClick={() => navigate('/Progress')}>Progress</button>
             <button className='button' onClick={() => navigate('/profile')}>Profile Page</button>
             <button className="button" onClick={() => auth.signOut()}>Sign Out</button>
         </footer>

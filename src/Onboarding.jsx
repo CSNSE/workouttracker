@@ -27,13 +27,13 @@ function Onboarding() {
 
         try {
             await updateProfile(auth.currentUser, { displayName: username });
-            
         } catch (error) {
             setError('Failed to update profile. Please try again.');
             console.error(error);
         } finally {
             setLoading(false);
         }
+        navigate('/')
     };
 
     return (

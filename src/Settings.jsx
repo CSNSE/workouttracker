@@ -39,6 +39,10 @@ function Settings() {
                 setMessage('Password updated successfully.');
             })
             .catch((error) => {
+                if(error.message ==="Firebase: Error (auth/requires-recent-login)."){
+                    setError('Please re-login to update password.')
+                }
+
                 setError('Failed to update password. ' + error.message);
             });
     };
