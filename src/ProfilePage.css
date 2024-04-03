@@ -1,71 +1,88 @@
 /* ProfilePage.css */
 .profile-container {
     max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
-    color: #333;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: #4a4a4a;
 }
 
 .profile-header {
     text-align: center;
     margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c3e50;
 }
 
 .profile-picture {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    margin: 0 auto;
+    margin: 20px auto;
     display: block;
     object-fit: cover;
-    border: 3px solid #007bff;
+    border: 4px solid #007bff;
 }
 
 .profile-details, .activity-section, .goals-section, .friends-section {
-    margin-bottom: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 30px;
 }
 
 .profile-details p, .activity-section p, .goals-section p, .friends-section p {
     line-height: 1.6;
-    color: #555;
+    color: #6c757d;
 }
 
 .section-title {
+    font-size: 18px;
     color: #007bff;
-    margin-bottom: 10px;
+    font-weight: 500;
+    margin-bottom: 15px;
 }
 
 .button {
     display: block;
-    width: 100%;
+    width: auto;
     max-width: 200px;
-    padding: 10px;
+    padding: 12px 20px;
     margin: 20px auto;
-    border-radius: 5px;
+    border-radius: 30px;
     background-color: #007bff;
     color: white;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: white;
+    color: #007bff;
+    border-color: #007bff;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
     .profile-container {
         width: 90%;
-        padding: 10px;
+        padding: 15px;
+    }
+
+    .profile-header {
+        font-size: 20px;
     }
 
     .button {
-        width: 60%;
+        width: 100%;
+        max-width: none;
     }
 }

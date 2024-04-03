@@ -25,20 +25,22 @@ function ForgotPassword() {
 
     return (
         <div className="forgot-password-container">
-            <h2>Forgot Password</h2>
+            <h2>Reset Your Password</h2>
             <form onSubmit={handleSubmit} className="forgot-password-form">
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="email">Email Address:</label>
                 <input
                     type="email"
                     id="email"
+                    placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
-                <button type="submit">Send Reset Email</button>
+                <button type="submit" className="primary-action-button">Send Reset Email</button>
             </form>
             {message && <p className="forgot-password-message">{message}</p>}
             {error && <p className="forgot-password-message error-message">{error}</p>}
+            <button onClick={() => window.history.back()} className="back-button">Go Back</button>
         </div>
     );
 }

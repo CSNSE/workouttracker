@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Footer.css'; // Make sure the path is correct
-import { getAuth, signOut } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 
 
