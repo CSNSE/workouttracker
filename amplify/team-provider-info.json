@@ -9,17 +9,25 @@
       "UnauthRoleName": "amplify-amplify253f188894a64-staging-161801-unauthRole",
       "StackName": "amplify-amplify253f188894a64-staging-161801",
       "StackId": "arn:aws:cloudformation:us-east-1:062490955624:stack/amplify-amplify253f188894a64-staging-161801/c627ae10-da42-11ee-a087-0e9de17a8061",
-      "AmplifyAppId": "d32bzyyvevh52o"
+      "AmplifyAppId": "d32bzyyvevh52o",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplify253f188894a64-staging-161801-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "workouttracker76c78dce": {}
       },
       "api": {
-        "workouttracker": {}
+        "workouttracker": {},
+        "apif965bec7": {}
       },
       "storage": {
         "workoutbucket": {}
+      },
+      "function": {
+        "workouttrackerai": {
+          "deploymentBucketName": "amplify-amplify253f188894a64-staging-161801-deployment",
+          "s3Key": "amplify-builds/workouttrackerai-2f5158657a4153594e34-build.zip"
+        }
       }
     }
   }

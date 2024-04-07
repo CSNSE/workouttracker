@@ -19,28 +19,28 @@ import Verify from './verify';
 import Settings from './Settings';
 import app from './firebase-config';
 import Progress from './Progress';
+import NotFoundPage from './NotFoundPage';
 
 const auth = getAuth(app);
-
 function App() {
-  
   return (
       <header className="App-header">
         <Router>
           <Routes>
-            <Route exact path='/' element={<div><WorkoutButtons /><WorkoutsThisWeek/><Footer/><CheckAuth/></div>} />
-            <Route exact path='/new' element={<div><CustomSessionCreateForm/><Footer/><CheckAuth/></div>}/>
-            <Route exact path='/display' element={<div><CustomDispSessionCollection/><Footer/><CheckAuth/></div>}/>
-            <Route exact path='/DispWorkouts/:cid' element={<div><ViewWorkouts/><Footer/><CheckAuth/></div>}/>
-            <Route exact path ='AddWorkout/:cid' element={<div><AddWorkoutFromDisplay/><Footer/><CheckAuth/></div>}/>
-            <Route exact path ='/Login' element={<div><Login/></div>}/>
-            <Route exact path ='/SignUp' element={<div><SignUp/></div>}/>
-            <Route exact path ='/Profile' element={<div><ProfilePage/><CheckAuth/><Footer/></div>}/>
-            <Route exact path ='/Onboarding' element={<div><Onboarding/></div>}/>
-            <Route exact path ='/Forgot-Password' element={<div><ForgotPassword/></div>}/>
-            <Route exact path ='/verify' element={<div><Verify/></div>}/>
-            <Route exact path ='/Settings' element={<div><Settings/><CheckAuth/><Footer/></div>}/>
-            <Route exact path = '/Progress' element={<div><Progress/><Footer/><CheckAuth/></div>}/>
+            <Route path='/' element={<div><WorkoutButtons /><WorkoutsThisWeek/><Footer/><CheckAuth/></div>} />
+            <Route path='/new' element={<div><CustomSessionCreateForm/><Footer/><CheckAuth/></div>} />
+            <Route path='/display' element={<div><CustomDispSessionCollection/><Footer/><CheckAuth/></div>} />
+            <Route path='/DispWorkouts/:cid' element={<div><ViewWorkouts/><Footer/><CheckAuth/></div>} />
+            <Route path='AddWorkout/:cid' element={<div><AddWorkoutFromDisplay/><Footer/><CheckAuth/></div>} />
+            <Route path='/Login' element={<div><Login/></div>} />
+            <Route path='/SignUp' element={<div><SignUp/></div>} />
+            <Route path='/Profile' element={<div><ProfilePage/><CheckAuth/><Footer/></div>} />
+            <Route path='/Onboarding' element={<div><Onboarding/></div>} />
+            <Route path='/Forgot-Password' element={<div><ForgotPassword/></div>} />
+            <Route path='/verify' element={<div><Verify/></div>} />
+            <Route path='/Settings' element={<div><Settings/><CheckAuth/><Footer/></div>} />
+            <Route path='/Progress' element={<div><Progress/><Footer/><CheckAuth/></div>} />
+            <Route path="*" element={<NotFoundPage/>} />
           </Routes>
         </Router>
       </header>
