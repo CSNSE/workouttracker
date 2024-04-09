@@ -1,15 +1,14 @@
-/* Side NavBar styles */
 .side-nav-bar {
     width: 250px;
     position: fixed;
     top: 0;
     left: -250px;
     height: 100vh;
-    background-color: #1a1a1a; /* Dark mode background */
+    background: linear-gradient(145deg, #2c3e50, #34495e);
     transition: left 0.3s ease;
     overflow-x: hidden;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
-    z-index: 1000; /* Ensure sidebar is above other content but below the toggle button */
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.7);
+    z-index: 1000;
 }
 
 .side-nav-bar.open {
@@ -18,27 +17,26 @@
 
 .toggle-button {
     position: fixed;
-    left: 10px; /* Add some left margin */
+    left: 10px;
     top: 10px;
-    background-color: #333;
-    border: none;
-    color: white;
+    background: #34495e;
+    color: #ecf0f1;
     padding: 10px 15px;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
-    z-index: 1001; /* Above sidebar for accessibility */
-    transition: background-color 0.3s; /* Smooth background transition */
+    z-index: 1001;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-
 .toggle-button:hover {
-    background-color: #555; /* Darken button on hover for feedback */
+    background: #4a6fa5;
+    transform: scale(1.1);
 }
 
 .nav-links {
-    margin-top: 30px; /* Push links down to avoid overlap with toggle button */
+    margin-top: 50px;
     padding: 15px;
-    color: #fff; /* Ensure text color is white for readability */
+    color: #ecf0f1;
 }
 
 .nav-links ul {
@@ -47,31 +45,33 @@
 }
 
 .nav-links li {
-    padding: 10px 0;
+    padding: 15px 0;
 }
 
 .nav-links a, .button {
     display: block;
-    color: white;
+    color: #ecf0f1;
     text-decoration: none;
-    padding: 10px;
-    border-radius: 5px; /* Rounded corners for modern look */
-    transition: background-color 0.3s; /* Smooth background transition */
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .nav-links a:hover, .button:hover {
-    background-color: #444; /* Highlight on hover */
+    background: #4a6fa5;
+    color: #ffffff;
 }
 
 .button {
     width: 100%;
-    background-color: #333;
+    background: #34495e;
     border: none;
     cursor: pointer;
 }
 
 .button:focus {
-    outline: none; /* Remove outline to keep clean look */
+    outline: none;
 }
 
 .Button-List {

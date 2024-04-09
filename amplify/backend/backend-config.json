@@ -1,19 +1,5 @@
 {
   "api": {
-    "apif965bec7": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "workouttrackerai"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
-    },
     "workouttracker": {
       "dependsOn": [],
       "output": {
@@ -62,31 +48,7 @@
       "service": "Cognito"
     }
   },
-  "function": {
-    "workouttrackerai": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_function_workouttrackerai_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "workouttrackerai"
-        }
-      ]
-    },
-    "AMPLIFY_function_workouttrackerai_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "workouttrackerai"
-        }
-      ]
-    }
-  },
+  "function": {},
   "storage": {
     "workoutbucket": {
       "dependsOn": [],

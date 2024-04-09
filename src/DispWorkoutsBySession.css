@@ -1,75 +1,71 @@
 .workoutContainer {
-    display:flex;    
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 700px;
-    padding: 12px 20px;
-    background-color: #ffffff;
-    border: 1px solid #eaeaea;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: box-shadow 0.3s;
-  }
-  
-  .workoutContainer:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .workoutItem {
-    font-family: 'Inter', sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    color: #333333;
-    line-height: 1.5;
-    margin: 0 10px;
-  }
-  
-  .deleteButton {
-    background-color: #ff6b6b;
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .deleteButton:hover {
-    background-color: #ff5252;
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px 30px;
+  background-color: #f8f8f8;
+  border: 1px solid #dcdcdc;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
 
-    
-  }
-  
-  .deleteButton:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.5);
-  }
-  
+.workoutContainer:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
 
-  .timer {
-    background-color: green;
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .timer:hover {
-    background-color: darkgreen;
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .timer:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.5);
-  }
-  
+.workoutItem {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #2c3e50;
+  line-height: 1.6;
+  margin: 0 15px;
+}
+
+.deleteButton {
+  background-color: #ff5c5c;
+  color: #ffffff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.deleteButton:hover {
+  background-color: #ff3838;
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.deleteButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 88, 88, 0.6);
+}
+
+.timer {
+  background-color: #4caf50;
+  color: #ffffff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.timer:hover {
+  background-color: #388e3c;
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.timer:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.6);
+}

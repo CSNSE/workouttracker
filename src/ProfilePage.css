@@ -1,4 +1,3 @@
-/* ProfilePage.css */
 .profile-container {
     max-width: 800px;
     margin: 30px auto;
@@ -7,7 +6,7 @@
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
-    color: #4a4a4a;
+    color: #3a3a3a; /* Slightly darker font color */
 }
 
 .profile-header {
@@ -15,7 +14,7 @@
     margin-bottom: 30px;
     font-size: 24px;
     font-weight: 600;
-    color: #2c3e50;
+    color: #273a4d; /* Slightly darker header color */
 }
 
 .profile-picture {
@@ -38,12 +37,12 @@
 
 .profile-details p, .activity-section p, .goals-section p, .friends-section p {
     line-height: 1.6;
-    color: #6c757d;
+    color: #5a6268; /* Slightly darker paragraph color */
 }
 
 .section-title {
     font-size: 18px;
-    color: #007bff;
+    color: #0069cc; /* Slightly darker section title color */
     font-weight: 500;
     margin-bottom: 15px;
 }
@@ -66,11 +65,10 @@
 
 .button:hover {
     background-color: white;
-    color: #007bff;
-    border-color: #007bff;
+    color: #0069cc; /* Slightly darker blue for hover */
+    border-color: #0069cc;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .profile-container {
         width: 90%;

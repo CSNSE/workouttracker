@@ -17,17 +17,10 @@
         "workouttracker76c78dce": {}
       },
       "api": {
-        "workouttracker": {},
-        "apif965bec7": {}
+        "workouttracker": {}
       },
       "storage": {
         "workoutbucket": {}
-      },
-      "function": {
-        "workouttrackerai": {
-          "deploymentBucketName": "amplify-amplify253f188894a64-staging-161801-deployment",
-          "s3Key": "amplify-builds/workouttrackerai-2f5158657a4153594e34-build.zip"
-        }
       }
     }
   }

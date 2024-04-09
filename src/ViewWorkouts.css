@@ -1,36 +1,36 @@
 .bigButton {
-    width: auto; /* Auto width to accommodate content */
-    height: 48px; /* Increased height for a more substantial presence */
-    padding: 10px 30px; /* Generous padding for a balanced, easy-to-click button */
-    font-size: 18px; /* Larger font size for better readability */
+    width: auto;
+    height: 50px;
+    padding: 0 35px;
+    font-size: 20px;
     font-family: 'Inter', sans-serif;
-    font-weight: 600; /* Bold font weight for clarity and emphasis */
-    color: #ffffff; /* White color for contrast */
-    background-color: #48a14d; /* Soft, pleasant green for a friendly interface */
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(145deg, #4caf50, #43a047);
     border: none;
-    border-radius: 15px; /* Increased radius for a pill-shaped, modern appearance */
+    border-radius: 20px;
     cursor: pointer;
-    transition: all 0.3s ease; /* Smooth transition for all properties */
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Softer, more pronounced shadow for depth */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Text shadow for better legibility */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .bigButton:hover {
-    background-color: #419941; /* Slightly darker shade for depth */
-    transform: translateY(-3px) scale(1.02); /* More pronounced raise and slight scale for feedback */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25); /* Enhanced shadow for a floating effect */
+    background: linear-gradient(145deg, #369638, #2e7d32);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
 .bigButton:focus {
     outline: none;
-    background-color: #3a8b3a; /* Even darker shade for focus state */
-    box-shadow: 0 0 0 4px rgba(72, 161, 77, 0.5); /* Outer glow for clear focus indication */
+    background: linear-gradient(145deg, #2e7d32, #27632a);
+    box-shadow: 0 0 0 4px rgba(72, 161, 77, 0.6);
 }
 
 .bigButton:active {
-    transform: translateY(1px) scale(0.99); /* Press down effect on click */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Reduced shadow for a 'pressed' appearance */
+    transform: translateY(-1px) scale(0.97);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 }

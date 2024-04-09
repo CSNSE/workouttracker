@@ -1,101 +1,97 @@
 .centered {
-    justify-content: center !important;
+    justify-content: center;
 }
 
 .viewWorkoutsHeader {
-    width: 100% ;
-    max-width: 250px;
-    min-height: 160px;
+    width: 100%;
+    max-width: 260px;
+    min-height: 180px;
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #ffffff !important;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-    border: none;
-    margin: 10px;
+    padding: 25px;
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin: 15px;
     overflow: hidden;
 }
 
 .sessionInfoText {
     font-family: 'Inter', sans-serif;
-    font-size: 22px;
-    font-weight: 600;
-    color: #424242;
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
     margin: 0;
-    padding-bottom: 20px;
+    padding-bottom: 25px;
     text-align: center;
 }
 
 .backButton {
     width: auto;
-    padding: 10px 20px;
-    font-size: 18px;
+    padding: 12px 24px;
+    font-size: 20px;
     font-weight: bold;
-    letter-spacing: normal;
-    background-color: #ff6b6b; /* Vibrant color for interactive elements */
-    color: white;
-    border: none;
-    border-radius: 8px;
+    background-color: #ff5c5c;
+    color: #fff;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
     align-self: center;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .backButton:hover, .backButton:focus {
-    background-color: #e53e3e; /* Darker shade for interaction */
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #e53e3e;
+    transform: translateY(-3px) scale(1.07);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 }
 
 .WorkoutSelector, .WorkoutSelecter {
-    font-family: 'Arial', sans-serif;
-    font-size: 16px;
-    padding: 8px 12px;
-    background-color: #ffffff; /* Consistent background for form elements */
-    border: 1px solid #ddd; /* Light grey border for subtle definition */
-    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    padding: 10px 16px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 6px;
     outline: none;
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
     box-sizing: border-box;
 }
 
 .WorkoutSelector:focus, .WorkoutSelecter:focus {
-    border-color: #0056b3; /* Primary color for focus state */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border-color: #0066cc;
+    box-shadow: 0 0 0 3px rgba(0, 98, 204, 0.3);
 }
 
 .autocomplete-field {
-    position: relative; /* Necessary for absolute positioning of suggestions */
+    position: relative;
 }
 
 .autocomplete-suggestions {
     position: absolute;
     z-index: 1000;
     width: 100%;
-    max-height: 300px;
+    max-height: 320px;
     overflow-y: auto;
-    background-color: #ffffff; /* Matching the primary background */
-    border: 1px solid #ddd; /* Consistent with other form elements */
-    border-radius: 4px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 5px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+    margin-top: 6px;
 }
 
 .suggestion-item {
-    padding: 8px 12px;
-
+    padding: 10px 15px;
     cursor: pointer;
-    font-size: medium;
-    list-style-type:none; /* No bullets for list items */
-    background-color: white; /* Ensure readability */
-    color: black; /* Text color for suggestions */
+    font-size: 16px;
+    list-style-type: none;
+    background-color: #fff;
+    color: #000;
 }
 
 .suggestion-item:hover, .suggestion-item:focus {
-    background-color: #f7f7f7; /* Light grey for hover/focus state */
+    background-color: #f0f0f0;
 }
