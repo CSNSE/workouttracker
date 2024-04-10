@@ -1,23 +1,46 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, onAuthStateChanged } from 'firebase/auth'; // Correctly import onAuthStateChanged
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+
+const TIMEOUT_PERIOD = 30 * 60 * 1000; 
 
 const CheckAuth = () => {
   const navigate = useNavigate();
-  const auth = getAuth(); // Initialize the Firebase auth object
-  
+  const auth = getAuth();
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        navigate('/login'); 
+        navigate('/login');
+      } else {
+        resetLogoutTimer();
       }
     });
 
-    // Return the unsubscribe function to ensure we unsubscribe on component unmount
-    return () => unsubscribe();
-  }, [navigate]);
+    const events = ['load', 'click', 'keypress', 'scroll'];
+    events.forEach(event => window.addEventListener(event, resetLogoutTimer));
 
-  return null; // Return null if you don't want to render anything
+    return () => {
+      unsubscribe();
+      events.forEach(event => window.removeEventListener(event, resetLogoutTimer));
+      clearTimeout(logoutTimer);
+    };
+  }, [navigate, auth]);
+
+  let logoutTimer;
+  const resetLogoutTimer = () => {
+    clearTimeout(logoutTimer);
+    logoutTimer = setTimeout(() => {
+        signOut(auth).then(() => {
+            navigate('/login', { state: { reason: 'inactivity' } });
+        }).catch((error) => {
+            console.error('Error logging out:', error);
+        });
+  
+    }, TIMEOUT_PERIOD);
+  };
+
+  return null; 
 };
 
 export default CheckAuth;
