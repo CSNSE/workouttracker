@@ -1,6 +1,5 @@
-/* Progress.css */
 .progress-container {
-    max-width: 1000px; /* Increased width */
+    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background-color: #323844;
@@ -15,17 +14,49 @@
     margin-bottom: 30px;
 }
 
+.select-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select-container select {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #42495b;
+    color: white;
+    border: 2px solid #5a6487;
+    border-radius: 5px;
+    -webkit-appearance: none; /* Removes default styling */
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+.select-container::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
 .bar-chart-container {
     background-color: #3a4050;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    height: 500px; /* Set a fixed height for the chart container */
+    height: auto;
+    min-height: 300px;
 }
 
 .bar-chart-container canvas {
     background-color: #42495b;
     border-radius: 5px;
     width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
 }

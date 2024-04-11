@@ -1,0 +1,88 @@
+.dispSessionFeedNavBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    background: #f0f2f5;
+    color: #333;
+    margin-top:5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    border-radius: 10px;
+}
+
+.navContainer {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around; /* Changed to space-around for equal spacing */
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.navLinks {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0 20px; /* Add padding to both sides of navLinks for spacing */
+}
+
+.navLinks li {
+    margin: 0 10px; /* Adjust margin to control spacing between buttons */
+}
+
+.navLinks li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 8px 12px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    display: block;
+}
+
+.navLinks li a:hover,
+.navLinks li a:focus {
+    color: #f7f7f7;
+    background-color: #333;
+    border-radius: 4px;
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .navContainer {
+        flex-direction: column;
+        padding: 10px 0; /* Adjust padding for mobile */
+    }
+
+    .logo {
+        margin-bottom: 20px; /* Added bottom margin to separate from the menu on mobile */
+    }
+
+    .navLinks {
+        flex-direction: column;
+        width: 100%;
+        padding: 0; /* Reset padding for mobile layout */
+    }
+
+    .navLinks li {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0; /* Adjust margin for vertical spacing on mobile */
+    }
+}
+
+.navLinks li a:focus-visible {
+    outline: 2px solid #333;
+    outline-offset: 2px;
+}
+
+.navLinks li a:focus:not(:focus-visible) {
+    outline: none;
+}

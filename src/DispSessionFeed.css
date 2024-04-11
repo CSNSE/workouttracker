@@ -1,0 +1,85 @@
+.sessionFeed {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    max-width: 600px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #f0f2f5;
+}
+
+.sessionCard {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ebeef1;
+    padding: 24px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.sessionCard:hover {
+    background-color: #f8f9fa;
+}
+
+.sessionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2a2e35;
+    margin-bottom: 8px;
+}
+
+.sessionAuthor {
+    font-size: 0.9rem;
+    color: #6b778c;
+    margin-bottom: 16px;
+}
+
+.sessionActions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+}
+
+.actionButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #2a2e35;
+    background-color: #ebeef1;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.actionButton:hover {
+    background-color: #d2d6db;
+    color: #2a2e35;
+}
+
+.viewButton {
+    display: flex; /* Changed to flex to center contents */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    width: 100%;
+    padding: 15px 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.2s ease, background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+.viewButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #0056b3;
+}

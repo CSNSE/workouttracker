@@ -1,6 +1,53 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getPublishedSession = /* GraphQL */ `
+  query GetPublishedSession($id: ID!) {
+    getPublishedSession(id: $id) {
+      id
+      SessionPublished {
+        id
+        Type
+        Date
+        FirebaseUID
+        createdAt
+        updatedAt
+        __typename
+      }
+      Title
+      Description
+      createdAt
+      updatedAt
+      publishedSessionSessionPublishedId
+      __typename
+    }
+  }
+`;
+export const listPublishedSessions = /* GraphQL */ `
+  query ListPublishedSessions(
+    $filter: ModelPublishedSessionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPublishedSessions(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        Title
+        Description
+        createdAt
+        updatedAt
+        publishedSessionSessionPublishedId
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const getWorkout = /* GraphQL */ `
   query GetWorkout($id: ID!) {
     getWorkout(id: $id) {
@@ -77,6 +124,7 @@ export const getSession = /* GraphQL */ `
         nextToken
         __typename
       }
+      FirebaseUID
       createdAt
       updatedAt
       __typename
@@ -94,6 +142,7 @@ export const listSessions = /* GraphQL */ `
         id
         Type
         Date
+        FirebaseUID
         createdAt
         updatedAt
         __typename

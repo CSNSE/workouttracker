@@ -17,6 +17,8 @@ export { default as Logo } from "./Logo";
 export { default as LogoWithText } from "./LogoWithText";
 export { default as MyIcon } from "./MyIcon";
 export { default as NewForm1 } from "./NewForm1";
+export { default as PublishedSessionCreateForm } from "./PublishedSessionCreateForm";
+export { default as PublishedSessionUpdateForm } from "./PublishedSessionUpdateForm";
 export { default as SessionCreateForm } from "./SessionCreateForm";
 export { default as SessionUpdateForm } from "./SessionUpdateForm";
 export { default as ViewWorkoutsHeader } from "./ViewWorkoutsHeader";

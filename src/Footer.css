@@ -1,0 +1,63 @@
+:root {
+  --footer-bg-color: #20242e;
+  --button-bg-color: #007bff;
+  --button-hover-bg-color: #0056c4;
+  --button-focus-outline-color: rgba(0, 117, 255, 0.5);
+  --text-color: white;
+  --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+  width: 100%;
+  position:fixed;
+  left: 0;
+  bottom: 0;
+  background-color: var(--footer-bg-color);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .footer {
+      flex-direction: column;
+      padding: 1rem 0;
+  }
+}
+
+.button {
+  margin: 0 1rem;
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: var(--button-bg-color);
+  color: var(--text-color);
+  border: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-light);
+}
+
+.button:hover {
+  background-color: var(--button-hover-bg-color);
+  box-shadow: var(--shadow-heavy);
+  transform: translateY(-0.125rem);
+}
+
+.button:active {
+  background-color: darken(var(--button-hover-bg-color), 10%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--button-focus-outline-color);
+  outline-offset: 2px;
+}
+

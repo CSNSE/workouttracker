@@ -1,6 +1,78 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreatePublishedSession = /* GraphQL */ `
+  subscription OnCreatePublishedSession(
+    $filter: ModelSubscriptionPublishedSessionFilterInput
+  ) {
+    onCreatePublishedSession(filter: $filter) {
+      id
+      SessionPublished {
+        id
+        Type
+        Date
+        FirebaseUID
+        createdAt
+        updatedAt
+        __typename
+      }
+      Title
+      Description
+      createdAt
+      updatedAt
+      publishedSessionSessionPublishedId
+      __typename
+    }
+  }
+`;
+export const onUpdatePublishedSession = /* GraphQL */ `
+  subscription OnUpdatePublishedSession(
+    $filter: ModelSubscriptionPublishedSessionFilterInput
+  ) {
+    onUpdatePublishedSession(filter: $filter) {
+      id
+      SessionPublished {
+        id
+        Type
+        Date
+        FirebaseUID
+        createdAt
+        updatedAt
+        __typename
+      }
+      Title
+      Description
+      createdAt
+      updatedAt
+      publishedSessionSessionPublishedId
+      __typename
+    }
+  }
+`;
+export const onDeletePublishedSession = /* GraphQL */ `
+  subscription OnDeletePublishedSession(
+    $filter: ModelSubscriptionPublishedSessionFilterInput
+  ) {
+    onDeletePublishedSession(filter: $filter) {
+      id
+      SessionPublished {
+        id
+        Type
+        Date
+        FirebaseUID
+        createdAt
+        updatedAt
+        __typename
+      }
+      Title
+      Description
+      createdAt
+      updatedAt
+      publishedSessionSessionPublishedId
+      __typename
+    }
+  }
+`;
 export const onCreateWorkout = /* GraphQL */ `
   subscription OnCreateWorkout($filter: ModelSubscriptionWorkoutFilterInput) {
     onCreateWorkout(filter: $filter) {
@@ -53,6 +125,7 @@ export const onCreateSession = /* GraphQL */ `
         nextToken
         __typename
       }
+      FirebaseUID
       createdAt
       updatedAt
       __typename
@@ -69,6 +142,7 @@ export const onUpdateSession = /* GraphQL */ `
         nextToken
         __typename
       }
+      FirebaseUID
       createdAt
       updatedAt
       __typename
@@ -85,6 +159,7 @@ export const onDeleteSession = /* GraphQL */ `
         nextToken
         __typename
       }
+      FirebaseUID
       createdAt
       updatedAt
       __typename

@@ -1,3 +1,10 @@
+type PublishedSession @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  SessionPublished: Session @hasOne
+  Title: String
+  Description: String
+}
+
 type Workout @model @auth(rules: [{allow: public}]) {
   id: ID!
   Lift: String
