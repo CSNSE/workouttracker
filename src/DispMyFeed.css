@@ -1,0 +1,34 @@
+.myFeedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; /* Ensure container fills the viewport height */
+  padding-top: 60px; /* Add top padding to prevent content from hiding behind the fixed navbar */
+  padding-bottom: 60px; /* Add bottom padding to prevent content from hiding behind the fixed bottom navbar */
+  background-color:#282c34;
+  background-attachment: fixed;
+}
+
+.myFeedNavBar {
+  position: fixed; /* Fix the navbar to the top of the viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10; /* Ensure the navbar stays above other content */
+}
+
+.myFeedContent {
+  width: 100%;
+  max-width: 1000px;
+  overflow-y: auto; /* Allows the content area to scroll independently */
+  margin-top: 60px; /* Ensure content starts below the top navbar */
+  margin-bottom: 60px; /* Ensure content does not go behind the bottom navbar */
+}
+
+.myFeedBottomNavBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}

@@ -20,7 +20,7 @@ import app from './firebase-config';
 import Progress from './Progress';
 import NotFoundPage from './NotFoundPage';
 import SideNavBar from './SideNavBar';
-import MyFeed from './MyFeed';
+import DispMyFeed from './DispMyFeed';
 
 const auth = getAuth(app);
 function App() {
@@ -42,7 +42,7 @@ function App() {
             <Route path='/Settings' element={<div><Settings/><CheckAuth/><SideNavBar/></div>} />
             <Route path='/Progress' element={<div><Progress/><SideNavBar/><CheckAuth/></div>} />
             <Route path="*" element={<NotFoundPage/>} />
-            <Route path='/MyFeed' element={<div><SideNavBar/><MyFeed/><CheckAuth/></div>} />
+            <Route path='/MyFeed' element={<div><SideNavBar/><DispMyFeed/><CheckAuth/></div>} />
           </Routes>
         </Router>
       </header>

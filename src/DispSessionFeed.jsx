@@ -42,7 +42,7 @@ export default function DispSessionFeed() {
       {sessions.map((session) => (
         <div key={session.id} className="sessionCard">
           <div className="sessionTitle">{session.Type}</div>
-          <div className='sessionAuthor'>{"@" + (user ? user.displayName : 'User')}</div>
+          <div className='sessionAuthor'>{(user ? user.displayName : 'User')}</div>
           <button className="viewButton" onClick={() => handleViewClick(session.id)}>
             View Details
           </button>
