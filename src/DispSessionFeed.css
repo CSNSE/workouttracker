@@ -21,16 +21,28 @@
 }
 
 .sessionTitle {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: #2a2e35;
     margin-bottom: 8px;
+}
+
+.sessionDescription {
+    font-size: 1.2rem;
+    color: #36435a;
+    margin-bottom: 16px;
+
 }
 
 .sessionAuthor {
     font-size: 0.9rem;
     color: #6b778c;
     margin-bottom: 16px;
+}
+
+.sessionAuthor::before{
+    content: "@";
+    font-weight: 600;
 }
 
 .sessionActions {
@@ -83,3 +95,5 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     background-color: #0056b3;
 }
+
+

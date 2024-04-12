@@ -1,11 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getPublishedSession = /* GraphQL */ `
-  query GetPublishedSession($id: ID!) {
-    getPublishedSession(id: $id) {
+export const getSessionPublish = /* GraphQL */ `
+  query GetSessionPublish($id: ID!) {
+    getSessionPublish(id: $id) {
       id
-      SessionPublished {
+      Description
+      Publish {
         id
         Type
         Date
@@ -15,32 +16,31 @@ export const getPublishedSession = /* GraphQL */ `
         __typename
       }
       Title
-      Description
       createdAt
       updatedAt
-      publishedSessionSessionPublishedId
+      sessionPublishPublishId
       __typename
     }
   }
 `;
-export const listPublishedSessions = /* GraphQL */ `
-  query ListPublishedSessions(
-    $filter: ModelPublishedSessionFilterInput
+export const listSessionPublishes = /* GraphQL */ `
+  query ListSessionPublishes(
+    $filter: ModelSessionPublishFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPublishedSessions(
+    listSessionPublishes(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
     ) {
       items {
         id
-        Title
         Description
+        Title
         createdAt
         updatedAt
-        publishedSessionSessionPublishedId
+        sessionPublishPublishId
         __typename
       }
       nextToken

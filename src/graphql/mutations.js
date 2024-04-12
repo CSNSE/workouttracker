@@ -1,14 +1,15 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createPublishedSession = /* GraphQL */ `
-  mutation CreatePublishedSession(
-    $input: CreatePublishedSessionInput!
-    $condition: ModelPublishedSessionConditionInput
+export const createSessionPublish = /* GraphQL */ `
+  mutation CreateSessionPublish(
+    $input: CreateSessionPublishInput!
+    $condition: ModelSessionPublishConditionInput
   ) {
-    createPublishedSession(input: $input, condition: $condition) {
+    createSessionPublish(input: $input, condition: $condition) {
       id
-      SessionPublished {
+      Description
+      Publish {
         id
         Type
         Date
@@ -18,22 +19,22 @@ export const createPublishedSession = /* GraphQL */ `
         __typename
       }
       Title
-      Description
       createdAt
       updatedAt
-      publishedSessionSessionPublishedId
+      sessionPublishPublishId
       __typename
     }
   }
 `;
-export const updatePublishedSession = /* GraphQL */ `
-  mutation UpdatePublishedSession(
-    $input: UpdatePublishedSessionInput!
-    $condition: ModelPublishedSessionConditionInput
+export const updateSessionPublish = /* GraphQL */ `
+  mutation UpdateSessionPublish(
+    $input: UpdateSessionPublishInput!
+    $condition: ModelSessionPublishConditionInput
   ) {
-    updatePublishedSession(input: $input, condition: $condition) {
+    updateSessionPublish(input: $input, condition: $condition) {
       id
-      SessionPublished {
+      Description
+      Publish {
         id
         Type
         Date
@@ -43,22 +44,22 @@ export const updatePublishedSession = /* GraphQL */ `
         __typename
       }
       Title
-      Description
       createdAt
       updatedAt
-      publishedSessionSessionPublishedId
+      sessionPublishPublishId
       __typename
     }
   }
 `;
-export const deletePublishedSession = /* GraphQL */ `
-  mutation DeletePublishedSession(
-    $input: DeletePublishedSessionInput!
-    $condition: ModelPublishedSessionConditionInput
+export const deleteSessionPublish = /* GraphQL */ `
+  mutation DeleteSessionPublish(
+    $input: DeleteSessionPublishInput!
+    $condition: ModelSessionPublishConditionInput
   ) {
-    deletePublishedSession(input: $input, condition: $condition) {
+    deleteSessionPublish(input: $input, condition: $condition) {
       id
-      SessionPublished {
+      Description
+      Publish {
         id
         Type
         Date
@@ -68,10 +69,9 @@ export const deletePublishedSession = /* GraphQL */ `
         __typename
       }
       Title
-      Description
       createdAt
       updatedAt
-      publishedSessionSessionPublishedId
+      sessionPublishPublishId
       __typename
     }
   }

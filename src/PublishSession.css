@@ -1,0 +1,70 @@
+/* Overall layout and design for the Publish Session page */
+.publish-session-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #282c34;  /* Dark grey background */
+    color: #f0f0f0;  /* Light text for better readability */
+    font-family: 'Arial', sans-serif;
+}
+
+.publish-session-form {
+    background: #1c1f24;  /* Slightly lighter than container background */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.1);  /* Lighter shadow for contrast */
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid #333;  /* Subtle border */
+}
+
+.publish-session-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #fff;  /* White color for title */
+    font-size: 1.75rem;  /* Slightly larger font size */
+}
+
+.publish-session-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #50565e;  /* Grey border for better visibility */
+    background-color: #333;  /* Dark input fields */
+    color: #ffffff;  /* White text color for input */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.publish-session-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #008cff;  /* Brighter blue for better visibility */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.publish-session-button:hover {
+    background-color: #006bdf;  /* Darker shade of button color on hover */
+}
+
+.error-message {
+    color: #ff6347;  /* Tomato color for better visibility on errors */
+    font-size: 0.875rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+p{
+    color:white;
+    font-size: 1.25rem;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

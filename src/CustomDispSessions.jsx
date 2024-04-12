@@ -18,13 +18,10 @@ export default function CustomDispSessions({ session }) {
     navigate(0); // Refresh the page to show the updated list
   };
 
-  // Function to handle publishing the workout session
-  const handlePublishClick = async () => {
-      await client.graphql({
-      variables: { id: session?.id },
-    });
-    alert('Session published to feed!'); // Provide user feedback (consider a better approach in production)
-  };
+  const handlePublishClick = async() => {
+    const cid = session?.id;
+    navigate(`/PublishSession/${cid}`);
+  }
 
   return (
     <View className="DispSessions">

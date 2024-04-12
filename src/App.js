@@ -21,6 +21,8 @@ import Progress from './Progress';
 import NotFoundPage from './NotFoundPage';
 import SideNavBar from './SideNavBar';
 import DispMyFeed from './DispMyFeed';
+import PublishSession from './PublishSession';
+import { SessionPublishCreateForm, SessionPublishUpdateForm } from './ui-components';
 
 const auth = getAuth(app);
 function App() {
@@ -43,6 +45,7 @@ function App() {
             <Route path='/Progress' element={<div><Progress/><SideNavBar/><CheckAuth/></div>} />
             <Route path="*" element={<NotFoundPage/>} />
             <Route path='/MyFeed' element={<div><SideNavBar/><DispMyFeed/><CheckAuth/></div>} />
+            <Route path='/PublishSession/:cid' element={<div><SideNavBar/><PublishSession/><CheckAuth/></div>}/>
           </Routes>
         </Router>
       </header>

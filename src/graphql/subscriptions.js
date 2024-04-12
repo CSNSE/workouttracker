@@ -1,13 +1,14 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreatePublishedSession = /* GraphQL */ `
-  subscription OnCreatePublishedSession(
-    $filter: ModelSubscriptionPublishedSessionFilterInput
+export const onCreateSessionPublish = /* GraphQL */ `
+  subscription OnCreateSessionPublish(
+    $filter: ModelSubscriptionSessionPublishFilterInput
   ) {
-    onCreatePublishedSession(filter: $filter) {
+    onCreateSessionPublish(filter: $filter) {
       id
-      SessionPublished {
+      Description
+      Publish {
         id
         Type
         Date
@@ -17,21 +18,21 @@ export const onCreatePublishedSession = /* GraphQL */ `
         __typename
       }
       Title
-      Description
       createdAt
       updatedAt
-      publishedSessionSessionPublishedId
+      sessionPublishPublishId
       __typename
     }
   }
 `;
-export const onUpdatePublishedSession = /* GraphQL */ `
-  subscription OnUpdatePublishedSession(
-    $filter: ModelSubscriptionPublishedSessionFilterInput
+export const onUpdateSessionPublish = /* GraphQL */ `
+  subscription OnUpdateSessionPublish(
+    $filter: ModelSubscriptionSessionPublishFilterInput
   ) {
-    onUpdatePublishedSession(filter: $filter) {
+    onUpdateSessionPublish(filter: $filter) {
       id
-      SessionPublished {
+      Description
+      Publish {
         id
         Type
         Date
@@ -41,21 +42,21 @@ export const onUpdatePublishedSession = /* GraphQL */ `
         __typename
       }
       Title
-      Description
       createdAt
       updatedAt
-      publishedSessionSessionPublishedId
+      sessionPublishPublishId
       __typename
     }
   }
 `;
-export const onDeletePublishedSession = /* GraphQL */ `
-  subscription OnDeletePublishedSession(
-    $filter: ModelSubscriptionPublishedSessionFilterInput
+export const onDeleteSessionPublish = /* GraphQL */ `
+  subscription OnDeleteSessionPublish(
+    $filter: ModelSubscriptionSessionPublishFilterInput
   ) {
-    onDeletePublishedSession(filter: $filter) {
+    onDeleteSessionPublish(filter: $filter) {
       id
-      SessionPublished {
+      Description
+      Publish {
         id
         Type
         Date
@@ -65,10 +66,9 @@ export const onDeletePublishedSession = /* GraphQL */ `
         __typename
       }
       Title
-      Description
       createdAt
       updatedAt
-      publishedSessionSessionPublishedId
+      sessionPublishPublishId
       __typename
     }
   }

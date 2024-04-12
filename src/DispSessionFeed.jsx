@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateClient } from "aws-amplify/api";
 import app from "./firebase-config";
-import { listSessions } from "./graphql/queries";
+  import { listSessionPublishes } from "./graphql/queries";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { FaRegComment, FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import "./DispSessionFeed.css";
@@ -24,8 +24,8 @@ export default function DispSessionFeed() {
   useEffect(() => {
     async function fetchSessions() {
       try {
-        const sessionData = await client.graphql({ query: listSessions });
-        setSessions(sessionData.data.listSessions.items);
+        const sessionData = await client.graphql({ query: listSessionPublishes });
+        setSessions(sessionData.data.listSessionPublishes.items); // Make sure this matches your actual data structure returned from GraphQL
       } catch (error) {
         console.error("Error fetching sessions:", error);
       }
@@ -33,17 +33,17 @@ export default function DispSessionFeed() {
     fetchSessions();
   }, [client]);
 
-  const handleViewClick = (sessionId) => {
-    navigate(`/DispWorkouts/${sessionId}`);
+  const handleViewClick = (sessionPublishPublishId) => {
+    navigate(`/DispWorkouts/${sessionPublishPublishId}`);
   };
-
   return (
     <div className="sessionFeed">
       {sessions.map((session) => (
         <div key={session.id} className="sessionCard">
-          <div className="sessionTitle">{session.Type}</div>
           <div className='sessionAuthor'>{(user ? user.displayName : 'User')}</div>
-          <button className="viewButton" onClick={() => handleViewClick(session.id)}>
+          <div className="sessionTitle">{session.Title}</div>
+          <div className='sessionDescription'>{session.Description}</div>
+          <button className="viewButton" onClick={() => handleViewClick(session.sessionPublishPublishId)}>
             View Details
           </button>
           <div className="sessionActions">
