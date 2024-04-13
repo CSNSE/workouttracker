@@ -1,21 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import './ProfilePage.css'; // Import the CSS file here
+import './ProfilePage.css';
 import { useNavigate } from 'react-router-dom';
 import app from './firebase-config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState({});
   const auth = getAuth(app);
+  const db = getFirestore(app);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        const userRef = doc(db, "users", currentUser.uid);
+        const docSnap = await getDoc(userRef);
+        if (docSnap.exists()) {
+          setProfile(docSnap.data());
+        } else {
+          console.log("No such document!");
+        }
+      }
     });
 
     return () => unsubscribe();
-  }, [auth]);
+  }, [auth, db]);
+
+
 
   return (
     <div className="profile-container">
@@ -23,7 +37,8 @@ const ProfilePage = () => {
       {user ? (
         <div>
           <div className="profile-details">
-            <p>Welcome, {user.displayName || 'User'}!</p>
+            <p>Welcome, {profile.firstName || user.displayName || 'User'}!</p>
+            <p>Username: {user.displayName || 'User'}!</p>
             <p>Email: {user.email}</p>
           </div>
           <button className="button" onClick={() => navigate('/Settings')}>Account Settings</button>

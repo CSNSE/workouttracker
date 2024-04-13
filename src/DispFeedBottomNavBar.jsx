@@ -1,20 +1,22 @@
 import React from 'react';
 import './DispFeedBottomNavBar.css'; // Ensure to link the CSS file
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faPencilAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const DispFeedBottomNavBar = () => {
     return (
         <nav className="bottomNavBar">
-            <button className="navItem" onClick={() => console.log('Go to Feed')}>
-                <span className="icon">🏠</span>
-                <span className="label">Feed</span>
-            </button>
             <button className="navItem" onClick={() => console.log('Post Something')}>
-                <span className="icon">✏️</span>
-                <span className="label">Post</span>
+                <FontAwesomeIcon icon={faPencilAlt} className="icon" />
+                <span className="label"></span>
+            </button>
+            <button className="navItem" onClick={() => console.log('Go to Feed')}>
+                <FontAwesomeIcon icon={faHome} className="icon" />
+                <span className="label"></span>
             </button>
             <button className="navItem" onClick={() => console.log('Go to Profile')}>
-                <span className="icon">👤</span>
-                <span className="label">Profile</span>
+                <FontAwesomeIcon icon={faUser} className="icon" />
+                <span className="label"></span>
             </button>
         </nav>
     );

@@ -13,7 +13,7 @@ const DispSessionFeedNavBar = () => {
             <li><button onClick={() => navigate('/display')}>Sessions</button></li>
         </ul>
         <div className="logo" onClick={() => navigate('/')}>
-          WorkoutTracker
+          Workout Tracker
         </div>
         <ul className="navLinks">
           <li><button onClick={() => navigate('/challenges')}>Challenges</button></li>

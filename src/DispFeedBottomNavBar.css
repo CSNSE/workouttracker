@@ -1,16 +1,15 @@
+/* DispFeedBottomNavBar.css */
 .bottomNavBar {
     display: flex;
     justify-content: space-around;
     align-items: center;
     position: fixed;
     bottom: 0;
-    left: 0; /* Ensure it starts from the left edge */
-    right: 0; /* Ensure it spans to the right edge */
+    left: 0;
+    width: 100%;
     background-color: #fff;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     padding: 10px 0;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .navItem {
@@ -20,17 +19,17 @@
     justify-content: center;
     flex-grow: 1;
     padding: 5px;
-    background: none;
     border: none;
+    background: none;
     color: #333;
     font-size: 12px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .navItem:hover {
     background-color: #f0f0f0;
+    color: #007bff;
 }
 
 .icon {

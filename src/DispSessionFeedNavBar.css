@@ -1,3 +1,4 @@
+/* Base styles for the navigation bar */
 .dispSessionFeedNavBar {
     display: flex;
     justify-content: center;
@@ -5,8 +6,8 @@
     padding: 12px 20px;
     background: #f0f2f5;
     color: #333;
-    margin-top:5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     font-family: 'Roboto', sans-serif;
     border-radius: 10px;
 }
@@ -15,7 +16,7 @@
     max-width: 1200px;
     width: 100%;
     display: flex;
-    justify-content: space-around; /* Changed to space-around for equal spacing */
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -31,11 +32,11 @@
     display: flex;
     list-style: none;
     margin: 0;
-    padding: 0 20px; /* Add padding to both sides of navLinks for spacing */
+    padding: 0 20px;
 }
 
 .navLinks li {
-    margin: 0 10px; /* Adjust margin to control spacing between buttons */
+    padding: 0 10px; /* Use padding instead of margin for spacing */
 }
 
 .navLinks li a {
@@ -43,43 +44,47 @@
     color: #333;
     font-size: 16px;
     padding: 8px 12px;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    transition: all 0.3s ease;
     display: block;
+    border-radius: 4px;
 }
 
 .navLinks li a:hover,
 .navLinks li a:focus {
-    color: #f7f7f7;
-    background-color: #333;
-    border-radius: 4px;
+    color: #fff;
+    background-color: #0056b3; /* Darker blue for better visibility and contrast */
     outline: none;
 }
 
 @media (max-width: 768px) {
     .navContainer {
         flex-direction: column;
-        padding: 10px 0; /* Adjust padding for mobile */
+        padding: 10px 0;
     }
 
     .logo {
-        margin-bottom: 20px; /* Added bottom margin to separate from the menu on mobile */
+        margin-bottom: 10px;
     }
 
     .navLinks {
         flex-direction: column;
         width: 100%;
-        padding: 0; /* Reset padding for mobile layout */
+        padding: 0;
     }
 
     .navLinks li {
-        width: 100%;
         text-align: center;
-        margin: 10px 0; /* Adjust margin for vertical spacing on mobile */
+        padding: 8px 0; /* Adjust padding for better touch targets */
+    }
+
+    .navLinks li a {
+        width: 100%; /* Full width links for easier tap targets */
     }
 }
 
+/* Focus styles for keyboard navigation */
 .navLinks li a:focus-visible {
-    outline: 2px solid #333;
+    outline: 3px solid #0056b3;
     outline-offset: 2px;
 }
 

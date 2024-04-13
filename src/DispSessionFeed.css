@@ -7,52 +7,59 @@
     border-radius: 16px;
     overflow: hidden;
     background: #f0f2f5;
-}
-
-.sessionCard {
+  }
+  
+  .sessionCard {
     background-color: #ffffff;
     border-bottom: 1px solid #ebeef1;
     padding: 24px;
     transition: background-color 0.2s ease-in-out;
-}
-
-.sessionCard:hover {
+  }
+  
+  .sessionCard:hover {
     background-color: #f8f9fa;
-}
-
-.sessionTitle {
+  }
+  
+  .sessionTitle {
     font-size: 1.5rem;
     font-weight: 600;
     color: #2a2e35;
     margin-bottom: 8px;
-}
-
-.sessionDescription {
+  }
+  
+  .sessionDescription {
     font-size: 1.2rem;
     color: #36435a;
     margin-bottom: 16px;
-
-}
-
-.sessionAuthor {
+  }
+  
+  .sessionAuthor {
+    display: flex;
+    align-items: center;
     font-size: 0.9rem;
     color: #6b778c;
     margin-bottom: 16px;
-}
-
-.sessionAuthor::before{
-    content: "@";
-    font-weight: 600;
-}
-
-.sessionActions {
+  }
+  
+  .authorName {
+    font-weight: bold;
+    margin-right: 10px; /* Space between name and username */
+    color: #2a2e35; /* More prominent color */
+  }
+  
+  .authorUsername {
+    color: #6b778c; /* Subtle color, similar to sessionAuthor */
+    font-size: 0.8rem;
+  }
+  
+  .sessionActions {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     margin-bottom: 16px;
-}
-
-.actionButton {
+  }
+  
+  .actionButton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -65,14 +72,14 @@
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-}
-
-.actionButton:hover {
+  }
+  
+  .actionButton:hover {
     background-color: #d2d6db;
     color: #2a2e35;
-}
-
-.viewButton {
+  }
+  
+  .viewButton {
     display: flex; /* Changed to flex to center contents */
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
@@ -88,12 +95,11 @@
     transition: box-shadow 0.3s ease, transform 0.2s ease, background-color 0.2s;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     margin-bottom: 15px;
-}
-
-.viewButton:hover {
+  }
+  
+  .viewButton:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     background-color: #0056b3;
-}
-
-
+  }
+  
