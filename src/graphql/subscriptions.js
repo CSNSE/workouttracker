@@ -18,6 +18,8 @@ export const onCreateSessionPublish = /* GraphQL */ `
         __typename
       }
       Title
+      FirstName
+      DisplayName
       createdAt
       updatedAt
       sessionPublishPublishId
@@ -42,6 +44,8 @@ export const onUpdateSessionPublish = /* GraphQL */ `
         __typename
       }
       Title
+      FirstName
+      DisplayName
       createdAt
       updatedAt
       sessionPublishPublishId
@@ -66,6 +70,8 @@ export const onDeleteSessionPublish = /* GraphQL */ `
         __typename
       }
       Title
+      FirstName
+      DisplayName
       createdAt
       updatedAt
       sessionPublishPublishId

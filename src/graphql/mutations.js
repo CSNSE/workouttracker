@@ -19,6 +19,8 @@ export const createSessionPublish = /* GraphQL */ `
         __typename
       }
       Title
+      FirstName
+      DisplayName
       createdAt
       updatedAt
       sessionPublishPublishId
@@ -44,6 +46,8 @@ export const updateSessionPublish = /* GraphQL */ `
         __typename
       }
       Title
+      FirstName
+      DisplayName
       createdAt
       updatedAt
       sessionPublishPublishId
@@ -69,6 +73,8 @@ export const deleteSessionPublish = /* GraphQL */ `
         __typename
       }
       Title
+      FirstName
+      DisplayName
       createdAt
       updatedAt
       sessionPublishPublishId

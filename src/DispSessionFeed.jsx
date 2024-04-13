@@ -16,6 +16,8 @@ export default function DispSessionFeed() {
   const [user, setUser] = useState(null);
   const [firstName, setFirstName] = useState("");
   const db = getFirestore(app);
+  const [userNames, setUserNames] = useState('');
+  const [userDisplays, setUserDisplays] = useState('');
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -38,12 +40,17 @@ export default function DispSessionFeed() {
       try {
         const sessionData = await client.graphql({ query: listSessionPublishes });
         setSessions(sessionData.data.listSessionPublishes.items);
+
+        console.log( userNames = sessionData.data.listSessionPublishes.items.map((session) => session.userNames))
       } catch (error) {
         console.error("Error fetching sessions:", error);
       }
     }
     fetchSessions();
   }, [client]);
+
+
+
 
   const handleViewClick = (sessionPublishPublishId) => {
     navigate(`/DispWorkouts/${sessionPublishPublishId}`);
@@ -54,8 +61,8 @@ export default function DispSessionFeed() {
       {sessions.map((session) => (
         <div key={session.id} className="sessionCard">
           <div className='sessionAuthor'>
-            <span className="authorName">{firstName || 'User'}</span>
-            <span className="authorUsername">@{user ? user.displayName : 'username'}</span>
+            <span className="authorName">{session.FirstName}</span>
+            <span className="authorUsername">@{session.DisplayName}</span>
           </div>
           <div className="sessionTitle">{session.Title}</div>
           <div className='sessionDescription'>{session.Description}</div>

@@ -195,6 +195,8 @@ export default function SessionPublishUpdateForm(props) {
     Description: "",
     Publish: undefined,
     Title: "",
+    FirstName: "",
+    DisplayName: "",
   };
   const [Description, setDescription] = React.useState(
     initialValues.Description
@@ -203,6 +205,10 @@ export default function SessionPublishUpdateForm(props) {
   const [PublishLoading, setPublishLoading] = React.useState(false);
   const [publishRecords, setPublishRecords] = React.useState([]);
   const [Title, setTitle] = React.useState(initialValues.Title);
+  const [FirstName, setFirstName] = React.useState(initialValues.FirstName);
+  const [DisplayName, setDisplayName] = React.useState(
+    initialValues.DisplayName
+  );
   const autocompleteLength = 10;
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -214,6 +220,8 @@ export default function SessionPublishUpdateForm(props) {
     setCurrentPublishValue(undefined);
     setCurrentPublishDisplayValue("");
     setTitle(cleanValues.Title);
+    setFirstName(cleanValues.FirstName);
+    setDisplayName(cleanValues.DisplayName);
     setErrors({});
   };
   const [sessionPublishRecord, setSessionPublishRecord] = React.useState(
@@ -256,6 +264,8 @@ export default function SessionPublishUpdateForm(props) {
     Description: [],
     Publish: [],
     Title: [],
+    FirstName: [],
+    DisplayName: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -318,6 +328,8 @@ export default function SessionPublishUpdateForm(props) {
           Description: Description ?? null,
           Publish: Publish ?? null,
           Title: Title ?? null,
+          FirstName: FirstName ?? null,
+          DisplayName: DisplayName ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -359,6 +371,8 @@ export default function SessionPublishUpdateForm(props) {
             Description: modelFields.Description ?? null,
             sessionPublishPublishId: modelFields?.Publish?.id ?? null,
             Title: modelFields.Title ?? null,
+            FirstName: modelFields.FirstName ?? null,
+            DisplayName: modelFields.DisplayName ?? null,
           };
           await client.graphql({
             query: updateSessionPublish.replaceAll("__typename", ""),
@@ -394,6 +408,8 @@ export default function SessionPublishUpdateForm(props) {
               Description: value,
               Publish,
               Title,
+              FirstName,
+              DisplayName,
             };
             const result = onChange(modelFields);
             value = result?.Description ?? value;
@@ -417,6 +433,8 @@ export default function SessionPublishUpdateForm(props) {
               Description,
               Publish: value,
               Title,
+              FirstName,
+              DisplayName,
             };
             const result = onChange(modelFields);
             value = result?.Publish ?? value;
@@ -502,6 +520,8 @@ export default function SessionPublishUpdateForm(props) {
               Description,
               Publish,
               Title: value,
+              FirstName,
+              DisplayName,
             };
             const result = onChange(modelFields);
             value = result?.Title ?? value;
@@ -515,6 +535,62 @@ export default function SessionPublishUpdateForm(props) {
         errorMessage={errors.Title?.errorMessage}
         hasError={errors.Title?.hasError}
         {...getOverrideProps(overrides, "Title")}
+      ></TextField>
+      <TextField
+        label="First name"
+        isRequired={false}
+        isReadOnly={false}
+        value={FirstName}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              Description,
+              Publish,
+              Title,
+              FirstName: value,
+              DisplayName,
+            };
+            const result = onChange(modelFields);
+            value = result?.FirstName ?? value;
+          }
+          if (errors.FirstName?.hasError) {
+            runValidationTasks("FirstName", value);
+          }
+          setFirstName(value);
+        }}
+        onBlur={() => runValidationTasks("FirstName", FirstName)}
+        errorMessage={errors.FirstName?.errorMessage}
+        hasError={errors.FirstName?.hasError}
+        {...getOverrideProps(overrides, "FirstName")}
+      ></TextField>
+      <TextField
+        label="Display name"
+        isRequired={false}
+        isReadOnly={false}
+        value={DisplayName}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              Description,
+              Publish,
+              Title,
+              FirstName,
+              DisplayName: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.DisplayName ?? value;
+          }
+          if (errors.DisplayName?.hasError) {
+            runValidationTasks("DisplayName", value);
+          }
+          setDisplayName(value);
+        }}
+        onBlur={() => runValidationTasks("DisplayName", DisplayName)}
+        errorMessage={errors.DisplayName?.errorMessage}
+        hasError={errors.DisplayName?.hasError}
+        {...getOverrideProps(overrides, "DisplayName")}
       ></TextField>
       <Flex
         justifyContent="space-between"

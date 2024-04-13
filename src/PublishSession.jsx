@@ -4,18 +4,44 @@ import { getSession } from './graphql/queries';
 import { createSessionPublish } from './graphql/mutations';
 import { useNavigate} from 'react-router-dom';
 import { generateClient } from 'aws-amplify/api';
-import './PublishSession.css';
+import app from './firebase-config';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc, getFirestore } from "firebase/firestore";import './PublishSession.css';
 
 export default function PublishSession() {
   const [session, setSession] = useState(null);
   const location = useLocation();
   const client = generateClient();
   const navigate = useNavigate();
+  const auth = getAuth(app);
+  const db = getFirestore(app);
   const [publishData, setPublishData] = useState({
     Title: "",
     Description: "",
   });
   const [error, setError] = useState(null);
+  const [profile, setProfile] = useState({});
+  const [user, setUser] = useState(null);
+
+
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        const userRef = doc(db, "users", currentUser.uid);
+        const docSnap = await getDoc(userRef);
+        if (docSnap.exists()) {
+          setProfile(docSnap.data());
+        } else {
+          console.log("No such document!");
+        }
+      }
+    });
+
+    return () => unsubscribe();
+  }, [auth, db]);
+
 
   useEffect(() => {
     const pathSegments = location.pathname.split('/PublishSession/');
@@ -58,7 +84,10 @@ export default function PublishSession() {
     const input = {
       Title: publishData.Title,
       Description: publishData.Description,
-      sessionPublishPublishId: session?.id // Assuming this is the correct field name
+      sessionPublishPublishId: session?.id,
+      FirstName: profile.firstName,
+      DisplayName: user.displayName,
+
     };
   
     try {
