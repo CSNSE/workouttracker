@@ -20,6 +20,7 @@ const ProfilePage = () => {
         const docSnap = await getDoc(userRef);
         if (docSnap.exists()) {
           setProfile(docSnap.data());
+          console.log("Image URL:", docSnap.data().photoURL); // Log the URL
         } else {
           console.log("No such document!");
         }
@@ -29,13 +30,18 @@ const ProfilePage = () => {
     return () => unsubscribe();
   }, [auth, db]);
 
-
-
   return (
     <div className="profile-container">
       <h2 className="profile-header">Profile Page</h2>
       {user ? (
         <div>
+          <div className="profile-image-container">
+            <img
+              src={profile.photoURL || 'default-profile.png'}
+              alt="Profile"
+              className="profile-image"
+            />
+          </div>
           <div className="profile-details">
             <p>Welcome, {profile.firstName || user.displayName || 'User'}!</p>
             <p>Username: {user.displayName || 'User'}!</p>

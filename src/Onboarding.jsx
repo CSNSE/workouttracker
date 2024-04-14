@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { doc, setDoc, getFirestore } from "firebase/firestore";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import './Onboarding.css';
 import { useNavigate } from 'react-router-dom';
 
 function Onboarding() {
     const [username, setUsername] = useState('');
     const [firstName, setFirstName] = useState('');
+    const [profilePic, setProfilePic] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -14,13 +16,13 @@ function Onboarding() {
     const auth = getAuth();
 
     useEffect(() => {
-        // Redirect if user already has a displayName
         if (auth.currentUser && auth.currentUser.displayName) {
         }
     }, [auth.currentUser, navigate]);
 
     const handleUsernameChange = (event) => setUsername(event.target.value);
     const handleNameChange = (event) => setFirstName(event.target.value);
+    const handleImageChange = (event) => setProfilePic(event.target.files[0]);
 
     const updateFirestoreUserData = async (userId, userData) => {
         const userRef = doc(db, "users", userId);
@@ -28,8 +30,16 @@ function Onboarding() {
             await setDoc(userRef, userData, { merge: true });
         } catch (error) {
             console.error("Error writing document: ", error);
-            throw error;  // Re-throw to be handled in catch block of handleSubmit
+            throw error;
         }
+    };
+
+    const uploadImage = async () => {
+        if (!profilePic) return null;
+        const storage = getStorage();
+        const storageReference = storageRef(storage, `profileImages/${auth.currentUser.uid}`);
+        await uploadBytes(storageReference, profilePic);
+        return getDownloadURL(storageReference);
     };
 
     const handleSubmit = async (event) => {
@@ -44,13 +54,13 @@ function Onboarding() {
         }
 
         try {
-            // Update displayName using Firebase Auth
-            await updateProfile(auth.currentUser, { displayName: username });
-
-            // Update custom data in Firestore
-            await updateFirestoreUserData(auth.currentUser.uid, { firstName });
-
-            // Navigate to home or dashboard
+            const photoURL = await uploadImage();
+            if (photoURL) {
+                await updateProfile(auth.currentUser, { displayName: username, photoURL });
+            } else {
+                await updateProfile(auth.currentUser, { displayName: username });
+            }
+            await updateFirestoreUserData(auth.currentUser.uid, { firstName, photoURL });
             navigate('/');
         } catch (error) {
             setError('Failed to update profile. Please try again.');
@@ -71,6 +81,10 @@ function Onboarding() {
                 <label>
                     Create a username
                     <input type="text" value={username} onChange={handleUsernameChange} required />
+                </label>
+                <label>
+                    Upload a profile picture
+                    <input type="file" onChange={handleImageChange} accept="image/*" />
                 </label>
                 <button type="submit" disabled={loading}>
                     {loading ? 'Updating...' : 'Update Profile'}
