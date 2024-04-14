@@ -27,6 +27,8 @@ function Onboarding() {
     const updateFirestoreUserData = async (userId, userData) => {
         const userRef = doc(db, "users", userId);
         try {
+            // Ensure that userData contains the correct structure
+            console.log("Updating Firestore with userData:", userData);
             await setDoc(userRef, userData, { merge: true });
         } catch (error) {
             console.error("Error writing document: ", error);
@@ -46,13 +48,13 @@ function Onboarding() {
         event.preventDefault();
         setLoading(true);
         setError('');
-
+    
         if (!auth.currentUser) {
             setError('No authenticated user found.');
             setLoading(false);
             return;
         }
-
+    
         try {
             const photoURL = await uploadImage();
             if (photoURL) {
@@ -60,8 +62,17 @@ function Onboarding() {
             } else {
                 await updateProfile(auth.currentUser, { displayName: username });
             }
-            await updateFirestoreUserData(auth.currentUser.uid, { firstName, photoURL });
+    
+            // Prepare userData with the correct structure
+            const userData = {
+                firstName,
+                photoURL  // This should be a string, directly the URL
+            };
+            
+            await updateFirestoreUserData(auth.currentUser.uid, userData);
             navigate('/');
+            console.log("Final userData being sent to Firestore:", userData);
+
         } catch (error) {
             setError('Failed to update profile. Please try again.');
             console.error("Error updating profile: ", error.message);
@@ -69,6 +80,8 @@ function Onboarding() {
             setLoading(false);
         }
     };
+
+
 
     return (
         <div className="onboarding-container">

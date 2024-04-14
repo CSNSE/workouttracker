@@ -19,8 +19,8 @@ const ProfilePage = () => {
         const userRef = doc(db, "users", currentUser.uid);
         const docSnap = await getDoc(userRef);
         if (docSnap.exists()) {
-          setProfile(docSnap.data());
-          console.log("Image URL:", docSnap.data().photoURL); // Log the URL
+          setProfile(docSnap.data()); // Assuming data is now flat
+          console.log("Profile data:", docSnap.data()); // Log the structured data
         } else {
           console.log("No such document!");
         }
