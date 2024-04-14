@@ -22,7 +22,9 @@ import NotFoundPage from './NotFoundPage';
 import SideNavBar from './SideNavBar';
 import DispMyFeed from './DispMyFeed';
 import PublishSession from './PublishSession';
-import { SessionPublishCreateForm, SessionPublishUpdateForm } from './ui-components';
+import ChangeUsername from './ChangeUsername';
+import ChangeFirstName from './ChangeFirstName';
+import ChangeProfilePicture from './ChangeProfilePicture';
 
 const auth = getAuth(app);
 function App() {
@@ -46,6 +48,9 @@ function App() {
             <Route path="*" element={<NotFoundPage/>} />
             <Route path='/MyFeed' element={<div><SideNavBar/><DispMyFeed/><CheckAuth/></div>} />
             <Route path='/PublishSession/:cid' element={<div><SideNavBar/><PublishSession/><CheckAuth/></div>}/>
+            <Route path='/ChangeUsername' element={<div><ChangeUsername/></div>}/>
+            <Route path='/ChangeFirstName' element={<div><ChangeFirstName/></div>}/>
+            <Route path='/ChangeProfilePicture' element={<div><ChangeProfilePicture/></div>}/>
           </Routes>
         </Router>
       </header>
