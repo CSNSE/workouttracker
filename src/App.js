@@ -25,7 +25,8 @@ import PublishSession from './PublishSession';
 import ChangeUsername from './ChangeUsername';
 import ChangeFirstName from './ChangeFirstName';
 import ChangeProfilePicture from './ChangeProfilePicture';
-
+import ChangeEmail from './ChangeEmail';
+import ChangePassword from './ChangePassword';
 const auth = getAuth(app);
 function App() {
   return (
@@ -48,9 +49,11 @@ function App() {
             <Route path="*" element={<NotFoundPage/>} />
             <Route path='/MyFeed' element={<div><SideNavBar/><DispMyFeed/><CheckAuth/></div>} />
             <Route path='/PublishSession/:cid' element={<div><SideNavBar/><PublishSession/><CheckAuth/></div>}/>
-            <Route path='/ChangeUsername' element={<div><ChangeUsername/></div>}/>
-            <Route path='/ChangeFirstName' element={<div><ChangeFirstName/></div>}/>
-            <Route path='/ChangeProfilePicture' element={<div><ChangeProfilePicture/></div>}/>
+            <Route path='/ChangeUsername' element={<div><ChangeUsername/><SideNavBar/><CheckAuth/></div>}/>
+            <Route path='/ChangeFirstName' element={<div><ChangeFirstName/><SideNavBar/><CheckAuth/></div>}/>
+            <Route path='/ChangeProfilePicture' element={<div><ChangeProfilePicture/><SideNavBar/><CheckAuth/></div>}/>
+            <Route path='/ChangeEmail' element={<div><ChangeEmail/><SideNavBar/><CheckAuth/></div>}/>
+            <Route path='/ChangePassword' element={<div><ChangePassword/><SideNavBar/><CheckAuth/></div>}/>
           </Routes>
         </Router>
       </header>
