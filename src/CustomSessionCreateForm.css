@@ -1,60 +1,76 @@
 /* CustomSessionCreateForm.css */
 
+/* General form container styling */
 .formContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 24px;
-  width: 250px;
-  margin: 40px auto; /* Adjusted for vertical alignment as well */
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Ensures single-column layout */
+  grid-gap: 20px;
+  padding: 30px;
+  background-color: #f4f4f9; /* Light grey background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  max-width: 600px; /* Increased width for better layout */
+  margin: 40px auto; /* Increased margin for better centering and spacing */
+  align-items: center; /* Centers the content vertically */
 }
 
+/* Styling for each form field */
 .formField {
-  border: 1px solid #ccc;
-  left:10px;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Space between label and input field */
 }
 
 .formField input, .formField label {
-  font-size: 16px; /* Adjusted to ensure readability */
-  padding-right: 10px;
+  width: 100%; /* Full width of their container */
 }
 
-/* Focus within to enhance user experience */
-.formField input:focus {
-  border-color: #007bff;
-  outline: none;
-
-}
-
+/* Customize label appearance */
 .formField label {
-  color: #007bff;
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 5px; /* Adding space between the label and input */
-  padding-right: 5px;
-}
-
-/* Styling the submit button to match the desired look */
-.submitButton {
-  padding: 12px 24px;
-  border-radius: 8px;
-  background-color: #007bff; /* Primary color for submit button */
-  color: #ffffff; /* Text color for buttons */
   font-size: 16px;
-  cursor: pointer;
-  border: none;
-  font-weight: bold; /* Making the text bold */
-  transition: background-color 0.3s ease; /* Smooth transition for interaction */
+  color: #333; /* Dark grey for better readability */
 }
 
-.submitButton:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+/* Customize input fields */
+.formField input {
+  padding: 8px 12px;
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 4px; /* Rounded borders */
+  font-size: 14px; /* Slightly larger font for readability */
 }
 
-.submitButton:active {
-  background-color: #004094; /* Even darker shade on active */
+/* Input focus state for better user interaction */
+.formField input:focus {
+  border-color: #0056b3; /* Highlight with a blue border on focus */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Styling for the submit button */
+.submitButton {
+  background-color: #0056b3; /* A nice blue that stands out */
+  color: white; /* White text on the button */
+  border: none; /* No border for a cleaner look */
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer; /* Cursor indicates it’s clickable */
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover and focus states for the submit button */
+.submitButton:hover, .submitButton:focus {
+  background-color: #004494; /* Darker blue on hover/focus */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .formContainer {
+    padding: 20px;
+    grid-gap: 15px;
+    max-width: 100%; /* Full width on smaller screens */
+  }
+
+  .submitButton {
+    padding: 8px 12px;
+  }
 }
