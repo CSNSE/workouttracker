@@ -27,6 +27,7 @@ import ChangeFirstName from './ChangeFirstName';
 import ChangeProfilePicture from './ChangeProfilePicture';
 import ChangeEmail from './ChangeEmail';
 import ChangePassword from './ChangePassword';
+import SettingsContainer from './SettingsContainer';
 const auth = getAuth(app);
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
             <Route path='AddWorkout/:cid' element={<div><AddWorkoutFromDisplay/><SideNavBar/><CheckAuth/></div>} />
             <Route path='/Login' element={<div><Login/></div>} />
             <Route path='/SignUp' element={<div><SignUp/></div>} />
-            <Route path='/Profile' element={<div><ProfilePage/><CheckAuth/><SideNavBar/></div>} />
+            <Route path='/Profile' element={<div><SettingsContainer/><CheckAuth/><SideNavBar/></div>} />
             <Route path='/Onboarding' element={<div><Onboarding/></div>} />
             <Route path='/Forgot-Password' element={<div><ForgotPassword/></div>} />
             <Route path='/verify' element={<div><Verify/></div>} />
@@ -49,11 +50,6 @@ function App() {
             <Route path="*" element={<NotFoundPage/>} />
             <Route path='/MyFeed' element={<div><SideNavBar/><DispMyFeed/><CheckAuth/></div>} />
             <Route path='/PublishSession/:cid' element={<div><SideNavBar/><PublishSession/><CheckAuth/></div>}/>
-            <Route path='/ChangeUsername' element={<div><ChangeUsername/><SideNavBar/><CheckAuth/></div>}/>
-            <Route path='/ChangeFirstName' element={<div><ChangeFirstName/><SideNavBar/><CheckAuth/></div>}/>
-            <Route path='/ChangeProfilePicture' element={<div><ChangeProfilePicture/><SideNavBar/><CheckAuth/></div>}/>
-            <Route path='/ChangeEmail' element={<div><ChangeEmail/><SideNavBar/><CheckAuth/></div>}/>
-            <Route path='/ChangePassword' element={<div><ChangePassword/><SideNavBar/><CheckAuth/></div>}/>
           </Routes>
         </Router>
       </header>

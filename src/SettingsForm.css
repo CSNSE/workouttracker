@@ -1,44 +1,157 @@
 .settings-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    width: 100%; /* Adjust width as necessary */
-    max-width: 400px; /* Limits the max width for better alignment */
-    margin: auto; /* Center the container */
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #282c34;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: #3a3a3a; /* Consistent font color */
 }
 
 .settings-button {
-    padding: 10px 20px;
+    display: block;
+    width: auto;
+    max-width: 200px;
+    padding: 12px 20px;
+    margin: 20px auto;
+    border-radius: 30px;
     background-color: #007bff;
     color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-    width: 100%; /* Full width buttons */
-    box-sizing: border-box; /* Include padding and border in the width */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .settings-button:hover {
-    background-color: #0056b3;
+    background-color: white;
+    color: #0069cc; /* Slightly darker blue for hover */
+    border-color: #0069cc;
 }
 
 .settings-form {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Consistent with the container */
+    width: 100%;
+    background-color: #FAF9F6; /* Lighter background for form sections */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
 }
 
 .settings-label {
-    margin-bottom: 5px;
+    font-size: 18px; /* Increased font size */
+    color: #273a4d; /* Darker color for headers */
+    margin-bottom: 10px;
 }
 
 .settings-input {
-    padding: 8px;
+    padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100%; /* Ensure input fields use the full available width */
+    width: 100%; /* Full width for input fields */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.change-password-container {
+    display: flex;
+    flex-direction: column; /* Ensures vertical stacking of elements */
+    align-items: center; /* Centers the elements horizontally */
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #d3d3d3;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: #3a3a3a; /* Slightly darker font color */
+}
+
+.change-password-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #273a4d; /* Slightly darker header color */
+}
+
+.change-password-form {
+    display: flex;
+    flex-direction: column; /* Vertical stacking for form elements */
+    width: 100%; /* Full width of container */
+    background-color: #FAF9F6; /* Background color for form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px; /* Spacing below the form */
+}
+
+.change-password-label {
+    margin-bottom: 8px; /* Space below each label */
+    font-size: 16px; /* Uniform font size */
+    color: #273a4d; /* Darker color for labels */
+}
+
+.change-password-input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%; /* Full width for input fields */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.change-password-button {
+    padding: 12px 20px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    width: auto;
+    max-width: 200px; /* Uniform button width */
+    margin: 20px auto; /* Center button and provide spacing */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Enhanced visual feedback */
+}
+
+.change-password-button:hover {
+    background-color: #45a049;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.change-password-error {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.login-redirect-button {
+    background: none;
+    border: none;
+    color: #0099cc;
+    font-size: 1rem;
+    margin-top: 20px;
+    display: block;
+}
+
+.login-redirect-button:hover {
+    color: #0088cc;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .settings-container, .change-password-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .settings-button, .change-password-button {
+        width: 100%;
+        max-width: none;
+    }
 }

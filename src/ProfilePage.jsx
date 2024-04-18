@@ -47,12 +47,10 @@ const ProfilePage = () => {
             <p>Username: {user.displayName || 'User'}!</p>
             <p>Email: {user.email}</p>
           </div>
-          <button className="button" onClick={() => navigate('/Settings')}>Account Settings</button>
         </div>
       ) : (
         <p>Loading user information...</p>
       )}
-      <button className="BackButton" onClick={() => navigate('/')}>Back</button>
     </div>
   );
 };

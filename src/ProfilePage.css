@@ -2,7 +2,7 @@
     max-width: 800px;
     margin: 30px auto;
     padding: 30px;
-    background-color: #f9f9f9;
+    background-color: #d3d3d3;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -28,7 +28,7 @@
 }
 
 .profile-details, .activity-section, .goals-section, .friends-section {
-    background-color: #ffffff;
+    background-color: #FAF9F6;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     padding: 20px;
