@@ -18,16 +18,14 @@ function ChangeEmail() {
         return reauthenticateWithCredential(user, credential);
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event, {setError}) => {
         event.preventDefault();
         try {
             await reauthenticate(); // Re-authenticate the user before attempting to update the email
             await updateEmail(auth.currentUser, newEmail);
-            console.log('Email updated successfully to:', newEmail);
-            navigate('/profile'); // Navigate to profile or a success page
+            setError('Email updated successfully to:', newEmail);
         } catch (error) {
-            console.error('Failed to update email:', error);
-            // Implement appropriate error handling
+            setError('change-email', error.message)
         }
     };
 

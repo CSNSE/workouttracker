@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './SettingsForm.css'; // Import the CSS styles
 import { getAuth, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
 import app from './firebase-config';
 import { useNavigate } from 'react-router-dom';
@@ -19,16 +20,15 @@ function ChangePassword() {
     };
 
     const handleChangePassword = async (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
+        event.preventDefault();
         try {
             const auth = getAuth(app);
             const user = auth.currentUser;
             const credential = EmailAuthProvider.credential(user.email, currentPassword);
-
             await reauthenticateWithCredential(user, credential);
             await updatePassword(user, newPassword);
             console.log('Password updated successfully');
-            navigate("/profile"); // or show a success message
+            navigate("/dashboard");
         } catch (error) {
             console.error('Failed to update password:', error);
             setError(error.message);
@@ -36,35 +36,33 @@ function ChangePassword() {
     };
 
     return (
-        <div>
-            <h1>Change Password</h1>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <form onSubmit={handleChangePassword}>
-                <div>
-                    <label>
-                        Current Password:
-                        <input
-                            type="password"
-                            name="currentPassword"
-                            value={currentPassword}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        New Password:
-                        <input
-                            type="password"
-                            name="newPassword"
-                            value={newPassword}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                </div>
-                <button type="submit">Change Password</button>
+        <div className="change-password-container">
+            {error && <p className="change-password-error">{error}</p>}
+            <form onSubmit={handleChangePassword} className="change-password-form">
+                <label className="change-password-label">
+                    Current Password:
+                    <input
+                        type="password"
+                        name="currentPassword"
+                        value={currentPassword}
+                        onChange={handleChange}
+                        required
+                        className="change-password-input"
+                    />
+                </label>
+                <label className="change-password-label">
+                    New Password:
+                    <input
+                        type="password"
+                        name="newPassword"
+                        value={newPassword}
+                        onChange={handleChange}
+                        required
+                        className="change-password-input"
+                    />
+                </label>
+                <button type="submit" className="change-password-button">Change Password</button>
+                <button type='button' className='login-redirect-button' onClick={() => navigate('/Forgot-Password')}>Forgot Password</button> {/* Add a cancel button to navigate back to the dashboard */}
             </form>
         </div>
     );

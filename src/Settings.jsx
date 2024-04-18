@@ -27,6 +27,7 @@ function Settings() {
 
     return (
         <div className="settings-container">
+
             <button className="settings-button" onClick={handleChangeUsername}>Change Username</button>
             <button className="settings-button" onClick={handleChangeEmail}>Change Email</button>
             <button className="settings-button" onClick={handleChangeFirstName}>Change First Name</button>
