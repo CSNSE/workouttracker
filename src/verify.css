@@ -1,51 +1,73 @@
-/* Verify.css */
+/* verify.css */
 
 .verify-container {
-    max-width: 400px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #ffffff; /* Bright background to contrast dark theme */
+    color: #333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     padding: 20px;
-    text-align: center;
-    background-color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Stronger shadow for depth */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+    border: 1px solid #ddd; /* Slight border for better definition */
 }
 
-.verified {
-    background-color: #eaffea; 
+.verify-container.verified {
+    background-color: #e8f5e9; /* Soft green background for verified users */
+    border-color: #c8e6c9; /* Border to match */
 }
 
 h2 {
-    color: #333;
-    margin-bottom: 15px;
+    color: #2c3e50;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 p {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
     margin-bottom: 20px;
-    color: black;
 }
 
 button {
     padding: 10px 20px;
+    border-radius: 20px;
     border: none;
-    border-radius: 5px;
     color: white;
-    background-color: #007bff;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    display: block;
+    background-color: #3498db; /* Consistent blue for initial state */
 }
 
 button:hover {
-    background-color: #0056b3;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-.hidden {
+button.hidden {
     display: none;
 }
 
 .next-button {
-    background-color: #4CAF50; 
+    background-color: #4CAF50; /* Green button for proceed */
 }
 
 .next-button:hover {
     background-color: #45a049;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+button:not(.next-button):hover {
+    background-color: #2980b9;
 }

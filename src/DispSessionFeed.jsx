@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateClient } from "aws-amplify/api";
-import app from "./firebase-config";
 import { listSessionPublishes } from "./graphql/queries";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { FaRegComment, FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
@@ -9,24 +8,19 @@ import "./DispSessionFeed.css";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 export default function DispSessionFeed() {
-  const auth = getAuth(app);
+  const auth = getAuth();
   const [sessions, setSessions] = useState([]);
   const navigate = useNavigate();
   const client = generateClient();
-  const [user, setUser] = useState(null);
-  const [firstName, setFirstName] = useState("");
-  const db = getFirestore(app);
-  const [userNames, setUserNames] = useState('');
-  const [userDisplays, setUserDisplays] = useState('');
+  const db = getFirestore();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser);
       if (currentUser) {
         const userRef = doc(db, "users", currentUser.uid);
         const docSnap = await getDoc(userRef);
         if (docSnap.exists()) {
-          setFirstName(docSnap.data().firstName);  // Assuming 'firstName' is the field name in Firestore
+          console.log("Document data:", docSnap.data());
         } else {
           console.log("No such document!");
         }
@@ -40,17 +34,12 @@ export default function DispSessionFeed() {
       try {
         const sessionData = await client.graphql({ query: listSessionPublishes });
         setSessions(sessionData.data.listSessionPublishes.items);
-
-        console.log( userNames = sessionData.data.listSessionPublishes.items.map((session) => session.userNames))
       } catch (error) {
         console.error("Error fetching sessions:", error);
       }
     }
     fetchSessions();
   }, [client]);
-
-
-
 
   const handleViewClick = (sessionPublishPublishId) => {
     navigate(`/DispWorkouts/${sessionPublishPublishId}`);
@@ -61,8 +50,9 @@ export default function DispSessionFeed() {
       {sessions.map((session) => (
         <div key={session.id} className="sessionCard">
           <div className='sessionAuthor'>
-            <span className="authorName">{session.FirstName}</span>
-            <span className="authorUsername">@{session.DisplayName}</span>
+          <img src={session.ProfilePicture || 'default-profile.png'} alt="Profile" className="profile-image" />
+          <span className="authorName">{session.FirstName}</span>
+          <span className="authorUsername">@{session.DisplayName}</span>
           </div>
           <div className="sessionTitle">{session.Title}</div>
           <div className='sessionDescription'>{session.Description}</div>
@@ -80,9 +70,9 @@ export default function DispSessionFeed() {
               <FaRegThumbsDown /> Dislike
             </button>
           </div>
+
         </div>
-      ))}
+              ))}
     </div>
   );
-  
 }

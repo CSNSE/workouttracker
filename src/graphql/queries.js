@@ -18,6 +18,7 @@ export const getSessionPublish = /* GraphQL */ `
       Title
       FirstName
       DisplayName
+      ProfilePicture
       createdAt
       updatedAt
       sessionPublishPublishId
@@ -42,6 +43,7 @@ export const listSessionPublishes = /* GraphQL */ `
         Title
         FirstName
         DisplayName
+        ProfilePicture
         createdAt
         updatedAt
         sessionPublishPublishId

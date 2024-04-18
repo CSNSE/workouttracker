@@ -196,6 +196,7 @@ export default function SessionPublishCreateForm(props) {
     Description: "",
     FirstName: "",
     DisplayName: "",
+    ProfilePicture: "",
   };
   const [Title, setTitle] = React.useState(initialValues.Title);
   const [Publish, setPublish] = React.useState(initialValues.Publish);
@@ -208,6 +209,9 @@ export default function SessionPublishCreateForm(props) {
   const [DisplayName, setDisplayName] = React.useState(
     initialValues.DisplayName
   );
+  const [ProfilePicture, setProfilePicture] = React.useState(
+    initialValues.ProfilePicture
+  );
   const autocompleteLength = 10;
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -218,6 +222,7 @@ export default function SessionPublishCreateForm(props) {
     setDescription(initialValues.Description);
     setFirstName(initialValues.FirstName);
     setDisplayName(initialValues.DisplayName);
+    setProfilePicture(initialValues.ProfilePicture);
     setErrors({});
   };
   const [currentPublishDisplayValue, setCurrentPublishDisplayValue] =
@@ -242,6 +247,7 @@ export default function SessionPublishCreateForm(props) {
     Description: [],
     FirstName: [],
     DisplayName: [],
+    ProfilePicture: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -306,6 +312,7 @@ export default function SessionPublishCreateForm(props) {
           Description,
           FirstName,
           DisplayName,
+          ProfilePicture,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -349,6 +356,7 @@ export default function SessionPublishCreateForm(props) {
             Description: modelFields.Description,
             FirstName: modelFields.FirstName,
             DisplayName: modelFields.DisplayName,
+            ProfilePicture: modelFields.ProfilePicture,
           };
           await client.graphql({
             query: createSessionPublish.replaceAll("__typename", ""),
@@ -388,6 +396,7 @@ export default function SessionPublishCreateForm(props) {
               Description,
               FirstName,
               DisplayName,
+              ProfilePicture,
             };
             const result = onChange(modelFields);
             value = result?.Title ?? value;
@@ -413,6 +422,7 @@ export default function SessionPublishCreateForm(props) {
               Description,
               FirstName,
               DisplayName,
+              ProfilePicture,
             };
             const result = onChange(modelFields);
             value = result?.Publish ?? value;
@@ -499,6 +509,7 @@ export default function SessionPublishCreateForm(props) {
               Description: value,
               FirstName,
               DisplayName,
+              ProfilePicture,
             };
             const result = onChange(modelFields);
             value = result?.Description ?? value;
@@ -527,6 +538,7 @@ export default function SessionPublishCreateForm(props) {
               Description,
               FirstName: value,
               DisplayName,
+              ProfilePicture,
             };
             const result = onChange(modelFields);
             value = result?.FirstName ?? value;
@@ -555,6 +567,7 @@ export default function SessionPublishCreateForm(props) {
               Description,
               FirstName,
               DisplayName: value,
+              ProfilePicture,
             };
             const result = onChange(modelFields);
             value = result?.DisplayName ?? value;
@@ -568,6 +581,35 @@ export default function SessionPublishCreateForm(props) {
         errorMessage={errors.DisplayName?.errorMessage}
         hasError={errors.DisplayName?.hasError}
         {...getOverrideProps(overrides, "DisplayName")}
+      ></TextField>
+      <TextField
+        label="Profile picture"
+        isRequired={false}
+        isReadOnly={false}
+        value={ProfilePicture}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              Title,
+              Publish,
+              Description,
+              FirstName,
+              DisplayName,
+              ProfilePicture: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.ProfilePicture ?? value;
+          }
+          if (errors.ProfilePicture?.hasError) {
+            runValidationTasks("ProfilePicture", value);
+          }
+          setProfilePicture(value);
+        }}
+        onBlur={() => runValidationTasks("ProfilePicture", ProfilePicture)}
+        errorMessage={errors.ProfilePicture?.errorMessage}
+        hasError={errors.ProfilePicture?.hasError}
+        {...getOverrideProps(overrides, "ProfilePicture")}
       ></TextField>
       <Flex
         justifyContent="space-between"

@@ -27,6 +27,7 @@ export declare type SessionPublishCreateFormInputValues = {
     Description?: string;
     FirstName?: string;
     DisplayName?: string;
+    ProfilePicture?: string;
 };
 export declare type SessionPublishCreateFormValidationValues = {
     Title?: ValidationFunction<string>;
@@ -34,6 +35,7 @@ export declare type SessionPublishCreateFormValidationValues = {
     Description?: ValidationFunction<string>;
     FirstName?: ValidationFunction<string>;
     DisplayName?: ValidationFunction<string>;
+    ProfilePicture?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type SessionPublishCreateFormOverridesProps = {
@@ -43,6 +45,7 @@ export declare type SessionPublishCreateFormOverridesProps = {
     Description?: PrimitiveOverrideProps<TextFieldProps>;
     FirstName?: PrimitiveOverrideProps<TextFieldProps>;
     DisplayName?: PrimitiveOverrideProps<TextFieldProps>;
+    ProfilePicture?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type SessionPublishCreateFormProps = React.PropsWithChildren<{
     overrides?: SessionPublishCreateFormOverridesProps | undefined | null;

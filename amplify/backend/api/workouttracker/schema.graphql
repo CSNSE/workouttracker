@@ -5,6 +5,7 @@ type SessionPublish @model @auth(rules: [{allow: public}]) {
   Title: String
   FirstName: String
   DisplayName: String
+  ProfilePicture: String
 }
 
 type Workout @model @auth(rules: [{allow: public}]) {

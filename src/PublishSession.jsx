@@ -18,6 +18,7 @@ export default function PublishSession() {
   const [publishData, setPublishData] = useState({
     Title: "",
     Description: "",
+    ProfilePicture: "",
   });
   const [error, setError] = useState(null);
   const [profile, setProfile] = useState({});
@@ -33,6 +34,7 @@ export default function PublishSession() {
         const docSnap = await getDoc(userRef);
         if (docSnap.exists()) {
           setProfile(docSnap.data());
+          console.log(docSnap.data());
         } else {
           console.log("No such document!");
         }
@@ -87,7 +89,7 @@ export default function PublishSession() {
       sessionPublishPublishId: session?.id,
       FirstName: profile.firstName,
       DisplayName: user.displayName,
-
+      ProfilePicture: profile.photoURL,
     };
   
     try {
@@ -100,6 +102,7 @@ export default function PublishSession() {
     } catch (error) {
       if (error.errors) {
         setError(error.errors);
+        console.error ('Error publishing session:', error.errors);
       }
     }
   };

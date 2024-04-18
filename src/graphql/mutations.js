@@ -21,6 +21,7 @@ export const createSessionPublish = /* GraphQL */ `
       Title
       FirstName
       DisplayName
+      ProfilePicture
       createdAt
       updatedAt
       sessionPublishPublishId
@@ -48,6 +49,7 @@ export const updateSessionPublish = /* GraphQL */ `
       Title
       FirstName
       DisplayName
+      ProfilePicture
       createdAt
       updatedAt
       sessionPublishPublishId
@@ -75,6 +77,7 @@ export const deleteSessionPublish = /* GraphQL */ `
       Title
       FirstName
       DisplayName
+      ProfilePicture
       createdAt
       updatedAt
       sessionPublishPublishId
