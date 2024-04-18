@@ -1,22 +1,48 @@
-.settings-container {
+.settings-container, .change-password-container {
     max-width: 800px;
     margin: 30px auto;
     padding: 30px;
-    background-color: #282c34;
+    background-color: #282c34; /* Unified dark background for all settings */
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
-    color: #3a3a3a; /* Consistent font color */
+    color: #ffffff; /* Consistent white font color for better contrast */
 }
 
-.settings-button {
+.settings-form, .change-password-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #FAF9F6; /* Light background for form sections */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.settings-label, .change-password-label {
+    font-size: 18px; /* Consistent increased font size */
+    color: #273a4d; /* Darker color for headers */
+    margin-bottom: 10px;
+}
+
+.settings-input, .change-password-input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%; /* Full width for input fields */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.settings-button, .change-password-button {
     display: block;
     width: auto;
     max-width: 200px;
     padding: 12px 20px;
     margin: 20px auto;
     border-radius: 30px;
-    background-color: #007bff;
+    background-color: #007bff; /* Unified blue background for all buttons */
     color: white;
     text-align: center;
     text-decoration: none;
@@ -25,110 +51,18 @@
     border: 1px solid transparent;
 }
 
-.settings-button:hover {
+.settings-button:hover, .change-password-button:hover {
     background-color: white;
     color: #0069cc; /* Slightly darker blue for hover */
     border-color: #0069cc;
 }
 
-.settings-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: #FAF9F6; /* Lighter background for form sections */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    margin-bottom: 30px;
-}
-
-.settings-label {
-    font-size: 18px; /* Increased font size */
-    color: #273a4d; /* Darker color for headers */
-    margin-bottom: 10px;
-}
-
-.settings-input {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%; /* Full width for input fields */
-    box-sizing: border-box; /* Include padding and border in the width */
-}
-
-.change-password-container {
-    display: flex;
-    flex-direction: column; /* Ensures vertical stacking of elements */
-    align-items: center; /* Centers the elements horizontally */
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 30px;
-    background-color: #d3d3d3;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
-    color: #3a3a3a; /* Slightly darker font color */
-}
-
-.change-password-title {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 24px;
-    font-weight: 600;
-    color: #273a4d; /* Slightly darker header color */
-}
-
-.change-password-form {
-    display: flex;
-    flex-direction: column; /* Vertical stacking for form elements */
-    width: 100%; /* Full width of container */
-    background-color: #FAF9F6; /* Background color for form */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    margin-bottom: 30px; /* Spacing below the form */
-}
-
-.change-password-label {
-    margin-bottom: 8px; /* Space below each label */
-    font-size: 16px; /* Uniform font size */
-    color: #273a4d; /* Darker color for labels */
-}
-
-.change-password-input {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%; /* Full width for input fields */
-    box-sizing: border-box; /* Include padding and border in the width */
-}
-
-.change-password-button {
-    padding: 12px 20px;
-    background-color: #4CAF50; /* Green background */
-    color: white;
-    border-radius: 30px;
-    cursor: pointer;
-    width: auto;
-    max-width: 200px; /* Uniform button width */
-    margin: 20px auto; /* Center button and provide spacing */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Enhanced visual feedback */
-}
-
-.change-password-button:hover {
-    background-color: #45a049;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.change-password-error {
+.error-message, .change-password-error {
     color: red;
     font-size: 14px;
     text-align: center;
     margin-bottom: 20px;
 }
-
 
 .login-redirect-button {
     background: none;
