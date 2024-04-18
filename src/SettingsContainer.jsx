@@ -10,9 +10,9 @@ import ChangePassword from './ChangePassword';
 function SettingsContainer() {
     const [activePage, setActivePage] = useState('profile');
     const [error, setError] = useState(null);
-
+    const [success, setSuccess] = useState(null); 
     const renderComponent = () => {
-        const props = { setError }; // Pass setError to subcomponents
+        const props = { setError ,setSuccess }; // Pass setError to subcomponents
         switch (activePage) {
             case 'username':
                 return <ChangeUsername {...props} />;
@@ -44,6 +44,7 @@ function SettingsContainer() {
                 {renderComponent()}
             </div>
             {error && <h3 className="error-message">{error} </h3>}
+            {success && <h3 className="success-message">{success}</h3>}
         </div>
     );
 }

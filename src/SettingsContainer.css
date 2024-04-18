@@ -78,3 +78,10 @@
     text-align: center;
     margin-top: 20px;
 }
+
+.success-message {
+    color: #4CAF50; /* Green color for success */
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}

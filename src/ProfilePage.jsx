@@ -5,7 +5,7 @@ import app from './firebase-config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
-const ProfilePage = () => {
+const ProfilePage = ({}) => {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState({});
   const auth = getAuth(app);
@@ -20,7 +20,6 @@ const ProfilePage = () => {
         const docSnap = await getDoc(userRef);
         if (docSnap.exists()) {
           setProfile(docSnap.data()); // Assuming data is now flat
-          console.log("Profile data:", docSnap.data()); // Log the structured data
         } else {
           console.log("No such document!");
         }

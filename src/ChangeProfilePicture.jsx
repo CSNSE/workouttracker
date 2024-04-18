@@ -5,7 +5,7 @@
     import app from './firebase-config';
     import { useNavigate } from 'react-router-dom';
 
-    function ChangeProfilePicture() {
+    function ChangeProfilePicture({setError, setSuccess}) {
         const auth = getAuth(app);
         const [profilePic, setProfilePic] = useState(null);
         const navigate = useNavigate();
@@ -26,9 +26,9 @@
                 if (photoURL) {
                     await updateProfile(auth.currentUser, { photoURL });
                 }
-                navigate('/profile')
+                setSuccess("Profile picture updated successfully");
             } catch (error) {
-                console.log('Failed to update profile picture:', error);
+                setError(error.message);
             }
         };
 
