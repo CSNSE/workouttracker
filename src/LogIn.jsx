@@ -72,7 +72,7 @@ function Login() {
           Forgot Password?
         </button>
 
-        <button type="button" onClick={() => navigate('/signup')} className="login-redirect-button">
+        <button onClick={() => navigate('/signup')} className="login-redirect-button">
           Don't have an account? Sign Up
         </button>
       </form>

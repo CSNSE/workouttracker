@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getSession } from './graphql/queries';
 import { createSessionPublish } from './graphql/mutations';
-import { useNavigate} from 'react-router-dom';
+import { listSessionPublishes } from './graphql/queries';
+import { useNavigate } from 'react-router-dom';
 import { generateClient } from 'aws-amplify/api';
 import app from './firebase-config';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, getFirestore } from "firebase/firestore";import './PublishSession.css';
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import './PublishSession.css';
 
 export default function PublishSession() {
   const [session, setSession] = useState(null);
@@ -23,8 +25,7 @@ export default function PublishSession() {
   const [error, setError] = useState(null);
   const [profile, setProfile] = useState({});
   const [user, setUser] = useState(null);
-
-
+  const [isPublished, setIsPublished] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -34,25 +35,34 @@ export default function PublishSession() {
         const docSnap = await getDoc(userRef);
         if (docSnap.exists()) {
           setProfile(docSnap.data());
-          console.log(docSnap.data());
-        } else {
-          console.log("No such document!");
         }
       }
     });
-
     return () => unsubscribe();
   }, [auth, db]);
 
-
   useEffect(() => {
     const pathSegments = location.pathname.split('/PublishSession/');
-    const id = pathSegments[pathSegments.length - 1]; // Get the last segment for ID
-
+    const id = pathSegments[pathSegments.length - 1];
     if (id) {
       fetchSession(id);
+      checkPublishes(id);
     }
   }, [location]);
+
+  const checkPublishes = async (id) => {
+    try {
+      const response = await client.graphql({
+        query: listSessionPublishes,
+        variables: { input: { Publish: id } },
+      });
+      const publishItems = response.data.listSessionPublishes.items;
+      const matchingID = publishItems.find(item => item.sessionPublishPublishId === id);
+      setIsPublished(!!matchingID);
+    } catch (error) {
+      setError('Error fetching publishes');
+    }
+  }
 
   const fetchSession = async (id) => {
     try {
@@ -64,7 +74,7 @@ export default function PublishSession() {
         setSession(sessionData.data.getSession);
       }
     } catch (error) {
-      console.error('Error fetching session:', error);
+      setError('Error fetching session');
     }
   };
 
@@ -76,13 +86,16 @@ export default function PublishSession() {
     }));
   };
 
-   
   const onSuccess = (result) => {
-    navigate('/MyFeed')
+    navigate('/MyFeed');
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (isPublished) {
+      setError('This session is already published.');
+      return;
+    }
     const input = {
       Title: publishData.Title,
       Description: publishData.Description,
@@ -91,24 +104,17 @@ export default function PublishSession() {
       DisplayName: user.displayName,
       ProfilePicture: profile.photoURL,
     };
-  
     try {
       const result = await client.graphql({
         query: createSessionPublish,
         variables: { input },
       });
-      console.log("Publish result:", result);
-      if (result.data) onSuccess(result.data); // Handle success appropriately
+      if (result.data) onSuccess(result.data);
     } catch (error) {
-      if (error.errors) {
-        setError(error.errors);
-        console.error ('Error publishing session:', error.errors);
-      }
+      setError('Error publishing session');
     }
   };
-  
-  
-  
+
   return (
     <div className="publish-session-container">
       <h1 className="publish-session-title">Publish Session</h1>
@@ -120,7 +126,7 @@ export default function PublishSession() {
       ) : (
         <p>No session data available.</p>
       )}
-      <p>{Error}</p>
+      {error && <p>{error}</p>}
       <form className="publish-session-form" onSubmit={handleSubmit}>
         <input
           name="Title"
@@ -140,5 +146,4 @@ export default function PublishSession() {
       </form>
     </div>
   );
-  
 }

@@ -1,24 +1,24 @@
 .big-button {
-  padding: 15px 30px; /* More pronounced padding for a larger button */
-  font-size: 20px; /* Retaining the larger font size */
-  border-radius: 12px; /* More pronounced rounded corners */
-  cursor: pointer; /* Cursor pointer, indicating it's clickable */
-  background-color: #007bff; /* Primary button color */
-  color: white; /* Text color */
-  border: none; /* No border for a modern look */
-  font-weight: 600; /* Bold font weight for better readability */
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover and focus states */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle box-shadow for depth */
-  outline: none; /* Removing the default focus outline */
+  padding: 15px 30px !important;
+  font-size: 20px !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  background-color: #007bff !important;
+  color: white !important;
+  border: none !important;
+  font-weight: 600 !important;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  outline: none !important;
 }
 
 .big-button:hover, .big-button:focus {
-  background-color: #0056c4; /* Darker shade on hover/focus for contrast */
-  color: white; /* Ensuring text color remains white for readability */
-  transform: translateY(-2px); /* Slightly raise the button to imply interactivity */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced box-shadow for prominence */
+  background-color: #0056c4 !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
 .big-button:focus {
-  box-shadow: 0 0 0 4px rgba(0, 117, 255, 0.5); /* Adding a focus outline for accessibility */
+  box-shadow: 0 0 0 4px rgba(0, 117, 255, 0.5) !important;
 }

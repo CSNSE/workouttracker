@@ -1,109 +1,101 @@
 :root {
-    --background-light: #f9f9fb;
-    --text-strong: #424242;
-    --primary-color: #007bff;  /* Slightly darker blue for better contrast */
-    --primary-hover: #0056b3;
-    --danger-color: #e63946;  /* A softer red */
-    --danger-hover: #d62839;
-    --warning-color: #f4a261;  /* Softer yellow */
-    --warning-hover: #e76f51;  /* A blend between yellow and orange for hover */
-    --success-color: #2a9d8f;  /* A more muted green */
-    --success-hover: #21867a;
-    --shadow-base: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 6px 10px rgba(0, 0, 0, 0.15);
-    --transition-base: 0.3s ease;
-    --border-radius: 8px;  /* Slightly larger radius for a softer edge */
-    --button-padding: 10px 20px;
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  /* A more modern font choice */
+    --background-light: #f9f9fb !important;
+    --text-strong: #424242 !important;
+    --primary-color: #007bff !important;
+    --primary-hover: #0056b3 !important;
+    --danger-color: #e63946 !important;
+    --danger-hover: #d62839 !important;
+    --warning-color: #f4a261 !important;
+    --warning-hover: #cc6d38 !important;
+    --success-color: #2a9d8f !important;
+    --success-hover: #21867a !important;
+    --shadow-base: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    --shadow-hover: 0 6px 10px rgba(0, 0, 0, 0.15) !important;
+    --transition-base: 0.3s ease !important;
+    --border-radius: 8px !important;
+    --button-padding: 10px 20px !important;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
 
 .customDispSessionCollection {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 20px;
-    gap: 20px;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding: 20px !important;
+    gap: 20px !important;
 }
 
 .customDispSessionCollection > * {
-    box-sizing: border-box;
-    min-width: 260px;
-    max-width: 320px;  /* Ensuring elements don't get too wide */
-    height: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    margin: 0 10px;
+    box-sizing: border-box !important;
+    min-width: 260px !important;
+    max-width: 320px !important;
+    height: 320px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    margin: 0 10px !important;
 }
 
 .sessionContainer {
-    background-color: var(--background-light);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-base);
-    padding: 25px;
-    transition: transform var(--transition-base), box-shadow var(--transition-base);
-    width: 100%;
-    height: 100%;
-    font-family: var(--font-family);
+    background-color: var(--background-light) !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: var(--shadow-base) !important;
+    padding: 25px !important;
+    transition: transform var(--transition-base), box-shadow var(--transition-base) !important;
+    width: 100% !important;
+    height: 100% !important;
+    font-family: var(--font-family) !important;
 }
 
 .sessionContainer:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px) !important;
+    box-shadow: var(--shadow-hover) !important;
 }
 
 .sessionType, .sessionDate {
-    font-weight: 700;
-    color: var(--text-strong);
+    font-weight: 700 !important;
+    color: var(--text-strong) !important;
 }
 
 button {
-    font-family: var(--font-family);
-    padding: var(--button-padding);
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: background-color var(--transition-base), transform var(--transition-base);
+    font-family: var(--font-family) !important;
+    padding: var(--button-padding) !important;
+    border: none !important;
+    border-radius: var(--border-radius) !important;
+    cursor: pointer !important;
+    transition: background-color var(--transition-base), transform var(--transition-base) !important;
 }
 
 .viewButton, .deleteButton, .updateButton, .todayButton {
-    color: white;
+    color: white !important;
 }
 
 .viewButton {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
 }
 
 .viewButton:hover {
-    background-color: var(--primary-hover);
-    transform: scale(1.05);
+    background-color: var(--primary-hover) !important;
+    transform: scale(1.05) !important;
 }
 
 .deleteButton {
-    background-color: var(--danger-color);
+    background-color: var(--danger-color) !important;
 }
 
 .deleteButton:hover {
-    background-color: var(--danger-hover);
-    transform: scale(1.05);
+    background-color: var(--danger-hover) !important;
+    transform: scale(1.05) !important;
 }
 
 .updateButton {
-    background-color: var(--warning-color);
+    background-color: var(--warning-color) !important;
 }
 
 .updateButton:hover {
-    background-color: var(--warning-hover);
-    transform: scale(1.05);
+    background-color: var(--warning-hover) !important;
+    transform: scale(1.05) !important;
 }
 
-.todayButton {
-    background-color: var(--success-color);
-}
-
-.todayButton:hover {
-    background-color: var(--success-hover);
-    transform: scale(1.05);
-}

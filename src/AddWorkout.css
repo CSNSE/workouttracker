@@ -1,61 +1,54 @@
-/* AddWorkout.css */
-
-/* CustomWorkoutCreateForm styles */
 .workoutCreateForm {
-  width: 100%;
-  max-width: 500px; /* Optimal width for form readability */
-  margin: 20px auto; /* Center form with vertical margin */
-  background-color: #ffffff; /* Crisp white background for clarity */
-  color: #333333; /* High-contrast text color for readability */
-  border-radius: 15px; /* Smooth rounded corners for a modern look */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-  padding: 40px; /* Spacious padding for element separation */
-  font-size: 16px; /* Legible font size */
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Consistent spacing between form elements */
+  width: 100% !important;
+  max-width: 500px !important;
+  margin: 20px auto !important;
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  border-radius: 15px !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  padding: 40px !important;
+  font-size: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
 }
 
 .formField {
-  width: 100%;
-  padding: 10px; /* Comfortable padding inside inputs */
-  margin-bottom: 20px; /* Space out elements */
-  border: 2px solid #e2e8f0; /* Subtle border color */
-  border-radius: 8px; /* Rounded corners for inputs */
-  font-size: 16px; /* Matching font size for input consistency */
+  width: 100% !important;
+  padding: 10px !important;
+  margin-bottom: 20px !important;
+  border: 2px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  font-size: 16px !important;
 }
 
 .submitButton {
-  width: auto;
-  padding: 12px 20px; /* Adequate padding for clickability */
-  margin-top: 10px; /* Separate submit button from form fields */
-  border: none;
-  border-radius: 8px; /* Consistent rounded corners */
-  background-color: #007bff; /* Vibrant blue for call-to-action */
-  color: #ffffff; /* Contrasting text color for visibility */
-  font-size: 18px; /* Prominent font size for importance */
-  cursor: pointer;
-  align-self: center; /* Center button in form */
-  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for interaction */
+  width: auto !important;
+  padding: 12px 20px !important;
+  margin-top: 10px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  background-color: #007bff !important;
+  color: #ffffff !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  align-self: center !important;
+  transition: background-color 0.3s, transform 0.2s !important;
 }
 
 .submitButton:hover {
-  background-color: #0056b3; /* Slightly darker blue on hover */
-  transform: scale(1.05); /* Gentle grow effect for feedback */
+  background-color: #0056b3 !important;
+  transform: scale(1.05) !important;
 }
-
-/* Additional Styles for Enhanced UI Consistency and Engagement */
 
 .App-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px; /* Consistent gap between header elements */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 20px !important;
 }
 
-/* Refining the BigButton component for better integration */
 .Big-Button {
-  /* Assuming BigButton styles are defined, add only necessary overrides for consistency */
-  margin-top: 20px; /* Ensure visual separation from form */
+  margin-top: 20px !important;
 }
