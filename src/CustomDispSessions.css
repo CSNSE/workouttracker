@@ -42,7 +42,7 @@
     background-color: var(--background-light) !important;
     border-radius: var(--border-radius) !important;
     box-shadow: var(--shadow-base) !important;
-    padding: 25px !important;
+    padding: 20px !important;
     transition: transform var(--transition-base), box-shadow var(--transition-base) !important;
     width: 100% !important;
     height: 100% !important;
@@ -97,5 +97,44 @@ button {
 .updateButton:hover {
     background-color: var(--warning-hover) !important;
     transform: scale(1.05) !important;
+}
+
+
+.publishButton[disabled] {
+    background-color: #ccc; /* Grey out the button */
+    color: #666;
+    cursor: not-allowed; /* Change cursor to indicate disabled state */
+    position: relative; /* Needed for absolute positioning of the tooltip */
+    overflow: visible; /* Allow the tooltip to be visible outside the button */
+}
+
+.publishButton[disabled]::after {
+    content: "Session already published"; /* Tooltip text */
+    visibility: hidden;
+    opacity: 0;
+    width: 200px; /* Adjust width to fit longer text if necessary */
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 10px; /* Add horizontal padding for better text fitting */
+    font-size: 14px; /* Make text size adequate for readability */
+    position: absolute;
+    z-index: 10; /* Ensure tooltip is above other elements */
+    bottom: 100%; /* Position the tooltip above the button */
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px); /* Adjust vertical position for visual separation */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions for opacity and movement */
+}
+
+.publishButton[disabled]:hover::after {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(-20px); /* Raise the tooltip slightly on hover */
+}
+
+/* Enhance shadow for better separation from button and surrounding elements */
+.publishButton[disabled]::after {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
 }
 

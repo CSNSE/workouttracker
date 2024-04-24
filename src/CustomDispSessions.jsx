@@ -4,16 +4,28 @@ import { Button, Text, View } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
 import { deleteSession, deleteSessionPublish } from "./graphql/mutations";
 import "./CustomDispSessions.css";
+import { useState, useEffect } from "react";
 import { getSessionPublish, listSessionPublishes } from "./graphql/queries";
 
 export default function CustomDispSessions({ session }) {
   const navigate = useNavigate();
+  const [published, setPublished] = useState(false);
   const client = generateClient();
+  const [publishDisabled, setPublishDisabled] = useState(false);
+
+  
+  useEffect(() => {
+    checkPublishes(session?.id);
+  }, [session?.id]);
 
   const handleViewClick = () => {
-    console.log(`Navigating to view session with id: ${session?.id}`);
     navigate(`/DispWorkouts/${session?.id}`);
   };
+
+
+
+
+
 
   const handleDeleteClick = async () => {
     console.log(`Attempting to delete session with id: ${session?.id}`);
@@ -47,11 +59,29 @@ export default function CustomDispSessions({ session }) {
       alert("Error deleting the session: " + error.message);
     }
   };
-
-  const handlePublishClick = async () => {
-    console.log(`Publishing session with id: ${session?.id}`);
-    navigate(`/PublishSession/${session?.id}`);
+ 
+ 
+  const handlePublishClick = () => {
+    if (!publishDisabled) {
+      navigate(`/PublishSession/${session?.id}`);
+    }
   };
+
+  const checkPublishes = async (id) => {
+    try {
+      const response = await client.graphql({
+        query: listSessionPublishes,
+        variables: { input: { Publish: id } },
+      });
+      const publishItems = response.data.listSessionPublishes.items;
+      const isPublished = publishItems.some(item => item.sessionPublishPublishId === id);
+      setPublishDisabled(isPublished);
+    } catch (error) {
+      console.error("Error checking publish status:", error);
+    }
+  };
+
+
 
   return (
     <View className="DispSessions">
@@ -60,9 +90,10 @@ export default function CustomDispSessions({ session }) {
         <Text className="sessionDate">{session?.Date}</Text>
         <Button className="viewButton" onClick={handleViewClick}>View</Button>
         <Button className="deleteButton" onClick={handleDeleteClick}>Delete</Button>
-        <Button className="updateButton">Update</Button> {/* You may need to add onClick handler for update */}
-        <Button className="publishButton" onClick={handlePublishClick}>Publish to Feed</Button>
+        <Button className="updateButton">Update</Button> 
+        <Button className="publishButton" onClick={handlePublishClick} disabled={publishDisabled}> Publish to Feed </Button>
       </View>
     </View>
   );
 }
+
