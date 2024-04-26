@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
 import { createWorkout } from "./graphql/mutations";
@@ -13,8 +13,7 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
   const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const client = generateClient();
-  
-
+  const autocompleteRef = useRef(null);  // Create ref for the autocomplete container
 
   const fetchSuggestions = useCallback(async (searchText) => {
     const apiKey = '2y3uQcLfSFpPpp3SxnPsUQ==B03JjsQado5rWczt'; // Move this to a secure location
@@ -34,6 +33,21 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
     } catch (error) {
       console.error('Failed to fetch workouts', error);
     }
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (autocompleteRef.current && !autocompleteRef.current.contains(event.target)) {
+        setAutocompleteSuggestions([]); // Clear suggestions when clicking outside
+      }
+    };
+
+    // Add event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Remove event listener on cleanup
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   useEffect(() => {
@@ -68,7 +82,7 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
     setWeight("");    
     setReps("");
     setErrors({});    
-    };
+  };
 
   return (
     <Grid
@@ -79,7 +93,7 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
       className="form-container"
       {...rest}
     >
-      <div className="autocomplete-field">
+      <div className="autocomplete-field" ref={autocompleteRef}>
         <TextField
           label="Lift"
           value={searchTerm}
@@ -97,16 +111,6 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
           </ul>
         )}
       </div>
-{/*   
-      <TextField
-        label="Lift"
-        isRequired
-        value={Lift}
-        onChange={(e) => setLift(e.target.value)}
-        errorMessage={errors.Lift?.errorMessage}
-        hasError={!!errors.Lift}
-        className="form-field lift"
-      /> */}
       
       <TextField
         label="Weight"
@@ -127,7 +131,6 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
         hasError={!!errors.Reps}
         className="form-field reps"
       />
-  
   
       <Flex
         direction="row"
@@ -154,5 +157,4 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
       </Flex>
     </Grid>
   );
-  
 }

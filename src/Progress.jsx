@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import TotalVolumeGraph from './TotalVolume';
 import './Progress.css'; // Import the CSS file
+import ProgressByWorkout from './ProgressByWorkout';
 
 const Progress = () => {
-    const options = ['Total Volume', 'Option 2', 'Option 3'];
+    const options = ['Total Volume', 'Progress By Workout', 'Option 3'];
     const [selectedOption, setSelectedOption] = useState(options[0]);
 
     const handleChange = (e) => {
@@ -29,6 +30,7 @@ const Progress = () => {
                     <TotalVolumeGraph />
                 </div>
             )}
+            {selectedOption === 'Progress By Workout' && <ProgressByWorkout />}
         </div>
     );
 };
