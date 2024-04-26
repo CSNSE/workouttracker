@@ -9,7 +9,8 @@ const client = generateClient();
 
 const ProgressByWorkout = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
+    const [workouts, setWorkouts] = useState({}); // Object to store workouts keyed by Lift name
+    const [selectedWorkouts, setSelectedWorkouts] = useState([]); // Array to hold selected workouts details
     const [isInputFocused, setInputFocused] = useState(false);
     const inputRef = useRef(null);
     const auth = getAuth(app);
@@ -24,7 +25,7 @@ const ProgressByWorkout = () => {
                         variables: { filter: { FirebaseUID: { eq: user.uid } } },
                     });
                     const sessionIds = sessionData.listSessions.items.map(item => item.id);
-                    const workouts = await Promise.all(
+                    const workoutsData = await Promise.all(
                         sessionIds.map(id =>
                             client.graphql({
                                 query: workoutsBySessionID,
@@ -32,10 +33,14 @@ const ProgressByWorkout = () => {
                             })
                         )
                     );
-                    const workoutTitles = workouts.flatMap(res => res.data.workoutsBySessionID.items.map(item => item.Lift));
-                    const uniqueTitles = Array.from(new Set(workoutTitles)); // Remove duplicates
-                    setAutocompleteSuggestions(uniqueTitles);
-                } catch ( error) {
+                    const fetchedWorkouts = workoutsData.flatMap(res => res.data.workoutsBySessionID.items);
+                    const workoutMap = {};
+                    fetchedWorkouts.forEach(workout => {
+                        workoutMap[workout.Lift] = workoutMap[workout.Lift] || [];
+                        workoutMap[workout.Lift].push(workout);
+                    });
+                    setWorkouts(workoutMap);
+                } catch (error) {
                     console.error('Error fetching data:', error);
                 }
             }
@@ -61,9 +66,10 @@ const ProgressByWorkout = () => {
         setInputFocused(true); // Show suggestions when input is focused
     };
 
-    const handleSelectSuggestion = (suggestion) => {
-        setSearchTerm(suggestion); // Select the suggestion
+    const handleSelectSuggestion = (liftName) => {
+        setSearchTerm(liftName); // Set search term to the lift name
         setInputFocused(false); // Hide suggestions after selection
+        setSelectedWorkouts(workouts[liftName] || []); // Store all workouts with the selected lift name
     };
 
     return (
@@ -77,16 +83,25 @@ const ProgressByWorkout = () => {
                     autoComplete="off"
                     className="form-field search"
                 />
-                {isInputFocused && autocompleteSuggestions.length > 0 && (
+                {isInputFocused && (
                     <ul className="autocomplete-suggestions">
-                        {autocompleteSuggestions.map((suggestion, index) => (
-                            <li key={index} onClick={() => handleSelectSuggestion(suggestion)} className="suggestion-item">
-                                {suggestion}
+                        {Object.keys(workouts).map((liftName, index) => (
+                            <li key={index} onClick={() => handleSelectSuggestion(liftName)} className="suggestion-item">
+                                {liftName}
                             </li>
                         ))}
                     </ul>
                 )}
             </div>
+            {selectedWorkouts.length > 0 && selectedWorkouts.map((workout, index) => (
+                <div key={index} className="selected-workout-info">
+                    <h3>Workout Details:</h3>
+                    <p><strong>Lift:</strong> {workout.Lift}</p>
+                    <p><strong>ID:</strong> {workout.id}</p>
+                    <p><strong>Weight:</strong> {workout.Weight}</p>
+                    {/* Include other details as needed */}
+                </div>
+            ))}
         </div>
     );
 };
