@@ -1,51 +1,53 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import BarChart from './BarChart';
+import React, { useState, useEffect, useRef } from "react";
 import { TextField } from "@aws-amplify/ui-react";
 import { generateClient } from 'aws-amplify/api';
 import { listSessions, workoutsBySessionID } from './graphql/queries';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import app from './firebase-config';
-import debounce from 'lodash.debounce';
 
 const client = generateClient();
 
 const ProgressByWorkout = () => {
-    const apiKey = '2y3uQcLfSFpPpp3SxnPsUQ==B03JjsQado5rWczt'; // Reminder to move this to a secure location
     const [searchTerm, setSearchTerm] = useState('');
     const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
-
-    const inputRef = useRef(null); // Reference to the input field
-
-    const [chartData, setChartData] = useState({
-        labels: [],
-        datasets: [
-            {
-                label: 'Volume by Workout',
-                data: [],
-                backgroundColor: 'rgba(75, 192, 235, 0.5)',
-                borderColor: 'rgba(75, 192, 235, 1)',
-                borderWidth: 1,
-            },
-        ],
-    });
-    const [loading, setLoading] = useState(true);
+    const [isInputFocused, setInputFocused] = useState(false);
+    const inputRef = useRef(null);
     const auth = getAuth(app);
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const fetchSessionsAndWorkouts = async () => {
+            const user = auth.currentUser;
             if (user) {
-                console.log('User is logged in, fetching data...');
-            } else {
-                console.log('No user is logged in.');
-                setLoading(false);
+                try {
+                    const { data: sessionData } = await client.graphql({
+                        query: listSessions,
+                        variables: { filter: { FirebaseUID: { eq: user.uid } } },
+                    });
+                    const sessionIds = sessionData.listSessions.items.map(item => item.id);
+                    const workouts = await Promise.all(
+                        sessionIds.map(id =>
+                            client.graphql({
+                                query: workoutsBySessionID,
+                                variables: { sessionID: id }
+                            })
+                        )
+                    );
+                    const workoutTitles = workouts.flatMap(res => res.data.workoutsBySessionID.items.map(item => item.Lift));
+                    const uniqueTitles = Array.from(new Set(workoutTitles)); // Remove duplicates
+                    setAutocompleteSuggestions(uniqueTitles);
+                } catch ( error) {
+                    console.error('Error fetching data:', error);
+                }
             }
-        });
+        };
+
+        fetchSessionsAndWorkouts();
     }, [auth]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (inputRef.current && !inputRef.current.contains(event.target)) {
-                setAutocompleteSuggestions([]);
+                setInputFocused(false); // Close suggestions if click outside
             }
         };
 
@@ -53,39 +55,15 @@ const ProgressByWorkout = () => {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [inputRef]);
-
-    const fetchSuggestions = useCallback(async (searchText) => {
-        try {
-            const response = await fetch(`https://api.api-ninjas.com/v1/exercises?name=${encodeURIComponent(searchText)}`, {
-                method: 'GET',
-                headers: {
-                    'X-Api-Key': apiKey,
-                    'Content-Type': 'application/json',
-                },
-            });
-            if (!response.ok) {
-                throw new Error(`Error! status: ${response.status}`);
-            }
-            const result = await response.json();
-            setAutocompleteSuggestions(result.map(exercise => exercise.name));
-        } catch (error) {
-            console.error('Failed to fetch workouts', error);
-        }
     }, []);
 
-    useEffect(() => {
-        if (searchTerm) {
-            const debouncedFetch = debounce(fetchSuggestions, 300);
-            debouncedFetch(searchTerm);
-        } else {
-            setAutocompleteSuggestions([]);
-        }
-    }, [searchTerm, fetchSuggestions]);
+    const handleFocus = () => {
+        setInputFocused(true); // Show suggestions when input is focused
+    };
 
     const handleSelectSuggestion = (suggestion) => {
-        setSearchTerm(suggestion); // Set the search term to the selected suggestion
-        setAutocompleteSuggestions([]); // Clear suggestions after selection
+        setSearchTerm(suggestion); // Select the suggestion
+        setInputFocused(false); // Hide suggestions after selection
     };
 
     return (
@@ -95,10 +73,11 @@ const ProgressByWorkout = () => {
                     label="Lift"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
+                    onFocus={handleFocus}
                     autoComplete="off"
                     className="form-field search"
                 />
-                {autocompleteSuggestions.length > 0 && (
+                {isInputFocused && autocompleteSuggestions.length > 0 && (
                     <ul className="autocomplete-suggestions">
                         {autocompleteSuggestions.map((suggestion, index) => (
                             <li key={index} onClick={() => handleSelectSuggestion(suggestion)} className="suggestion-item">
@@ -110,6 +89,6 @@ const ProgressByWorkout = () => {
             </div>
         </div>
     );
-}
+};
 
 export default ProgressByWorkout;
