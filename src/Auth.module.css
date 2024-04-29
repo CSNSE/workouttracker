@@ -1,190 +1,190 @@
-/* Auth.module.css */
+/* Setting up CSS variables for a dark theme */
+:root {
+    --input-focus: #2d8cf0;    /* Bright blue for focus highlights */
+    --font-color: #ffffff;     /* White color for better readability on dark backgrounds */
+    --font-color-sub: #bbbbbb; /* Subdued white for less important text */
+    --bg-color: #333333;       /* Dark grey for main backgrounds */
+    --bg-color-alt: #444444;   /* Slightly lighter grey for alternative backgrounds */
+    --main-color: #ffffff;     /* White for borders and other elements */
+}
+
+/* General wrapper for alignment and layout */
 .wrapper {
-    --input-focus: #2d8cf0;
-    --font-color: #323232;
-    --font-color-sub: #666;
-    --bg-color: #fff;
-    --bg-color-alt: #666;
-    --main-color: #323232;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .switch {
-    transform: translateY(-200px);
+    justify-content: center;
+    height: 100vh; /* Full height to center align the card vertically */
+    background-color: #282c34; /* Very dark grey background */
+}
+
+/* Styling for the toggle switch component */
+.switch {
     position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 30px;
+    justify-content: center;
     width: 50px;
-    height: 20px;
-  }
-  
-  .cardSide::before {
-    position: absolute;
-    content: 'Log in';
-    left: -70px;
-    top: 0;
-    width: 100px;
-    text-decoration: underline;
-    color: var(--font-color);
-    font-weight: 600;
-  }
-  
-  .cardSide::after {
-    position: absolute;
-    content: 'Sign up';
-    left: 70px;
-    top: 0;
-    width: 100px;
-    text-decoration: none;
-    color: var(--font-color);
-    font-weight: 600;
-  }
-  
-  .toggle {
-    opacity: 0; /* Hidden but still functional */
-    width: 100%; /* Full width of the container */
-    height: 100%; /* Full height of the container */
-    cursor: pointer; /* Shows a pointer cursor when hovered */
-    z-index: 2; /* Ensure it's above other elements */
-  }
-  
-  
-  .slider {
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 2px solid var(--main-color);
-    box-shadow: 4px 4px var(--main-color);
-    position: absolute;
+    height: 24px;
     cursor: pointer;
+}
+
+/* Invisible but functional toggle input */
+.toggle {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Visual representation of the slider */
+.slider {
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--bg-color);
-    transition: 0.3s;
-  }
-  
-  .slider:before {
-    box-sizing: border-box;
+    background-color: var(--bg-color-alt);
+    transition: 0.4s;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.slider:before {
     position: absolute;
-    content: "";
+    content: '';
     height: 20px;
     width: 20px;
-    border: 2px solid var(--main-color);
-    border-radius: 5px;
-    left: -2px;
+    left: 2px;
     bottom: 2px;
-    background-color: var(--bg-color);
-    box-shadow: 0 3px 0 var(--main-color);
-    transition: 0.3s;
-  }
-  
-  .toggle:checked + .slider {
+    background-color: var(--main-color);
+    transition: 0.4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Change background and position of slider when checked */
+.toggle:checked + .slider {
     background-color: var(--input-focus);
-  }
-  
-  .toggle:checked + .slider:before {
-    transform: translateX(30px);
-  }
-  
-  .toggle:checked ~ .cardSide:before {
-    text-decoration: none;
-  }
-  
-  .toggle:checked ~ .cardSide:after {
-    text-decoration: underline;
-  }
-  
-  .flipCardInner {
+}
+
+.toggle:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Styles for the flipping card container */
+.flipCardInner {
     width: 300px;
     height: 350px;
     position: relative;
-    background-color: transparent;
     perspective: 1000px;
-    text-align: center;
-    transition: transform 0.8s;
     transform-style: preserve-3d;
-  }
-  
-  .toggle:checked ~ .flipCardInner {
-    transform: rotateY(180deg);
-  }
-  
-  .flipCardFront, .flipCardBack {
+    transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Front and back of the flip card */
+.flipCardFront, .flipCardBack {
     padding: 20px;
     position: absolute;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     backface-visibility: hidden;
-    background: lightgrey;
-    gap: 20px;
+    background: var(--bg-color);
     border-radius: 5px;
     border: 2px solid var(--main-color);
-    box-shadow: 4px 4px var(--main-color);
-  }
-  
-  .flipCardBack {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.flipCardBack {
+    background: var(--bg-color-alt);
     transform: rotateY(180deg);
-  }
-  
-  .flipCardForm {
+}
+
+/* Styling for forms within the cards */
+.flipCardForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-  }
-  
-  .title {
-    margin: 20px 0;
+}
+
+.title {
+    margin-bottom: 20px;
     font-size: 25px;
-    font-weight: 900;
-    text-align: center;
+    font-weight: bold;
     color: var(--main-color);
-  }
-  
-  .flipCardInput {
+}
+
+.flipCardInput {
     width: 250px;
     height: 40px;
     border-radius: 5px;
     border: 2px solid var(--main-color);
-    background-color: var(--bg-color);
+    padding: 5px 10px;
     font-size: 15px;
     font-weight: 600;
     color: var(--font-color);
-    padding: 5px 10px;
+    background-color: var(--bg-color);
     outline: none;
-  }
-  
-  .flipCardInput::placeholder {
+}
+
+.flipCardInput::placeholder {
     color: var(--font-color-sub);
     opacity: 0.8;
-  }
-  
-  .flipCardInput:focus {
-    border: 2px solid var(--input-focus);
-  }
-  
-  .flipCardBtn {
-    margin: 20px 0;
+}
+
+.flipCardInput:focus {
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 3px rgba(45, 140, 240, 0.5); /* Light blue glow for focus */
+}
+
+.flipCardBtn {
     width: 120px;
     height: 40px;
     border-radius: 5px;
     border: 2px solid var(--main-color);
-    background-color: var(--bg-color);
+    background-color: var(--main-color);
     font-size: 17px;
     font-weight: 600;
-    color: var(--font-color);
+    color: var(--bg-color);
     cursor: pointer;
-  }
-  
-  .flipCardBtn:active {
-    box-shadow: 0px 0px var(--main-color);
-    transform: translate(3px, 3px);
-  }
-  
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.flipCardBtn:hover {
+    background-color: var(--input-focus);
+    color: var(--bg-color);
+}
+
+.flipCardBtn:active {
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    transform: translateY(2px);
+}
+
+/* Error messaging styling for login and sign-up forms */
+.errorMessage {
+    color: #ff4444; /* Bright red for errors, adjusted for dark theme */
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+    .flipCardInner {
+        width: 90%; /* Responsive width on smaller screens */
+        height: auto; /* Height adjusts to content */
+    }
+
+    .flipCardFront, .flipCardBack {
+        padding: 10px; /* Reduced padding on smaller screens */
+    }
+
+    .flipCardInput, .flipCardBtn {
+        width: 80%; /* Full width inputs and buttons on small screens */
+    }
+}
