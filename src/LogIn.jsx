@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate, useLocation } from 'react-router-dom';
-import './Auth.css';
+import styles from './Auth.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -41,41 +41,35 @@ function Login() {
   };
 
   return (
-    <div className="sign-up-container">
-      <div className="header">
-        <h1>Workout Tracker</h1>
-        <h2>Login</h2>
+    <div className={styles.wrapper}>
+      <div className={styles.switch}>
+        <input type="checkbox" className={styles.toggle} />
+        <span className={styles.slider}></span>
+        <div className={styles.flipCardInner}>
+          <div className={styles.flipCardFront}>
+            <div className={styles.title}>Log in</div>
+            <form onSubmit={handleSubmit} className={styles.flipCardForm}>
+              <input
+                className={styles.flipCardInput}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                type="email"
+                required
+              />
+              <input
+                className={styles.flipCardInput}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                type="password"
+                required
+              />
+              <button type="submit" className={styles.flipCardBtn}>Let's go!</button>
+            </form>
+          </div>
+        </div>
       </div>
-      <form onSubmit={handleSubmit} className="sign-up-form">
-        <div className="input-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        {error && <h6 className='Error'>{error}</h6>}
-        <div className="input-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="primary-action-button">Log In</button>
-
-        <button type='button' onClick={() => navigate('/forgot-password')} className="login-redirect-button">
-          Forgot Password?
-        </button>
-
-        <button onClick={() => navigate('/signup')} className="login-redirect-button">
-          Don't have an account? Sign Up
-        </button>
-      </form>
     </div>
   );
 }

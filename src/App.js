@@ -28,6 +28,8 @@ import ChangeProfilePicture from './ChangeProfilePicture';
 import ChangeEmail from './ChangeEmail';
 import ChangePassword from './ChangePassword';
 import SettingsContainer from './SettingsContainer';
+import FlipCard from './FlipAuth';
+
 const auth = getAuth(app);
 function App() {
   return (
@@ -50,6 +52,7 @@ function App() {
             <Route path="*" element={<NotFoundPage/>} />
             <Route path='/MyFeed' element={<div><SideNavBar/><DispMyFeed/><CheckAuth/></div>} />
             <Route path='/PublishSession/:cid' element={<div><SideNavBar/><PublishSession/><CheckAuth/></div>}/>
+            <Route path ='/Auth' element ={<div><FlipCard/></div>}/>
           </Routes>
         </Router>
       </header>
