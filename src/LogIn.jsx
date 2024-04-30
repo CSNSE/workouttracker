@@ -22,7 +22,7 @@ function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log('Logged in as:', userCredential.user);
-        navigate('/'); // Navigate to the home page on success
+        navigate('/Home'); // Navigate to the home page on success
       })
       .catch((error) => {
         console.error('Error signing in:', error.message);

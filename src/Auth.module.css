@@ -21,21 +21,18 @@
 /* Styling for the toggle switch component */
 .switch {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 24px;
+    display: inline-block;
+    width: 60px; /* Increased width for better interaction */
+    height: 34px; /* Increased height for better interaction */
+    margin: 10px;
     cursor: pointer;
 }
 
 /* Invisible but functional toggle input */
 .toggle {
     opacity: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
+    width: 0;
+    height: 0;
 }
 
 /* Visual representation of the slider */
@@ -46,22 +43,20 @@
     right: 0;
     bottom: 0;
     background-color: var(--bg-color-alt);
-    transition: 0.4s;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: .4s;
+    border-radius: 34px; /* Full pill shape */
 }
 
 .slider:before {
     position: absolute;
-    content: '';
-    height: 20px;
-    width: 20px;
-    left: 2px;
-    bottom: 2px;
-    background-color: var(--main-color);
-    transition: 0.4s;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
     border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 /* Change background and position of slider when checked */
@@ -73,7 +68,17 @@
     transform: translateX(26px);
 }
 
-/* Styles for the flipping card container */
+/* Adding clear instructions for the toggle */
+.toggleInstruction {
+    display: block; /* Make it a block to sit on its own line */
+    color: var(--font-color);
+    text-align: center; /* Center the text over the toggle */
+    margin-top: 5px; /* Spacing for better readability */
+    font-size: 0.9em; /* Slightly smaller text */
+    transition: color 0.3s; /* Smooth transition for color changes */
+}
+
+/* Styling for the flipping card container */
 .flipCardInner {
     width: 300px;
     height: 350px;
@@ -153,38 +158,37 @@
     font-weight: 600;
     color: var(--bg-color);
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.flipCardBtn:hover {
+    transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .flipCardBtn:hover {
     background-color: var(--input-focus);
     color: var(--bg-color);
-}
-
-.flipCardBtn:active {
+    }
+    
+    .flipCardBtn:active {
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
     transform: translateY(2px);
-}
-
-/* Error messaging styling for login and sign-up forms */
-.errorMessage {
-    color: #ff4444; /* Bright red for errors, adjusted for dark theme */
-    font-size: 0.8em;
-    margin-top: 5px;
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 600px) {
-    .flipCardInner {
-        width: 90%; /* Responsive width on smaller screens */
-        height: auto; /* Height adjusts to content */
+    }
+    
+    .errorMessage {
+        color: #ff4444; 
+        font-size: 0.8em;
+        margin-top: 5px;
     }
 
-    .flipCardFront, .flipCardBack {
-        padding: 10px; /* Reduced padding on smaller screens */
-    }
+    @media (max-width: 600px) {
+        .flipCardInner {
+        width: 90%; 
+        height: auto; 
+        }
 
-    .flipCardInput, .flipCardBtn {
-        width: 80%; /* Full width inputs and buttons on small screens */
-    }
-}
+        .flipCardFront, .flipCardBack {
+            padding: 10px; 
+        }
+        
+        .flipCardInput, .flipCardBtn {
+            width: 80%; 
+        }
+        }
+        

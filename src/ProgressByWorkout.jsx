@@ -12,6 +12,7 @@ const ProgressByWorkout = () => {
     const [workouts, setWorkouts] = useState({}); // Object to store workouts keyed by Lift name
     const [selectedWorkouts, setSelectedWorkouts] = useState([]); // Array to hold selected workouts details
     const [isInputFocused, setInputFocused] = useState(false);
+    const [totalWeightLifted, setTotalWeightLifted] = useState(0); // Total weight lifted for selected workouts
     const inputRef = useRef(null);
     const auth = getAuth(app);
 
@@ -68,10 +69,23 @@ const ProgressByWorkout = () => {
 
     const handleSelectSuggestion = (liftName) => {
         setSearchTerm(liftName); // Set search term to the lift name
-        setInputFocused(false); // Hide suggestions after selection
-        setSelectedWorkouts(workouts[liftName] || []); // Store all workouts with the selected lift name
+        setInputFocused(false); 
+        const selectedLiftWorkouts = workouts[liftName] || [];
+    
+        // Update the selected workouts
+        setSelectedWorkouts(selectedLiftWorkouts);
+    
+        // Calculate total weight lifted here where you have the most current data
+        const totalWeight = selectedLiftWorkouts.reduce((acc, curr) => {
+            return acc + (curr.Weight ? parseInt(curr.Weight, 10) : 0);
+        }, 0);
+    
+        setTotalWeightLifted(totalWeight);
     };
+    
+    
 
+    
     return (
         <div>
             <div className="autocomplete-field" ref={inputRef}>
@@ -98,7 +112,7 @@ const ProgressByWorkout = () => {
                     <h3>Workout Details:</h3>
                     <p><strong>Lift:</strong> {workout.Lift}</p>
                     <p><strong>ID:</strong> {workout.id}</p>
-                    <p><strong>Weight:</strong> {workout.Weight}</p>
+                    <p><strong>Weight:</strong> {totalWeightLifted}</p>
                     {/* Include other details as needed */}
                 </div>
             ))}

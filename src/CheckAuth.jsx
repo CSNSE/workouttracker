@@ -11,7 +11,7 @@ const CheckAuth = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        navigate('/login');
+        navigate('/');
       } else {
         resetLogoutTimer();
       }
@@ -32,7 +32,7 @@ const CheckAuth = () => {
     clearTimeout(logoutTimer);
     logoutTimer = setTimeout(() => {
         signOut(auth).then(() => {
-            navigate('/login', { state: { reason: 'inactivity' } });
+            navigate('/', { state: { reason: 'inactivity' } });
         }).catch((error) => {
             console.error('Error logging out:', error);
         });

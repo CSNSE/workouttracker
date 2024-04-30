@@ -30,7 +30,7 @@ const SideNavBar = () => {
             {isOpen && (
                 <nav className="nav-links">
                     <ul className='Button-List'>
-                        <li><button className='button' onClick={() => navigate('/')}>Home</button></li>
+                        <li><button className='button' onClick={() => navigate('/Home')}>Home</button></li>
                         <li><button className='button' onClick={() => navigate('/Progress')}>Progress</button></li>
                         <li><button className='button' onClick={() => navigate('/profile')}>Profile Page</button></li>
                         <li><button className='button' onClick={() => navigate('/MyFeed')}>Feed</button></li>

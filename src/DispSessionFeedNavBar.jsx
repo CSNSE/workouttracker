@@ -12,7 +12,7 @@ const DispSessionFeedNavBar = () => {
             <li><button onClick={() => navigate('/profile')}>Profile</button></li>
             <li><button onClick={() => navigate('/display')}>Sessions</button></li>
         </ul>
-        <div className="logo" onClick={() => navigate('/')}>
+        <div className="logo" onClick={() => navigate('/Home')}>
           Workout Tracker
         </div>
         <ul className="navLinks">
