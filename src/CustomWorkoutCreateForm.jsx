@@ -13,9 +13,13 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
   const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const client = generateClient();
-  const autocompleteRef = useRef(null);  // Create ref for the autocomplete container
+  const autocompleteRef = useRef(null);
 
-  const fetchSuggestions = useCallback(async (searchText) => {
+  const debouncedFetchSuggestions = useCallback(debounce(async (searchText) => {
+    if (!searchText.trim()) {
+      setAutocompleteSuggestions([]);
+      return;
+    }
     const apiKey = '2y3uQcLfSFpPpp3SxnPsUQ==B03JjsQado5rWczt'; // Move this to a secure location
     try {
       const response = await fetch(`https://api.api-ninjas.com/v1/exercises?name=${encodeURIComponent(searchText)}`, {
@@ -33,35 +37,29 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
     } catch (error) {
       console.error('Failed to fetch workouts', error);
     }
-  }, []);
+  }, 300), []);
+
+  useEffect(() => {
+    debouncedFetchSuggestions(searchTerm);
+  }, [searchTerm, debouncedFetchSuggestions]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (autocompleteRef.current && !autocompleteRef.current.contains(event.target)) {
-        setAutocompleteSuggestions([]); // Clear suggestions when clicking outside
+        setAutocompleteSuggestions([]);
       }
     };
 
-    // Add event listener
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      // Remove event listener on cleanup
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  useEffect(() => {
-    if (searchTerm) {
-      debounce(fetchSuggestions, 300)(searchTerm);
-    } else {
-      setAutocompleteSuggestions([]);
-    }
-  }, [searchTerm, fetchSuggestions]);
-
   const handleSelectSuggestion = (suggestion) => {
     setSearchTerm(suggestion); // Set the search term to the selected suggestion
-    setAutocompleteSuggestions([]); // Clear suggestions after selection
     setLift(suggestion);
+    setAutocompleteSuggestions([]); // Clear suggestions after selection
   };
 
   const handleSubmit = async (event) => {
@@ -82,6 +80,7 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
     setWeight("");    
     setReps("");
     setErrors({});    
+    setSearchTerm("");
   };
 
   return (
@@ -97,7 +96,10 @@ export default function CustomWorkoutCreateForm({ clearOnSuccess = true, onSucce
         <TextField
           label="Lift"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setLift(e.target.value);
+          }}
           autoComplete="off"
           className="form-field search"
         />

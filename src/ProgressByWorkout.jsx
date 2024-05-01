@@ -1,18 +1,30 @@
 import React, { useState, useEffect, useRef } from "react";
 import { TextField } from "@aws-amplify/ui-react";
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { generateClient } from 'aws-amplify/api';
 import { listSessions, workoutsBySessionID } from './graphql/queries';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import app from './firebase-config';
+import './ProgressByWorkout.css';
 
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 const client = generateClient();
-
 const ProgressByWorkout = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [workouts, setWorkouts] = useState({}); // Object to store workouts keyed by Lift name
-    const [selectedWorkouts, setSelectedWorkouts] = useState([]); // Array to hold selected workouts details
+    const [workouts, setWorkouts] = useState({});
+    const [selectedWorkouts, setSelectedWorkouts] = useState([]);
     const [isInputFocused, setInputFocused] = useState(false);
-    const [totalWeightLifted, setTotalWeightLifted] = useState(0); // Total weight lifted for selected workouts
+    const [chartData, setChartData] = useState({
+        labels: [],
+        datasets: [{
+            label: 'Total Volume per Set',
+            data: [],
+            backgroundColor: '#ffff',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+        }]
+    });
     const inputRef = useRef(null);
     const auth = getAuth(app);
 
@@ -53,7 +65,7 @@ const ProgressByWorkout = () => {
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (inputRef.current && !inputRef.current.contains(event.target)) {
-                setInputFocused(false); // Close suggestions if click outside
+                setInputFocused(false);
             }
         };
 
@@ -63,29 +75,57 @@ const ProgressByWorkout = () => {
         };
     }, []);
 
-    const handleFocus = () => {
-        setInputFocused(true); // Show suggestions when input is focused
-    };
-
     const handleSelectSuggestion = (liftName) => {
-        setSearchTerm(liftName); // Set search term to the lift name
-        setInputFocused(false); 
+        setSearchTerm(liftName);
+        setInputFocused(false);
         const selectedLiftWorkouts = workouts[liftName] || [];
-    
-        // Update the selected workouts
-        setSelectedWorkouts(selectedLiftWorkouts);
-    
-        // Calculate total weight lifted here where you have the most current data
-        const totalWeight = selectedLiftWorkouts.reduce((acc, curr) => {
-            return acc + (curr.Weight ? parseInt(curr.Weight, 10) : 0);
-        }, 0);
-    
-        setTotalWeightLifted(totalWeight);
-    };
-    
-    
 
-    
+        setSelectedWorkouts(selectedLiftWorkouts);
+        
+        const labels = selectedLiftWorkouts.map((_, index) => `Set ${index + 1}`);
+        const data = selectedLiftWorkouts.map(workout => workout.Weight * workout.Reps);
+        data.reverse();
+
+        setChartData({
+            labels,
+            datasets: [{
+                label: 'Total Volume per Set',
+                data,
+                backgroundColor: '#ffff',
+                borderColor: 'rgb(54, 162, 235)',
+                borderWidth: 1,
+            }]
+        });
+    };
+
+    const options = {
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    color: 'white'  // Change this to your desired color for Y-axis labels
+                },
+                title: {
+                    display: true,
+                    text: 'Total Volume',
+                    color: 'white'  // Change this to your desired color for Y-axis title
+                }
+            },
+            x: {
+                ticks: {
+                    color: 'white'  // Change this to your desired color for X-axis labels
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'white'  // Change this to your desired color for legend labels
+                }
+            }
+        }
+    };
+
     return (
         <div>
             <div className="autocomplete-field" ref={inputRef}>
@@ -93,7 +133,7 @@ const ProgressByWorkout = () => {
                     label="Lift"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    onFocus={handleFocus}
+                    onFocus={() => setInputFocused(true)}
                     autoComplete="off"
                     className="form-field search"
                 />
@@ -107,17 +147,14 @@ const ProgressByWorkout = () => {
                     </ul>
                 )}
             </div>
-            {selectedWorkouts.length > 0 && selectedWorkouts.map((workout, index) => (
-                <div key={index} className="selected-workout-info">
-                    <h3>Workout Details:</h3>
-                    <p><strong>Lift:</strong> {workout.Lift}</p>
-                    <p><strong>ID:</strong> {workout.id}</p>
-                    <p><strong>Weight:</strong> {totalWeightLifted}</p>
-                    {/* Include other details as needed */}
+            {selectedWorkouts.length > 0 && (
+                <div className="chart-container">
+                    <Bar data={chartData} options={options} />
                 </div>
-            ))}
+            )}
         </div>
     );
 };
 
 export default ProgressByWorkout;
+
