@@ -89,7 +89,7 @@ const ProgressByWorkout = () => {
         setChartData({
             labels,
             datasets: [{
-                label: 'Total Volume per Set',
+                label: liftName +' Volume per set',
                 data,
                 backgroundColor: '#ffff',
                 borderColor: 'rgb(54, 162, 235)',

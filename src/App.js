@@ -46,7 +46,6 @@ function App() {
             <Route path='/Onboarding' element={<div><Onboarding/></div>} />
             <Route path='/Forgot-Password' element={<div><ForgotPassword/></div>} />
             <Route path='/verify' element={<div><Verify/></div>} />
-            <Route path='/Settings' element={<div><Settings/><CheckAuth/><SideNavBar/></div>} />
             <Route path='/Progress' element={<div><Progress/><SideNavBar/><CheckAuth/></div>} />
             <Route path="*" element={<NotFoundPage/>} />
             <Route path='/MyFeed' element={<div><SideNavBar/><DispMyFeed/><CheckAuth/></div>} />

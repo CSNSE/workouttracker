@@ -1,80 +1,80 @@
 .side-nav-bar {
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: -250px;
-    height: 100vh;
-    background: linear-gradient(145deg, #2c3e50, #34495e);
-    transition: left 0.3s ease;
-    overflow-x: hidden;
-    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.7);
-    z-index: 1000;
+    width: 250px !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: -250px !important;
+    height: 100vh !important;
+    background: linear-gradient(145deg, #2c3e50, #34495e) !important;
+    transition: left 0.3s ease !important;
+    overflow-x: hidden !important;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.7) !important;
+    z-index: 1000 !important;
 }
 
 .side-nav-bar.open {
-    left: 0;
+    left: 0 !important;
 }
 
 .toggle-button {
-    position: fixed;
-    left: 10px;
-    top: 10px;
-    background: #34495e;
-    color: #ecf0f1;
-    padding: 10px 15px;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 1001;
-    transition: background-color 0.3s, transform 0.3s;
+    position: fixed !important;
+    left: 10px !important;
+    top: 10px !important;
+    background: #34495e !important;
+    color: #ecf0f1 !important;
+    padding: 10px 15px !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+    z-index: 1001 !important;
+    transition: background-color 0.3s, transform 0.3s !important;
 }
 
 .toggle-button:hover {
-    background: #4a6fa5;
-    transform: scale(1.1);
+    background: #4a6fa5 !important;
+    transform: scale(1.1) !important;
 }
 
 .nav-links {
-    margin-top: 50px;
-    padding: 15px;
-    color: #ecf0f1;
+    margin-top: 50px !important;
+    padding: 15px !important;
+    color: #ecf0f1 !important;
 }
 
 .nav-links ul {
-    list-style: none;
-    padding: 0;
+    list-style: none !important;
+    padding: 0 !important;
 }
 
 .nav-links li {
-    padding: 15px 0;
+    padding: 15px 0 !important;
 }
 
 .nav-links a, .button {
-    display: block;
-    color: #ecf0f1;
-    text-decoration: none;
-    padding: 12px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    transition: background-color 0.3s, color 0.3s;
+    display: block !important;
+    color: #ecf0f1 !important;
+    text-decoration: none !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    transition: background-color 0.3s, color 0.3s !important;
 }
 
 .nav-links a:hover, .button:hover {
-    background: #4a6fa5;
-    color: #ffffff;
+    background: #4a6fa5 !important;
+    color: #ffffff !important;
 }
 
 .button {
-    width: 100%;
-    background: #34495e;
-    border: none;
-    cursor: pointer;
+    width: 100% !important;
+    background: #34495e !important;
+    border: none !important;
+    cursor: pointer !important;
 }
 
 .button:focus {
-    outline: none;
+    outline: none !important;
 }
 
 .Button-List {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
 }

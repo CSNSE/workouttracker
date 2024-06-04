@@ -7,7 +7,6 @@ const MyFeed = () => (
   <div className="myFeedContainer">
     <div className="myFeedNavBar"><DispSessionFeedNavBar/></div>
     <div className="myFeedContent"><DispSessionFeed/></div>
-    <div className="myFeedBottomNavBar"><DispFeedBottomNavBar/></div>
   </div>
 );
 

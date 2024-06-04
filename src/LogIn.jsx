@@ -22,11 +22,13 @@ function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log('Logged in as:', userCredential.user);
-        navigate('/Home'); // Navigate to the home page on success
+        navigate('/Home'); 
       })
       .catch((error) => {
-        console.error('Error signing in:', error.message);
-        setError('Login failed: ' + error.message);
+
+        if(error.message = 'Firebase: Error (auth/invalid-credential)'){
+          setError('Invalid email or password');
+        } else{setError('Login failed: ' + error.message)};
       });
   };
 

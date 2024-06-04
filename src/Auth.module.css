@@ -1,11 +1,11 @@
 /* Setting up CSS variables for a dark theme */
 :root {
-    --input-focus: #2d8cf0;    /* Bright blue for focus highlights */
-    --font-color: #ffffff;     /* White color for better readability on dark backgrounds */
-    --font-color-sub: #bbbbbb; /* Subdued white for less important text */
-    --bg-color: #333333;       /* Dark grey for main backgrounds */
-    --bg-color-alt: #444444;   /* Slightly lighter grey for alternative backgrounds */
-    --main-color: #ffffff;     /* White for borders and other elements */
+    --input-focus: #2d8cf0;
+    --font-color: #ffffff;
+    --font-color-sub: #bbbbbb;
+    --bg-color: #333333;
+    --bg-color-alt: #444444;
+    --main-color: #ffffff;
 }
 
 /* General wrapper for alignment and layout */
@@ -14,16 +14,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Full height to center align the card vertically */
-    background-color: #282c34; /* Very dark grey background */
+    min-height: 100vh;
+    background-color: #282c34;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 /* Styling for the toggle switch component */
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px; /* Increased width for better interaction */
-    height: 34px; /* Increased height for better interaction */
+    width: 60px;
+    height: 34px;
     margin: 10px;
     cursor: pointer;
 }
@@ -44,7 +46,7 @@
     bottom: 0;
     background-color: var(--bg-color-alt);
     transition: .4s;
-    border-radius: 34px; /* Full pill shape */
+    border-radius: 34px;
 }
 
 .slider:before {
@@ -59,7 +61,6 @@
     border-radius: 50%;
 }
 
-/* Change background and position of slider when checked */
 .toggle:checked + .slider {
     background-color: var(--input-focus);
 }
@@ -70,22 +71,24 @@
 
 /* Adding clear instructions for the toggle */
 .toggleInstruction {
-    display: block; /* Make it a block to sit on its own line */
+    display: block;
     color: var(--font-color);
-    text-align: center; /* Center the text over the toggle */
-    margin-top: 5px; /* Spacing for better readability */
-    font-size: 0.9em; /* Slightly smaller text */
-    transition: color 0.3s; /* Smooth transition for color changes */
+    text-align: center;
+    margin-top: 5px;
+    font-size: 0.9em;
+    transition: color 0.3s;
 }
 
 /* Styling for the flipping card container */
 .flipCardInner {
-    width: 300px;
-    height: 350px;
+    width: 100%;
+    max-width: 400px;
+    height: 450px; /* Fixed height to prevent shifting */
     position: relative;
     perspective: 1000px;
     transform-style: preserve-3d;
     transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+    margin: 0 auto;
 }
 
 /* Front and back of the flip card */
@@ -116,6 +119,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    width: 100%;
 }
 
 .title {
@@ -126,7 +130,8 @@
 }
 
 .flipCardInput {
-    width: 250px;
+    width: 100%;
+    max-width: 300px;
     height: 40px;
     border-radius: 5px;
     border: 2px solid var(--main-color);
@@ -145,11 +150,12 @@
 
 .flipCardInput:focus {
     border-color: var(--input-focus);
-    box-shadow: 0 0 0 3px rgba(45, 140, 240, 0.5); /* Light blue glow for focus */
+    box-shadow: 0 0 0 3px rgba(45, 140, 240, 0.5);
 }
 
 .flipCardBtn {
-    width: 120px;
+    width: 100%;
+    max-width: 150px;
     height: 40px;
     border-radius: 5px;
     border: 2px solid var(--main-color);
@@ -159,36 +165,91 @@
     color: var(--bg-color);
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-    }
-    
-    .flipCardBtn:hover {
+}
+
+.flipCardBtn:hover {
     background-color: var(--input-focus);
     color: var(--bg-color);
-    }
-    
-    .flipCardBtn:active {
+}
+
+.flipCardBtn:active {
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
     transform: translateY(2px);
-    }
-    
-    .errorMessage {
-        color: #ff4444; 
-        font-size: 0.8em;
-        margin-top: 5px;
+}
+
+.errorMessage {
+    color: #ff4444; 
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 600px) {
+    .wrapper {
+        padding: 10px;
     }
 
-    @media (max-width: 600px) {
-        .flipCardInner {
-        width: 90%; 
-        height: auto; 
-        }
+    .flipCardInner {
+        max-width: 100%;
+        height: 450px; /* Fixed height to match larger screens */
+    }
 
-        .flipCardFront, .flipCardBack {
-            padding: 10px; 
-        }
-        
-        .flipCardInput, .flipCardBtn {
-            width: 80%; 
-        }
-        }
-        
+    .flipCardFront, .flipCardBack {
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .flipCardInput, .flipCardBtn {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .flipCardInput {
+        font-size: 14px;
+    }
+
+    .flipCardBtn {
+        font-size: 15px;
+    }
+}
+
+/* Adjustments for larger screens */
+@media (min-width: 601px) {
+    .flipCardInner {
+        max-width: 400px;
+        height: 450px; /* Fixed height to match smaller screens */
+    }
+
+    .flipCardFront, .flipCardBack {
+        padding: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .flipCardInput, .flipCardBtn {
+        width: auto;
+    }
+
+    .title {
+        font-size: 25px;
+    }
+
+    .flipCardInput {
+        font-size: 15px;
+    }
+
+    .flipCardBtn {
+        font-size: 17px;
+        max-width: 150px;
+    }
+}

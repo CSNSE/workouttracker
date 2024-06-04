@@ -4,13 +4,11 @@ import Login from './LogIn';
 import SignUp from './SignUp';
 
 function FlipCard() {
-  // Initialize the toggle state based on the value stored in local storage or default to false
   const [isToggled, setIsToggled] = useState(() => {
     const savedToggleState = localStorage.getItem('toggleState');
     return savedToggleState ? JSON.parse(savedToggleState) : false;
   });
 
-  // Update local storage when the toggle state changes
   useEffect(() => {
     localStorage.setItem('toggleState', JSON.stringify(isToggled));
   }, [isToggled]);
@@ -25,13 +23,13 @@ function FlipCard() {
           <span className={styles.slider}></span>
         </label>
         <span className={styles.toggleInstruction}>{toggleText}</span>
-        <div className={styles.flipCardInner} style={{ transform: isToggled ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
-          <div className={styles.flipCardFront}>
-            <Login />
-          </div>
-          <div className={styles.flipCardBack}>
-            <SignUp />
-          </div>
+      </div>
+      <div className={styles.flipCardInner} style={{ transform: isToggled ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
+        <div className={styles.flipCardFront}>
+          <Login />
+        </div>
+        <div className={styles.flipCardBack}>
+          <SignUp />
         </div>
       </div>
     </div>
